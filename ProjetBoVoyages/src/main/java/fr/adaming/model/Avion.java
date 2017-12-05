@@ -3,11 +3,15 @@ package fr.adaming.model;
 import java.util.Date;
 
 import javax.persistence.Embeddable;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Embeddable
 public class Avion {
 	private String compagnie;
+	@Temporal(TemporalType.TIME)
 	private Date horaireArrivee;
+	@Temporal(TemporalType.TIME)
 	private Date horaireDepart;
 	public Avion() {
 		super();
