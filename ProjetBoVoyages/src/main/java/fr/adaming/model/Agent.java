@@ -7,32 +7,39 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="agents")
 public class Agent implements Serializable {
 	private static final long serialVersionUID = 1L;
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id_ag")
 	private int id;
 	private String username;
 	private String password;
+	private boolean actived;
+	@OneToOne(mappedBy="agent")
+	private Role role;
 	
 	public Agent() {
 		super();
 	}
-	public Agent(String username, String password) {
+	public Agent(String username, String password, boolean actived) {
 		super();
 		this.username = username;
 		this.password = password;
+		this.actived = actived;
 	}
-	public Agent(int id, String username, String password) {
+	public Agent(int id, String username, String password, boolean actived) {
 		super();
 		this.id = id;
 		this.username = username;
 		this.password = password;
+		this.actived = actived;
 	}
 	
 	public int getId() {
@@ -53,10 +60,22 @@ public class Agent implements Serializable {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	public boolean isActived() {
+		return actived;
+	}
+	public void setActived(boolean actived) {
+		this.actived = actived;
+	}
+	public Role getRole() {
+		return role;
+	}
+	public void setRole(Role role) {
+		this.role = role;
+	}
 	
 	@Override
 	public String toString() {
 		return "Agent [id=" + id + ", username=" + username + ", password="
-				+ password + "]";
+				+ password + ", actived=" + actived + "]";
 	}
 }
