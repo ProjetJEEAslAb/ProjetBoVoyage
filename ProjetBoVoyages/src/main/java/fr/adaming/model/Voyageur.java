@@ -42,8 +42,10 @@ public class Voyageur {
 		this.client = client;
 	}
 
-	public Voyageur(int id, String nom, String prenom, String civilite,
-			String adresse, String telephone, Date dateNaissance) {
+	
+
+	public Voyageur(int id, String nom, String prenom, String civilite, String adresse, String telephone,
+			Date dateNaissance, boolean client) {
 		super();
 		this.id = id;
 		this.nom = nom;
@@ -52,6 +54,7 @@ public class Voyageur {
 		this.adresse = adresse;
 		this.telephone = telephone;
 		this.dateNaissance = dateNaissance;
+		this.client = client;
 	}
 
 	public int getId() {
@@ -125,5 +128,14 @@ public class Voyageur {
 	public void setDossiers(Set<Dossier> dossiers) {
 		this.dossiers = dossiers;
 	}
+
+	@Override
+	public String toString() {
+		return "Voyageur [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", civilite=" + civilite + ", adresse="
+				+ adresse + ", telephone=" + telephone + ", dateNaissance=" + dateNaissance + ", client=" + client
+				+ "]";
+	}
+	
+	
 	
 }

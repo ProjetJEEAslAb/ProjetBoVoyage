@@ -45,7 +45,6 @@ public class VoyageurDaoImpl implements IVoyageurDao {
 
 	@Override
 	public Voyageur updateVoyageur(Voyageur v) {
-
 		em.merge(v);
 		return v;
 	}
