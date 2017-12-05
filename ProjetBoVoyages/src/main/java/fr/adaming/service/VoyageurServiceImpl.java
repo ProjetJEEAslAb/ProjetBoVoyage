@@ -30,26 +30,24 @@ public class VoyageurServiceImpl implements IVoyageurService {
 	
 	@Override
 	public List<Voyageur> getAllVoyageurs() {
-		// TODO Auto-generated method stub
-		return null;
+		return voyageDao.getAllVoyageurs();
 	}
 
 	@Override
 	public Voyageur updateVoyageur(Voyageur v) {
-		// TODO Auto-generated method stub
-		return null;
+		return voyageDao.updateVoyageur(v);
 	}
 
 	@Override
 	public void deleteVoyageur(int id) {
-		// TODO Auto-generated method stub
+		voyageDao.deleteVoyageur(id);
 
 	}
 
 	@Override
 	public Voyageur getVoyageur(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		return voyageDao.getVoyageur(id);
+		
 	}
 
 }
