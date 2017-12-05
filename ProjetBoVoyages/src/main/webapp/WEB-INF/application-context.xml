@@ -53,9 +53,6 @@
 
 	<security:authentication-manager>
 		<security:authentication-provider>
-<!-- 			<security:user-service> -->
-<!-- 				<security:user name="a@a" password="a" authorities="ROLE_ADMIN" /> -->
-<!-- 			</security:user-service> -->
 			<security:jdbc-user-service
 				data-source-ref="dataSourceBean"
 				users-by-username-query="SELECT a.username,a.password,a.actived FROM agents a WHERE a.username=?"

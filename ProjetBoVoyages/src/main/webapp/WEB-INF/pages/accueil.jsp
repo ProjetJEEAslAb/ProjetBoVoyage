@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,7 +29,7 @@
 					data-toggle="dropdown" href="#">Voyageurs<span class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li><a href="#">Liste</a></li>
-						<li><a href="#">Ajout</a></li>
+						<li><a href="${pageContext.request.contextPath}/voyageur/afficheAjout">Ajout</a></li>
 						<li><a href="#">Modification</a></li>
 						<li><a href="#">Suppression</a></li>
 						<li><a href="#">Recherche</a></li>
