@@ -8,5 +8,6 @@
 </head>
 <body>
 	<h1>Accueil</h1>
+	<h2><a href="${pageContext.request.contextPath}/agent/test">Test</a></h2>
 </body>
 </html>
