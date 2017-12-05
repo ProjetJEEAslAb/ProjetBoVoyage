@@ -19,7 +19,7 @@
 	<property name="password" value="${jdbc.password}" />
 	</bean>
 
-	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+	<bean id="entityManagerFactoryBean" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 		<property name="dataSource" ref="dataSourceBean" />
 		<property name="packagesToScan" value="fr.adaming.model" />
 		<property name="jpaVendorAdapter">
@@ -32,33 +32,10 @@
 		</property>
 	</bean>
 	
-	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
-		<property name="entityManagerFactory" ref="entityManagerFactory" />
+	<bean id="transactionManagerBean" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="entityManagerFactoryBean" />
 		<property name="jpaDialect">
 			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaDialect" />
 		</property>
 	</bean>
-
-	<!-- <bean id="dataSourceBean" class="org.springframework.jdbc.datasource.DriverManagerDataSource"> -->
-	<!-- <property name="driverClassName" value="${jdbc.driver}" /> -->
-	<!-- <property name="url" value="${jdbc.url}" /> -->
-	<!-- <property name="username" value="${jdbc.username}" /> -->
-	<!-- <property name="password" value="${jdbc.password}" /> -->
-	<!-- </bean> -->
-
-	<!-- <bean id="sessionFactoryBean" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean"> -->
-	<!-- <property name="dataSource" ref="dataSourceBean" /> -->
-	<!-- <property name="packagesToScan" value="fr.adaming.model" /> -->
-	<!-- <property name="hibernateProperties"> -->
-	<!-- <props> -->
-	<!-- <prop key="hibernate.dialect">${hb.dialect}</prop> -->
-	<!-- <prop key="hibernate.show_sql">${hb.show_sql}</prop> -->
-	<!-- <prop key="hibernate.hbm2ddl.auto">${hb.hbm2ddl}</prop> -->
-	<!-- </props> -->
-	<!-- </property> -->
-	<!-- </bean> -->
-
-	<!-- <bean id="transactionManagerBean" class="org.springframework.orm.hibernate4.HibernateTransactionManager"> -->
-	<!-- <property name="sessionFactory" ref="sessionFactoryBean" /> -->
-	<!-- </bean> -->
 </beans>

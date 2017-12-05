@@ -3,7 +3,17 @@ package fr.adaming.model;
 import java.util.Date;
 import java.util.Set;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+@Entity
 public class Voyageur {
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="id_voyageur")
 	private int id;
 	private String nom;
 	private String prenom;
@@ -13,6 +23,7 @@ public class Voyageur {
 	private Date dateNaissance;
 	private boolean client;
 	
+	@ManyToMany
 	private Set<Dossier> dossiers;
 
 	public Voyageur() {
