@@ -2,14 +2,29 @@ package fr.adaming.model;
 
 import java.util.Set;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+@Entity
 public class Dossier {
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="id_dossier")
 	private int id;
 	private String statut;
 	private String assurance;
 	private String codeCB;
 	
+	@ManyToOne
 	private Voyage voyage;
-	
+	@ManyToMany
+	@JoinTable(name="jointureDossierVoyageurs",joinColumns=@JoinColumn(name="id_dossier",referencedColumnName="id_dossier"),inverseJoinColumns=@JoinColumn(name="id_voyageur",referencedColumnName="id_voyageur"))
 	private Set<Voyageur> voyageurs;
 
 	public Dossier() {
