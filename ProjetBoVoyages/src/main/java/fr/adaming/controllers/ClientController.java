@@ -5,6 +5,6 @@ import org.springframework.stereotype.Controller;
 @Controller
 public class ClientController {
 
-	//Affichage de la page
+	//Affichage de la page 
 	
 }
