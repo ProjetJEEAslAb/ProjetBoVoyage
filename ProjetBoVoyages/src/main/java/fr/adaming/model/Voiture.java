@@ -1,5 +1,8 @@
 package fr.adaming.model;
 
+import javax.persistence.Embeddable;
+
+@Embeddable
 public class Voiture {
 	private String categorie;
 	private String loueur;

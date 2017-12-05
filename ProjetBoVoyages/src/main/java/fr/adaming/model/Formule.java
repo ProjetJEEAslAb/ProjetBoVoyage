@@ -2,11 +2,19 @@ package fr.adaming.model;
 
 import java.util.Set;
 
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+
+@Entity
 public class Formule {
 	private int id;
 	private String hebergement;
+	@Embedded
 	private Avion avion;
+	@Embedded
 	private Voiture voiture;
+	@OneToMany(mappedBy="id")
 	private Set<Hotel> hotels;
 	
 	public Formule() {

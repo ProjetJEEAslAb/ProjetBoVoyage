@@ -2,6 +2,9 @@ package fr.adaming.model;
 
 import java.util.Date;
 
+import javax.persistence.Embeddable;
+
+@Embeddable
 public class Avion {
 	private String compagnie;
 	private Date horaireArrivee;

@@ -2,7 +2,17 @@ package fr.adaming.model;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+
+@Entity
 public class Hotel {
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private int id;
 	private String adresse;
 	private String chambre;
 	private Date dateArrivee;
@@ -16,6 +26,21 @@ public class Hotel {
 		this.chambre = chambre;
 		this.dateArrivee = dateArrivee;
 		Duree = duree;
+	}
+	public Hotel(int id, String adresse, String chambre, Date dateArrivee,
+			int duree) {
+		super();
+		this.id = id;
+		this.adresse = adresse;
+		this.chambre = chambre;
+		this.dateArrivee = dateArrivee;
+		Duree = duree;
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
 	}
 	public String getAdresse() {
 		return adresse;
