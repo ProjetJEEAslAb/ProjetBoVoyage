@@ -14,7 +14,7 @@ public class Voyage {
 	
 	private Formule formule;
 	
-	private Set<Dossier> dossiers;
+	private Set<Dossier> dossiers; 
 
 	public Voyage() {
 		super();
