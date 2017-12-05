@@ -93,5 +93,14 @@ public class Dossier {
 	public void setVoyageurs(Set<Voyageur> voyageurs) {
 		this.voyageurs = voyageurs;
 	}
+
+	@Override
+	public String toString() {
+		return "Dossier [id=" + id + ", statut=" + statut + ", assurance=" + assurance + ", codeCB=" + codeCB + "]";
+	}
+
+
+	
+	
 	
 }
