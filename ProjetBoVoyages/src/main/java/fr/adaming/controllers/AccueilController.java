@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import fr.adaming.model.Agent;
 import fr.adaming.model.Formule;
 import fr.adaming.model.Voyage;
+import fr.adaming.model.Voyageur;
 import fr.adaming.service.IAgentService;
 import fr.adaming.service.IVoyageService;
 import fr.adaming.service.VoyageServiceImpl;
@@ -49,13 +50,16 @@ public class AccueilController {
 		 * 
 		 * 
 		*/
-		Date dateDepart = new Date();
-		Voyage voyageTest = new Voyage(20, 520, dateDepart, 3, "Syldavie", "Europe");
-		System.out.println(voyageTest);
-		Formule formule = new Formule("Hotel Royal de Klow");
-		System.out.println("Ajout du voyage");
-		Voyage voyage = serviceVoyage.ajoutVoyage(voyageTest);
-		System.out.println(voyage);
+//		Date dateTest = new Date();
+//		Voyage voyageTest = new Voyage(20, 520, dateTest, 3, "Syldavie", "Europe");
+//		System.out.println(voyageTest);
+//		Formule formule = new Formule("Hotel Royal de Klow");
+//		System.out.println("Ajout du voyage");
+//		Voyage voyage = serviceVoyage.ajoutVoyage(voyageTest);
+//		System.out.println(voyage);
+		Voyageur voyageur = new Voyageur("Test", "Ajout", "Mr", "2 Route de l'hypothèse 00000 Possible", "0123456789", dateNaissance, client)
+		
+		
 //		this.agentService. addAgent(new Agent("a@a", "a"));
 		return new ModelAndView("accueil");
 	}
