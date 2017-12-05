@@ -55,15 +55,15 @@ public class VoyageurDaoImpl implements IVoyageurDao {
 	@Override
 	public void deleteVoyageur(int id) {
 		Voyageur vOut = em.find(Voyageur.class, id);
-		em.delete(vOut);
+		em.remove(vOut);
 				
 	}
 
 	// ==================methode rechercher un voyageur=======================//
 	@Override
 	public Voyageur getVoyageur(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		Voyageur vOut = em.find(Voyageur.class, id);		
+		return vOut;
 	}
 
 }
