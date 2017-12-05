@@ -35,14 +35,14 @@ public class VoyageDaoImpl implements IVoyageDao{
 
 	@Override
 	public Voyage updateVoyage(Voyage v) {
-		// TODO Auto-generated method stub
-		return null;
+		em.merge(v);
+		return v;
 	}
 
 	@Override
-	public void deleteVoyage() {
-		// TODO Auto-generated method stub
-		
+	public void deleteVoyage(int id) {
+		Voyage voyageARetirer = em.find(Voyage.class,id);
+		em.remove(voyageARetirer);
 	}
 	
 	

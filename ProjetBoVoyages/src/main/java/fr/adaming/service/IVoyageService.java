@@ -9,5 +9,5 @@ public interface IVoyageService {
 	public List<Voyage> getAllVoyages();
 	public Voyage getVoyageById(int id);
 	public Voyage updateVoyage(Voyage v);
-	public void deleteVoyage();
+	public void deleteVoyage(int id);
 }
