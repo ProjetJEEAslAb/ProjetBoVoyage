@@ -5,7 +5,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<link rel="stylesheet" href="assets/libs/bootstrap-3.3.7/css/bootstrap.css">
-	<link rel="stylesheet" href="assets/libs/bootstrap-3.3.7/css/bootstrap-theme.css">
+	<link rel="stylesheet" href="https://bootswatch.com/3/superhero/bootstrap.min.css">
 	<script type="text/javascript" src="assets/libs/jquery-3.2.1.js"></script>
 	<script type="text/javascript" src="assets/libs/bootstrap-3.3.7/js/bootstrap.js"></script>
 	<title>Accueil</title>
@@ -13,10 +13,9 @@
 	<nav class="navbar navbar-inverse">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<a class="navbar-brand" href="#">WebSiteName</a>
+				<a class="navbar-brand" href="#">BoVoyage</a>
 			</div>
 			<ul class="nav navbar-nav">
-				<li class="active"><a href="#">Accueil</a></li>
 				<li class="dropdown"><a class="dropdown-toggle"
 					data-toggle="dropdown" href="#">Voyages<span class="caret"></span></a>
 					<ul class="dropdown-menu">
