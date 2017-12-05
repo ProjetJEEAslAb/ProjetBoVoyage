@@ -17,6 +17,7 @@ public class VoyageDaoImpl implements IVoyageDao{
 	@Override
 	public Voyage ajoutVoyage(Voyage v) {
 		em.persist(v);
+		System.out.println(v);
 		return v;
 	}
 
