@@ -28,7 +28,8 @@ public class AccueilController {
 //	}
 	@Autowired
 	private IVoyageService serviceVoyage;
-	
+	@Autowired
+	private IVoyageService serviceVoyageur;
 	
 	
 
@@ -50,14 +51,17 @@ public class AccueilController {
 		 * 
 		 * 
 		*/
-//		Date dateTest = new Date();
+		Date dateTest = new Date();
 //		Voyage voyageTest = new Voyage(20, 520, dateTest, 3, "Syldavie", "Europe");
 //		System.out.println(voyageTest);
 //		Formule formule = new Formule("Hotel Royal de Klow");
 //		System.out.println("Ajout du voyage");
 //		Voyage voyage = serviceVoyage.ajoutVoyage(voyageTest);
 //		System.out.println(voyage);
-		Voyageur voyageur = new Voyageur("Test", "Ajout", "Mr", "2 Route de l'hypothèse 00000 Possible", "0123456789", dateNaissance, client)
+		Voyageur voyageur1 = new Voyageur("Test", "Ajout", "Mr", "2 Route de l'hypothèse 00000 Possible", "0123456789", dateTest, true);
+		Voyageur voyageur2 = new Voyageur("Test", "Ajout", "Mr", "2 Route de l'hypothèse 00000 Possible", "0123456789", dateTest, true);
+		
+		
 		
 		
 //		this.agentService. addAgent(new Agent("a@a", "a"));
