@@ -45,10 +45,10 @@ public class DossierServiceImpl implements IDossierService{
 	}
 
 	@Override
-	public void deleteDossier(int id) {
+	public void deleteDossier(Dossier dossier) {
 		
-		Dossier dossier=dossierDao.getDossierById(id);
-		dossierDao.deleteDossier(dossier);
+		Dossier dossierIn=dossierDao.getDossierById(dossier.getId());
+		dossierDao.deleteDossier(dossierIn);
 		
 	}
 
@@ -56,9 +56,8 @@ public class DossierServiceImpl implements IDossierService{
 	public Dossier updateStatutDossier(int id, String statut) {
 		
 		Dossier dossier=dossierDao.getDossierById(id);
-		System.out.println(dossier);
-		System.out.println("\n"+dossier.getStatut());
-		System.out.println("\n"+statut);
+
+		// On ne veut permettre que certains types d'évolutions du statut
 		
 		if (dossier.getStatut().equals("en attente") && statut.equals("en cours")){
 			dossier.setStatut(statut);
@@ -77,7 +76,7 @@ public class DossierServiceImpl implements IDossierService{
 			dossierDao.updateDossier(dossier);
 			System.out.println(dossierDao.getDossierById(dossier.getId()));
 		} else {
-			System.out.println("\n------Modif impossible");
+			System.out.println("\n------Modification impossible du statut");
 		}
 				
 		return dossier;

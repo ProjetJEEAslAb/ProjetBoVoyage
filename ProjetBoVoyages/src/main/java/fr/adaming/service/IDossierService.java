@@ -14,7 +14,7 @@ public Dossier addDossier (Dossier dossier);
 	
 	public Dossier updateDossier (Dossier dossier);
 	
-	public void deleteDossier (int id);
+	public void deleteDossier (Dossier dossier);
 	
 	public Dossier updateStatutDossier (int id, String statut);
 
