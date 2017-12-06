@@ -144,6 +144,24 @@
 			</div>
 		</div>
 		
+		<div class="form-group">
+			<form:label for="descriptionVoyage" class="col-sm-2 control-label" path="descriptionVoyage">Description de voyage</form:label>
+			<div class="col-sm-8">
+				<form:input type="textarea" class="form-control" id="descriptionVoyage" placeholder="Description de voyage"
+					path="descriptionVoyage" />
+				<form:errors path="descriptionVoyage" />
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<form:label for="reduction" class="col-sm-2 control-label" path="reduction">Réduction</form:label>
+			<div class="col-sm-8">
+				<form:input class="form-control" id="reduction" placeholder="Réduction"
+					path="reduction" />
+				<form:errors path="reduction" />
+			</div>
+		</div>
+		
 		<div class="col-sm-offset-2 col-sm-8">
 			<input type="submit" value="Ajouter voyage" class="btn btn-info" />
 		</div>

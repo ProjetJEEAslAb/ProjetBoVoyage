@@ -57,7 +57,7 @@ public class VoyageController {
 			bleD.replaceAll("Z$", "+0000");
 			Date dateD = formatterH.parse(bleD + ":00");
 			voyage.getFormule().getAvion().setHoraireArrivee(dateD);
-			String bleA = voyage.getFormule().getAvion().getArrivee();
+			String bleA = voyage.getFormule().getAvion().getDepart();
 			bleA.replaceAll("Z$", "+0000");
 			Date dateA = formatterH.parse(bleD + ":00");
 			voyage.getFormule().getAvion().setHoraireDepart(dateA);
@@ -103,7 +103,12 @@ public class VoyageController {
 			@ModelAttribute("hotelAjoute") Hotel hotel) {
 		System.out.println("2ème édition : Le voyage est " + voyageEnCours);
 		System.out.println("Hotel :" + hotel);
-
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		try {
+			hotel.setDateArrivee(formatter.parse(hotel.getDateTemp()));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 		voyageEnCours.getFormule().getHotels().add(hotel);
 		System.out.println(voyageEnCours.getFormule().getHotels());
 		ModelAndView modele = new ModelAndView("voyage/hotel", "hotelAjoute",
