@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,7 +15,10 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.annotations.Cascade;
+
 @Entity
+@Table(name="voyages")
 public class Voyage implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
@@ -28,7 +32,7 @@ public class Voyage implements Serializable {
 	private int duree;
 	private String pays;
 	private String continent;
-	@OneToOne
+	@OneToOne(cascade={CascadeType.REMOVE})
 	private Formule formule;
 	@OneToMany(mappedBy="voyage")
 	private Set<Dossier> dossiers;

@@ -23,14 +23,12 @@ public class VoyageServiceImpl implements IVoyageService{
 
 	@Override
 	public List<Voyage> getAllVoyages() {
-		// TODO Auto-generated method stub
-		return null;
+		return daoVoyage.getAllVoyages();
 	}
 
 	@Override
 	public Voyage getVoyageById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		return daoVoyage.getVoyageById(id);
 	}
 
 	@Override

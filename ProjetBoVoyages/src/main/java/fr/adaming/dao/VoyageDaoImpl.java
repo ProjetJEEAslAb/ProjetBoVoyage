@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
 
@@ -23,14 +24,21 @@ public class VoyageDaoImpl implements IVoyageDao{
 
 	@Override
 	public List<Voyage> getAllVoyages() {
-		// TODO Auto-generated method stub
-		return null;
+		//Requête HQL
+		String req ="FROM Voyage v";
+		Query query = em.createQuery(req);
+		List<Voyage> listeVoyage = query.getResultList();
+		return listeVoyage;
 	}
 
 	@Override
 	public Voyage getVoyageById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		// Requête HQL 
+		String requete = "SELECT v FROM Voyage v WHERE v.id=:pId";
+		Query query = em.createQuery(requete);
+		query.setParameter("pId", id);
+		Voyage voyage = (Voyage) query.getSingleResult();
+		return voyage;
 	}
 
 	@Override
