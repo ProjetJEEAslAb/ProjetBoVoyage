@@ -1,5 +1,6 @@
 package fr.adaming.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Embeddable;
@@ -7,12 +8,15 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Embeddable
-public class Avion {
+public class Avion implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
 	private String compagnie;
 	@Temporal(TemporalType.TIME)
 	private Date horaireArrivee;
 	@Temporal(TemporalType.TIME)
 	private Date horaireDepart;
+	
 	public Avion() {
 		super();
 	}
@@ -22,6 +26,7 @@ public class Avion {
 		this.horaireArrivee = horaireArrivee;
 		this.horaireDepart = horaireDepart;
 	}
+	
 	public String getCompagnie() {
 		return compagnie;
 	}
@@ -41,6 +46,9 @@ public class Avion {
 		this.horaireDepart = horaireDepart;
 	}
 	
-	
-	
+	@Override
+	public String toString() {
+		return "Avion [compagnie=" + compagnie + ", horaireArrivee="
+				+ horaireArrivee + ", horaireDepart=" + horaireDepart + "]";
+	}
 }
