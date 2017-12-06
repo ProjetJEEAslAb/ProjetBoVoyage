@@ -118,7 +118,6 @@ public class Voyage implements Serializable {
 	public String toString() {
 		return "Voyage [id=" + id + ", placesDisponibles=" + placesDisponibles
 				+ ", prix=" + prix + ", dateDepart=" + dateDepart + ", duree="
-				+ duree + ", pays=" + pays + ", continent=" + continent
-				+ ", formule=" + formule + ", dossiers=" + dossiers + "]";
+				+ duree + ", pays=" + pays + ", continent=" + continent + "]";
 	}
 }
