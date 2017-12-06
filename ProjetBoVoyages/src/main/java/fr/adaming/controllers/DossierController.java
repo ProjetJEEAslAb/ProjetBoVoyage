@@ -60,7 +60,7 @@ public class DossierController {
 
 			return "dossier/listeDossier";
 		} else {
-			
+
 			redirectAttributes.addFlashAttribute("message", "Le dossier n'a pas pu être ajouté");
 			return "redirect:afficheAjout";
 		}
@@ -74,53 +74,110 @@ public class DossierController {
 
 	}
 
-	@RequestMapping(value="/modifDoss", method=RequestMethod.POST)
+	@RequestMapping(value = "/modifDoss", method = RequestMethod.POST)
 	public String soumettreFormModif(Model modele, @ModelAttribute("dossierModif") Dossier dossier,
 			BindingResult result) {
 
 		dossierService.updateDossier(dossier);
-		
-		if (result.hasErrors()){
+
+		if (result.hasErrors()) {
 			return "dossier/modifDossier";
 		} else {
-			
+
 			// Actualiser la liste de dossiers
 			List<Dossier> listeOut = dossierService.getAllDossiers();
 			modele.addAttribute("listeDossiers", listeOut);
-			
+
 			return "dossier/listeDossier";
-			
+
 		}
 
 	}
 	
-	
-	// Formulaire de suppression d'un dossier
-	@RequestMapping(value="/afficheSuppr", method=RequestMethod.GET)
-	public ModelAndView afficheFormSuppr() {
-		
-		return new ModelAndView("dossier/supprDossier", "dossierSuppr", new Dossier());
-		
+	// Formulaire de modification d'un dossier
+	@RequestMapping(value="/afficheModifStatut", method=RequestMethod.GET)
+	public ModelAndView afficheFormModifStatut() {
+		return new ModelAndView("dossier/modifStatut", "statutModif", new Dossier());
 	}
 	
-	@RequestMapping (value = "/supprDoss", method=RequestMethod.POST)
-	public String soumettreFormSuppr(Model modele, @ModelAttribute("dossierSuppr") Dossier dossier, BindingResult result) {
+	
+	@RequestMapping(value="/modifierStatut", method=RequestMethod.POST)
+	public String soumettreFormModifStatut(RedirectAttributes redirectAttributes, Model modele, @ModelAttribute("statutModif") Dossier dossier, BindingResult result) {
 		
 		// Appel de la méthode Service
-		dossierService.deleteDossier(dossier);
+		Dossier dosModifStatut=dossierService.updateStatutDossier(dossier.getId(), dossier.getStatut());
 		
 		if (result.hasErrors()){
-			return "dossier/supprDossier";
+			return "dossier/modifStatut";
+		} else if (dosModifStatut==null){
+			redirectAttributes.addFlashAttribute("message", "Le statut n'a pas pu être modifié: la séquence de modification n'a pas été respectée");
+			return "redirect:afficheModifStatut";
 		} else {
 			
-			// Actualiser la liste de dossiers
-			List<Dossier> listeOut = dossierService.getAllDossiers();
+			// Actualiser la liste des dossiers
+			List<Dossier> listeOut=dossierService.getAllDossiers();
+			
 			modele.addAttribute("listeDossiers", listeOut);
 			
 			return "dossier/listeDossier";
 			
 		}
 		
+		
+	}
+	
+
+	// Formulaire de suppression d'un dossier
+	@RequestMapping(value = "/afficheSuppr", method = RequestMethod.GET)
+	public ModelAndView afficheFormSuppr() {
+
+		return new ModelAndView("dossier/supprDossier", "dossierSuppr", new Dossier());
+
 	}
 
+	@RequestMapping(value = "/supprDoss", method = RequestMethod.POST)
+	public String soumettreFormSuppr(Model modele, @ModelAttribute("dossierSuppr") Dossier dossier,
+			BindingResult result) {
+
+		// Appel de la méthode Service
+		dossierService.deleteDossier(dossier);
+
+		if (result.hasErrors()) {
+			return "dossier/supprDossier";
+		} else {
+
+			// Actualiser la liste de dossiers
+			List<Dossier> listeOut = dossierService.getAllDossiers();
+			modele.addAttribute("listeDossiers", listeOut);
+
+			return "dossier/listeDossier";
+
+		}
+
+	}
+
+	// Formulaire de recherche d'un dossier
+	@RequestMapping(value = "/afficheRecherche", method = RequestMethod.GET)
+	public ModelAndView afficheFormRecherche() {
+		return new ModelAndView("dossier/rechercheDossier", "dossierRecherche", new Dossier());
+	}
+
+	@RequestMapping(value = "/rechercheDoss", method = RequestMethod.POST)
+	public String soumettreFormRecherche(Model modele, @ModelAttribute("dossierRecherche") Dossier dossier,
+			BindingResult result) {
+
+		// Appel de la méthode Service
+		Dossier dossOut = dossierService.getDossierById(dossier.getId());
+
+		if (result.hasErrors()) {
+
+			return "dossier/rechercheDossier";
+
+		} else {
+			// Ajout du dossier trouvé au modèle
+			modele.addAttribute("dossier", dossOut);
+			return "dossier/rechercheDossier";
+		}
+
+	}
 }

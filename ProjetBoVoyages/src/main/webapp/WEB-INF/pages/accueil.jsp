@@ -75,6 +75,7 @@
 						<li><a href="${pageContext.request.contextPath}/dossier/listeDossiers">Liste</a></li>
 						<li><a href="${pageContext.request.contextPath}/dossier/afficheAjout">Ajout</a></li>
 						<li><a href="${pageContext.request.contextPath}/dossier/afficheModif">Modification</a></li>
+						<li><a href="${pageContext.request.contextPath}/dossier/afficheModifStatut">Modification statut</a></li>
 						<li><a href="${pageContext.request.contextPath}/dossier/afficheSuppr">Suppression</a></li>
 						<li><a href="${pageContext.request.contextPath}/dossier/afficheRecherche">Recherche</a></li>
 					</ul>

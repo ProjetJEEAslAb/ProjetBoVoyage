@@ -77,6 +77,7 @@ public class DossierServiceImpl implements IDossierService{
 			System.out.println(dossierDao.getDossierById(dossier.getId()));
 		} else {
 			System.out.println("\n------Modification impossible du statut");
+			return null;
 		}
 				
 		return dossier;
