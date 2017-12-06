@@ -1,17 +1,22 @@
 package fr.adaming.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 
 @Entity
-public class Hotel {
+@Table(name="hotels")
+public class Hotel implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
@@ -19,7 +24,8 @@ public class Hotel {
 	private String chambre;
 	@Temporal(TemporalType.DATE)
 	private Date dateArrivee;
-	private int Duree;
+	private int duree;
+	
 	public Hotel() {
 		super();
 	}
@@ -28,7 +34,7 @@ public class Hotel {
 		this.adresse = adresse;
 		this.chambre = chambre;
 		this.dateArrivee = dateArrivee;
-		Duree = duree;
+		this.duree = duree;
 	}
 	public Hotel(int id, String adresse, String chambre, Date dateArrivee,
 			int duree) {
@@ -37,8 +43,9 @@ public class Hotel {
 		this.adresse = adresse;
 		this.chambre = chambre;
 		this.dateArrivee = dateArrivee;
-		Duree = duree;
+		this.duree = duree;
 	}
+	
 	public int getId() {
 		return id;
 	}
@@ -64,10 +71,16 @@ public class Hotel {
 		this.dateArrivee = dateArrivee;
 	}
 	public int getDuree() {
-		return Duree;
+		return this.duree;
 	}
 	public void setDuree(int duree) {
-		Duree = duree;
+		this.duree = duree;
 	}
 	
+	@Override
+	public String toString() {
+		return "Hotel [id=" + id + ", adresse=" + adresse + ", chambre="
+				+ chambre + ", dateArrivee=" + dateArrivee + ", duree=" + duree
+				+ "]";
+	}
 }
