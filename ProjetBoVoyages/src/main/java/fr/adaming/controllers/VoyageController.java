@@ -13,9 +13,11 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import fr.adaming.model.Formule;
@@ -115,5 +117,37 @@ public class VoyageController {
 
 		return modele;
 	}
+	
+	@RequestMapping(value="/modifVoyage", method=RequestMethod.GET)
+	public String afficheModifVoyage(Model modele){
+		modele.addAttribute("voyageModif", new Voyage());
+		return "modifVoyage";
+	}
+	
+	@RequestMapping(value="/modifierVoyage", method=RequestMethod.POST)
+	public ModelAndView soumetModifVoyage(@RequestParam("voyageModif") Voyage voyage){
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat formatterH = new SimpleDateFormat(
+				"yyyy-MM-dd'T'HH:mm:ss");
+		try {
+			voyage.setDateDepart(formatter.parse(voyage.getDateString()));
+			String bleD = voyage.getFormule().getAvion().getArrivee();
+			bleD.replaceAll("Z$", "+0000");
+			Date dateD = formatterH.parse(bleD + ":00");
+			voyage.getFormule().getAvion().setHoraireArrivee(dateD);
+			String bleA = voyage.getFormule().getAvion().getDepart();
+			bleA.replaceAll("Z$", "+0000");
+			Date dateA = formatterH.parse(bleD + ":00");
+			voyage.getFormule().getAvion().setHoraireDepart(dateA);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		// On ne change pas les hôtels sur cette page, il faut donc les récupérer depuis
+		
+		
+		return null;
+	}
+	
+	
 
 }
