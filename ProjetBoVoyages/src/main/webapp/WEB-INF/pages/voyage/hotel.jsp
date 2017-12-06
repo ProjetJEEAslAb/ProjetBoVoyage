@@ -31,9 +31,11 @@
 		<div class="form-group">
 			<form:label for="chambre" class="col-sm-2 control-label" path="chambre">Chambre</form:label>
 			<div class="col-sm-8">
-				<form:input class="form-control" id="chambre" placeholder="Chambre"
-					path="chambre" />
-				<form:errors path="chambre" />
+				<form:select class="form-control" id="hebergement"
+					placeholder="Hébergement" path="formule.hebergement">
+					<option>Simple</option>
+					<option>Double</option>
+				</form:select>
 			</div>
 		</div>
 		

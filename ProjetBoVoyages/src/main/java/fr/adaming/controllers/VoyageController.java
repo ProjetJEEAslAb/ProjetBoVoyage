@@ -13,7 +13,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -84,11 +83,14 @@ public class VoyageController {
 	@RequestMapping(value = "/ajouteDernierHotel", method = RequestMethod.POST)
 	public ModelAndView ajoutDernierHotel(
 			@ModelAttribute("hotelAjoute") Hotel hotel) {
-		System.out.println(voyageEnCours);
-		System.out.println("hotels de voyageEncours : "+voyageEnCours.getFormule().getHotels());
-		Voyage vOut = voyageService.ajoutVoyage(voyageEnCours);
-		System.out.println("vOut :"+vOut);
-		
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		try {
+			hotel.setDateArrivee(formatter.parse(hotel.getDateTemp()));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		voyageEnCours.getFormule().getHotels().add(hotel);
+		Voyage vOut = voyageService.ajoutVoyage(voyageEnCours);		
 		if (vOut != null) {
 			System.out.println("hotels de vOut : "+vOut.getFormule().getHotels());
 			return new ModelAndView("accueil");
@@ -101,8 +103,6 @@ public class VoyageController {
 	@RequestMapping(value = "/ajouteAutreHotel", method = RequestMethod.POST)
 	public ModelAndView ajoutAutreHotel(
 			@ModelAttribute("hotelAjoute") Hotel hotel) {
-		System.out.println("2ème édition : Le voyage est " + voyageEnCours);
-		System.out.println("Hotel :" + hotel);
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 		try {
 			hotel.setDateArrivee(formatter.parse(hotel.getDateTemp()));
@@ -110,7 +110,6 @@ public class VoyageController {
 			e.printStackTrace();
 		}
 		voyageEnCours.getFormule().getHotels().add(hotel);
-		System.out.println(voyageEnCours.getFormule().getHotels());
 		ModelAndView modele = new ModelAndView("voyage/hotel", "hotelAjoute",
 				new Hotel());
 

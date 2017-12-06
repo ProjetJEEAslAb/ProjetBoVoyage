@@ -89,7 +89,6 @@
 					<option>Petit déjeuner</option>
 					<option>Demi-pension</option>
 					<option>Pension complète</option>
-					<option>Océanie</option>
 				</form:select>
 			</div>
 		</div>
