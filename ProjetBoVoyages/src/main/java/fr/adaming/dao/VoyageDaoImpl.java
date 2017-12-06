@@ -58,8 +58,6 @@ public class VoyageDaoImpl implements IVoyageDao{
 		StringBuilder requete = new StringBuilder("SELECT v FROM Voyage v WHERE ");
 		//Nombre de critere;
 		int nbCritere = listeParametre.size();
-		System.out.println(nbCritere);
-		System.out.println(listeParametre);
 		for(int i =0;i<=nbCritere-1;i++){
 			System.out.println(listeParametre.get(i));
 			if(i==0){
@@ -71,7 +69,6 @@ public class VoyageDaoImpl implements IVoyageDao{
 				requete.append(listeParametre.get(i));
 			}
 		}
-		System.out.println(requete);
 
 		Query query = em.createQuery(requete.toString());
 		StringBuilder pays = new StringBuilder();

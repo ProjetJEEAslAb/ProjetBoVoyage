@@ -145,7 +145,7 @@
 		</div>
 		
 		<div class="col-sm-offset-2 col-sm-8">
-			<input type="submit" value="Ajouter voyage" class="btn btn-info" />
+			<form:input type="submit" value="Ajouter voyage" class="btn btn-info" />
 		</div>
 
 	</form:form>

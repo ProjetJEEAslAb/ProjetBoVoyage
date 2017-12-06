@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import fr.adaming.model.Formule;
+import fr.adaming.model.Hotel;
 import fr.adaming.model.Voyage;
 import fr.adaming.service.IVoyageService;
 
@@ -57,15 +58,26 @@ public class VoyageController {
 		Voyage vOut=voyageService.ajoutVoyage(voyage);
 		
 		if(vOut!=null){
-			System.out.println(vOut);
+			
 		}
-		return new ModelAndView("hotel", "voyageAjoute", voyage);
+		return new ModelAndView("voyage/hotelRedirect", "voyageAjoute", voyage);
 	}
 	
-	@RequestMapping(value="/hotel", method=RequestMethod.GET)
+	@RequestMapping(value="/hotels", method=RequestMethod.GET)
 	public ModelAndView afficheAjoutHotel(@ModelAttribute("voyageAjoute") Voyage voyage){
 		System.out.println("Le voyage est "+voyage);
-		return null;
+		ModelAndView modele=new ModelAndView("voyage/hotel", "voyageAjoute", voyage);
+		modele.addObject("hotelAjoute", new Hotel());
+		return modele;
+	}
+	
+	@RequestMapping(value="/ajouteDernierHotel", method=RequestMethod.POST)
+	public ModelAndView ajoutDernierHotel(@ModelAttribute("voyageAjoute") Voyage voyage, @ModelAttribute("hotelAjoute") Hotel hotel){
+		System.out.println("2ème édition : Le voyage est "+voyage);
+		System.out.println("Hotel :"+hotel);
+		ModelAndView modele=new ModelAndView("voyage/hotel", "voyageAjoute", voyage);
+		modele.addObject("hotelAjoute", new Hotel());
+		return modele;
 	}
 	
 }
