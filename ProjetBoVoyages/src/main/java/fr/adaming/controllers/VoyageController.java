@@ -37,11 +37,7 @@ public class VoyageController {
 	}
 	
 	@RequestMapping(value="/ajouteVoyage", method=RequestMethod.POST)
-	public String soumettreFormAjout(Model modele, @ModelAttribute("voyageAjoute") Voyage voyage){
-		
-		System.out.println(voyage);
-		System.out.println(voyage.getFormule());
-		System.out.println(voyage.getFormule().getAvion().getArrivee());
+	public ModelAndView soumettreFormAjout(@ModelAttribute("voyageAjoute") Voyage voyage){
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 		SimpleDateFormat formatterH = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
 		try {
@@ -63,7 +59,13 @@ public class VoyageController {
 		if(vOut!=null){
 			System.out.println(vOut);
 		}
-		return "hotel";
+		return new ModelAndView("hotel", "voyageAjoute", voyage);
+	}
+	
+	@RequestMapping(value="/hotel", method=RequestMethod.GET)
+	public ModelAndView afficheAjoutHotel(@ModelAttribute("voyageAjoute") Voyage voyage){
+		System.out.println("Le voyage est "+voyage);
+		return null;
 	}
 	
 }
