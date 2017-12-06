@@ -15,8 +15,8 @@
 </head>
 <body>
 
-<form:form method="POST" action="ajouteVoyage" class="form-horizontal"
-		modelAttribute="voyageAjoute">
+<form:form method="POST" action="modifierVoyage" class="form-horizontal"
+		modelAttribute="voyageModif">
 		
 		<div class="form-group">
 			<form:label for="id" class="col-sm-2 control-label" path="id">ID</form:label>

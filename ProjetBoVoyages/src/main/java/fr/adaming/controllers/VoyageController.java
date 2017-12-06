@@ -120,12 +120,13 @@ public class VoyageController {
 	
 	@RequestMapping(value="/modifVoyage", method=RequestMethod.GET)
 	public String afficheModifVoyage(Model modele){
+		System.out.println("Yo !");
 		modele.addAttribute("voyageModif", new Voyage());
-		return "modifVoyage";
+		return "voyage/modifVoyage";
 	}
 	
 	@RequestMapping(value="/modifierVoyage", method=RequestMethod.POST)
-	public ModelAndView soumetModifVoyage(@RequestParam("voyageModif") Voyage voyage){
+	public ModelAndView soumetModifVoyage(@ModelAttribute("voyageModif") Voyage voyage){
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 		SimpleDateFormat formatterH = new SimpleDateFormat(
 				"yyyy-MM-dd'T'HH:mm:ss");
@@ -142,10 +143,16 @@ public class VoyageController {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		// On ne change pas les hôtels sur cette page, il faut donc les récupérer depuis
-		
-		
-		return null;
+		// On ne change pas les hôtels sur cette page, il faut donc les récupérer depuis la DB
+		Voyage vInit=voyageService.getVoyageById(voyage.getId());
+		voyage.getFormule().setHotels(vInit.getFormule().getHotels());
+		voyage.getFormule().setId(vInit.getFormule().getId());
+		Voyage vOut=voyageService.updateVoyage(voyage);
+		if (vOut!=null){
+			return new ModelAndView("accueil");
+		} else {
+			return new ModelAndView("voyage/modifVoyage", "voyageModif", new Voyage());
+		}
 	}
 	
 	
