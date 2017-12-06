@@ -1,5 +1,7 @@
 package fr.adaming.controllers;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,9 +55,17 @@ public class VoyageurController {
 
 	@RequestMapping(value = "/ajout", method = RequestMethod.POST)
 	public String soumettreFormAjout(Model modele, @ModelAttribute("voyageurAjout") Voyageur voyageur) {
-		Voyageur vOut = voyageurService.addVoyageur(voyageur);
-		if (vOut != null) {
 
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		try {
+			voyageur.setDateNaissance(format.parse(voyageur.getDateString()));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		Voyageur vOut = voyageurService.addVoyageur(voyageur);
+
+		if (vOut != null) {
+			System.out.println(vOut);
 		}
 		return null;
 	}
@@ -101,12 +111,12 @@ public class VoyageurController {
 	}
 
 	@RequestMapping(value = "/supprVoyageur", method = RequestMethod.POST)
-	public String soumettreFormSup(RedirectAttributes RedirectAttributes, Model model, @RequestParam("pId") int id) {
+	public String soumettreFormSup(RedirectAttributes RedirectAttributes, Model model,
+			@ModelAttribute("voyageurModif") Voyageur voyageur) {
 
 		// appelle de la methode service
-		Voyageur vIn = new Voyageur();
-		vIn.setId(id);
-		voyageurService.deleteVoyageur(id);
+
+		voyageurService.deleteVoyageur(voyageur);
 
 		// actualiser la liste dans accueil
 		List<Voyageur> liste = voyageurService.getAllVoyageurs();
@@ -127,15 +137,13 @@ public class VoyageurController {
 
 	@RequestMapping(value = "/rechercheVoyageur", method = RequestMethod.POST)
 	public String soumettreFormRecherche(RedirectAttributes RedirectAttributes, Model model,
-			@RequestParam("pId") int id) {
+			@ModelAttribute("voyageurRecherche") Voyageur voyageur) {
 
 		// appelle de la methode service
-		Voyageur vOut = voyageurService.getVoyageur(id);
+		Voyageur vOut = voyageurService.getVoyageurById(voyageur);
 
-		// appelle de la methode service
-		Voyageur vIn = new Voyageur();
-		vIn.setId(id);
-		voyageurService.getVoyageur(id);
+		// ajout de la liste au model
+		model.addAttribute("listeVoyageurs", vOut);
 
 		// actualiser la liste dans accueil
 		List<Voyageur> liste = voyageurService.getAllVoyageurs();

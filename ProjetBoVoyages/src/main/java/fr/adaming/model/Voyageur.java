@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.Transient;
 
 @Entity
 public class Voyageur implements Serializable {
@@ -25,6 +26,9 @@ public class Voyageur implements Serializable {
 	private String adresse;
 	private String telephone;
 	private Date dateNaissance;
+	
+	@Transient
+	private String dateString;
 	private boolean client;
 	@ManyToMany
 	private Set<Dossier> dossiers;
@@ -110,7 +114,13 @@ public class Voyageur implements Serializable {
 	public void setDossiers(Set<Dossier> dossiers) {
 		this.dossiers = dossiers;
 	}
-
+	
+	public String getDateString() {
+		return dateString;
+	}
+	public void setDateString(String dateString) {
+		this.dateString = dateString;
+	}
 	@Override
 	public String toString() {
 		return "Voyageur [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", civilite=" + civilite + ", adresse="

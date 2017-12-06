@@ -39,14 +39,14 @@ public class VoyageurServiceImpl implements IVoyageurService {
 	}
 
 	@Override
-	public void deleteVoyageur(int id) {
-		voyageDao.deleteVoyageur(id);
+	public void deleteVoyageur(Voyageur v) {
+		voyageDao.deleteVoyageur(v);
 
 	}
 
 	@Override
-	public Voyageur getVoyageur(int id) {
-		return voyageDao.getVoyageur(id);
+	public Voyageur getVoyageurById(Voyageur v) {
+		return voyageDao.getVoyageurById(v);
 		
 	}
 

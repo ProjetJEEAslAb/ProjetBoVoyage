@@ -9,7 +9,7 @@ public interface IVoyageurService {
 	public Voyageur addVoyageur(Voyageur v);
 	public List<Voyageur> getAllVoyageurs();
 	public Voyageur updateVoyageur(Voyageur v);
-	public void deleteVoyageur(int id);
-	public Voyageur getVoyageur(int id);
+	public void deleteVoyageur(Voyageur v);
+	public Voyageur getVoyageurById(Voyageur v);
 	
 }

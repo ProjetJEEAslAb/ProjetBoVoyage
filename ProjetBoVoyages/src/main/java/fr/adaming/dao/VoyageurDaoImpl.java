@@ -37,7 +37,6 @@ public class VoyageurDaoImpl implements IVoyageurDao {
 		String req = "FROM Voyageur v";
 		Query query = em.createQuery(req);
 		List<Voyageur> liste = query.getResultList();
-
 		return liste;
 	}
 
@@ -52,17 +51,15 @@ public class VoyageurDaoImpl implements IVoyageurDao {
 	// ==================methode supprimer un voyageur=======================//
 
 	@Override
-	public void deleteVoyageur(int id) {
-		Voyageur vOut = em.find(Voyageur.class, id);
-		em.remove(vOut);
+	public void deleteVoyageur(Voyageur v) {
+		em.remove(v);
 				
 	}
 
 	// ==================methode rechercher un voyageur=======================//
 	@Override
-	public Voyageur getVoyageur(int id) {
-		Voyageur vOut = em.find(Voyageur.class, id);		
-		return vOut;
+	public Voyageur getVoyageurById(Voyageur v) {
+		return em.find(Voyageur.class, v.getId());	
 	}
 
 }
