@@ -41,14 +41,14 @@ public class VoyageurController {
 		// recuperation de la liste
 		List<Voyageur> liste = voyageurService.getAllVoyageurs();
 
-		return new ModelAndView("accueil", "listeVoyageurs", liste);
+		return new ModelAndView("voyageur/listeVoyageur", "listeVoyageurs", liste);
 
 	}
 	// =============controller ajout=========//
 
 	@RequestMapping(value = "/afficheAjout", method = RequestMethod.GET)
 	public ModelAndView afficheFormAjout() {
-		return new ModelAndView("voyageur/ajoutVoyageur", "voyageurAjout", new Voyage());
+		return new ModelAndView("voyageur/ajoutVoyageur", "voyageurAjout", new Voyageur());
 	}
 
 	@RequestMapping(value = "/ajout", method = RequestMethod.POST)
