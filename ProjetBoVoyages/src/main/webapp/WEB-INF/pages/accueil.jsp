@@ -10,16 +10,35 @@
 	<script type="text/javascript" src="assets/libs/jquery-3.2.1.js"></script>
 	<script type="text/javascript" src="assets/libs/bootstrap-3.3.7/js/bootstrap.js"></script>
 	
+	
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAlMJacV2bESryY_WL1XjSSy6Bh-NDofNw"></script>
+	<script type="text/javascript" src="assets/libs/axios.js"></script>
 	<script>
 	var map;
 	function initialize() {
-		var mapOptions = {
-			zoom: 6,
-			center: new google.maps.LatLng(47, -1.5)
-		};
-		map = new google.maps.Map(document.getElementById('map-canvas'),
-		mapOptions);
+    	var map = new google.maps.Map(document.getElementById('map-canvas'), {
+            zoom: 1,
+            center: {lat: 30.0, lng: 0.0}
+        });
+		var locations = ["22 Main st Boston MA", "Petrovka St-Bld 11, Moscow"];
+		for(i=0; i<locations.length; i++) {
+	        axios.get("https://maps.googleapis.com/maps/api/geocode/json", {
+	            params:{
+	                address:locations[i],
+	                key:"AIzaSyAlMJacV2bESryY_WL1XjSSy6Bh-NDofNw"
+	            }
+	        }).then(function(response) {
+	            var results = response.data.results;
+	            for (i=0; i<results.length;i++) {
+	                var position = {lat:response.data.results[i].geometry.location.lat, lng:response.data.results[i].geometry.location.lng};
+	                console.log(position);
+	                var marker = new google.maps.Marker({
+	                    position: position,
+	                    map: map
+	                });
+	            }
+	        });
+		}
 	}
 	google.maps.event.addDomListener(window, 'load', initialize);
 	</script>
