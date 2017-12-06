@@ -41,7 +41,7 @@ public class Voyage implements Serializable {
 	private Set<Dossier> dossiers;
 	@Transient
 	private String dateString;
-
+	private String descriptionVoyage;
 	public Voyage() {
 		super();
 	}
@@ -127,6 +127,12 @@ public class Voyage implements Serializable {
 	}
 	public void setDateString(String dateString) {
 		this.dateString = dateString;
+	}
+	public String getDescriptionVoyage() {
+		return descriptionVoyage;
+	}
+	public void setDescriptionVoyage(String descriptionVoyage) {
+		this.descriptionVoyage = descriptionVoyage;
 	}
 	@Override
 	public String toString() {

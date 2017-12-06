@@ -10,4 +10,6 @@ public interface IVoyageService {
 	public Voyage getVoyageById(int id);
 	public Voyage updateVoyage(Voyage v);
 	public void deleteVoyage(int id);
+	public List<Voyage> rechercheVoyageAvecCritere(Voyage critereVoyage);
+
 }

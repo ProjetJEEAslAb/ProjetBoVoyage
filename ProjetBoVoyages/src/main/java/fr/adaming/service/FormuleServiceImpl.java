@@ -23,4 +23,5 @@ public class FormuleServiceImpl implements IFormuleService{
 		return daoFormule.modifierFormule(formule);
 	}
 
+
 }

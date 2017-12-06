@@ -28,4 +28,5 @@ public class FormuleDaoImpl implements IDaoFormule{
 		return formule;
 	}
 
+
 }
