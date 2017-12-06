@@ -16,10 +16,10 @@
 	<context:property-placeholder location="classpath*:db.properties" />
 
 	<bean id="dataSourceBean" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-	<property name="driverClassName" value="${jdbc.driver}" />
-	<property name="url" value="${jdbc.url}" />
-	<property name="username" value="${jdbc.username}" />
-	<property name="password" value="${jdbc.password}" />
+		<property name="driverClassName" value="${jdbc.driver}" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
 	</bean>
 
 	<bean id="entityManagerFactoryBean" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
@@ -44,13 +44,13 @@
 	
 	
 	<security:http>
-		<security:intercept-url pattern="/voyage/**" access="ROLE_ADMIN" />
-<!-- 		<security:access-denied-handler error-page="/access_denied" /> -->
-		<security:http-basic />
-<!-- 		<security:form-login login-page="/login" authentication-failure-url="/loginFailure" /> -->
-<!-- 		<security:logout logout-success-url="/logout" /> -->
+<!-- 		<security:intercept-url pattern="/voyage/**" access="ROLE_ADMIN" /> -->
+<!-- 		<security:intercept-url pattern="/voyageur/**" access="ROLE_ADMIN" /> -->
+		<security:access-denied-handler error-page="/access_denied" />
+		<security:form-login login-page="/login" authentication-failure-url="/loginFailure" />
+		<security:logout logout-success-url="/logout" invalidate-session="true" />
 	</security:http>
-
+	
 	<security:authentication-manager>
 		<security:authentication-provider>
 			<security:jdbc-user-service

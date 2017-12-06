@@ -52,4 +52,35 @@ public class DossierServiceImpl implements IDossierService{
 		
 	}
 
+	@Override
+	public Dossier updateStatutDossier(int id, String statut) {
+		
+		Dossier dossier=dossierDao.getDossierById(id);
+		System.out.println(dossier);
+		System.out.println("\n"+dossier.getStatut());
+		System.out.println("\n"+statut);
+		
+		if (dossier.getStatut().equals("en attente") && statut.equals("en cours")){
+			dossier.setStatut(statut);
+			dossierDao.updateDossier(dossier);
+			System.out.println(dossierDao.getDossierById(dossier.getId()));
+		} else if (dossier.getStatut().equals("en cours") && statut.equals("refusée")){
+			dossier.setStatut(statut);
+			dossierDao.updateDossier(dossier);
+			System.out.println(dossierDao.getDossierById(dossier.getId()));
+		} else if (dossier.getStatut().equals("en cours") && statut.equals("acceptée")){
+			dossier.setStatut(statut);
+			dossierDao.updateDossier(dossier);
+			System.out.println(dossierDao.getDossierById(dossier.getId()));
+		} else if (dossier.getStatut().equals("acceptée") && statut.equals("annulée")){
+			dossier.setStatut(statut);
+			dossierDao.updateDossier(dossier);
+			System.out.println(dossierDao.getDossierById(dossier.getId()));
+		} else {
+			System.out.println("\n------Modif impossible");
+		}
+				
+		return dossier;
+	}
+
 }
