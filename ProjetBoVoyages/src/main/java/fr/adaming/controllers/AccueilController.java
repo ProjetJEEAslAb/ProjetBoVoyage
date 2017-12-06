@@ -1,5 +1,7 @@
 package fr.adaming.controllers;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -10,6 +12,8 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -43,13 +47,46 @@ public class AccueilController {
 	//	System.out.println(serviceVoyage.getVoyageById(1));
 		//Test suppression voyage et formule
 		//serviceVoyage.deleteVoyage(1);
-		Voyage voyageCritere = new Voyage();
-		voyageCritere.setPays("lda");
-		voyageCritere.setDuree(3);
+		//Voyage voyageCritere = new Voyage();
+		//voyageCritere.setPays("lda");
+		//voyageCritere.setDuree(3);
 		//voyageCritere.setDateDepart(new Date());
-		voyageCritere.setPrix(2000);
-		voyageCritere.setPlacesDisponibles(5);
-		System.out.println(serviceVoyage.rechercheVoyageAvecCritere(voyageCritere));
+		//voyageCritere.setPrix(2000);
+		//voyageCritere.setPlacesDisponibles(5);
+		//System.out.println(serviceVoyage.rechercheVoyageAvecCritere(voyageCritere));
+		return new ModelAndView("accueil");
+	}
+	
+	//Affichage formulaire recherche voyage
+	@RequestMapping(value="/voyage/rechercheVoyage",method = RequestMethod.GET)
+	public String afficherFormulaireRecherche(Model model){
+		model.addAttribute("voyageRecherche",new Voyage());
+		return "rechercheVoyageCritere";
+		
+	}
+	
+	@RequestMapping(value="/voyage/rechercheVoyage", method=RequestMethod.POST)
+	public ModelAndView rechercheVoyage(@ModelAttribute("voyageRecherche") Voyage voyageDemande){
+		//Conversion de  la date
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		try {
+			voyageDemande.setDateDepart(format.parse(voyageDemande.getDateString()));
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		long dateLong = voyageDemande.getDateDepart().getTime();
+		java.sql.Date date = new java.sql.Date(dateLong);
+		voyageDemande.setDateDepart(date);
+		//System.out.println(date);
+
+		
+		System.out.println(voyageDemande);
+		//System.out.println(voyageDemande.getPays());
+		//Appel de la méthode pour filtrer.
+		List<Voyage> listeVoyageInteressant = serviceVoyage.rechercheVoyageAvecCritere(voyageDemande);
+		System.out.println(listeVoyageInteressant);
 		return new ModelAndView("accueil");
 	}
 }

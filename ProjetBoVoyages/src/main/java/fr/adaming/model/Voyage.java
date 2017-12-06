@@ -42,6 +42,7 @@ public class Voyage implements Serializable {
 	@Transient
 	private String dateString;
 	private String descriptionVoyage;
+	private double reduction;
 	public Voyage() {
 		super();
 	}

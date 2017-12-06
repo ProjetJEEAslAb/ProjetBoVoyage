@@ -1,5 +1,6 @@
 package fr.adaming.service;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,7 +48,7 @@ public class VoyageServiceImpl implements IVoyageService {
 	public List<Voyage> rechercheVoyageAvecCritere(Voyage critereVoyage) {
 		// On vérifie les critères choisis par le client.
 		List<String> listeParametre = new ArrayList<>();
-		if(critereVoyage.getPays()==null){
+		if(critereVoyage.getPays().equals("")||critereVoyage.getPays()==null){
 			System.out.println("Pas de préférence pour le pays");
 		}else{
 			StringBuilder pays = new StringBuilder();
@@ -70,8 +71,7 @@ public class VoyageServiceImpl implements IVoyageService {
 		if(critereVoyage.getDateDepart()==null){
 			System.out.println("Pas de date de départ choisie");
 		}else{
-
-			String critereDate ="v.date="+critereVoyage.getDateDepart();
+			String critereDate ="v.dateDepart LIKE '"+critereVoyage.getDateDepart().toString()+"'";
 
 			listeParametre.add(critereDate);
 		}
@@ -91,7 +91,7 @@ public class VoyageServiceImpl implements IVoyageService {
 		}
 		
 		if(critereVoyage.getDescriptionVoyage()==null){
-			System.out.println("Pas de restriction demandées");
+			System.out.println("Pas de restriction demandée");
 		}else{
 			StringBuilder descri = new StringBuilder();
 			descri.append("'%");
