@@ -10,4 +10,5 @@ public interface IVoyageDao {
 	public Voyage getVoyageById(int id);
 	public Voyage updateVoyage(Voyage v);
 	public void deleteVoyage(int id);
+	public List<Voyage> rechercherVoyageAvecCritere(Voyage critereVoyage,List<String> listeParametre);
 }

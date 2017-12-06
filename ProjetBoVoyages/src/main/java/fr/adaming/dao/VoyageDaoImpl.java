@@ -52,7 +52,40 @@ public class VoyageDaoImpl implements IVoyageDao{
 		Voyage voyageARetirer = em.find(Voyage.class,id);
 		em.remove(voyageARetirer);
 	}
-	
+
+	@Override
+	public List<Voyage> rechercherVoyageAvecCritere(Voyage critereVoyage,List<String> listeParametre) {
+		StringBuilder requete = new StringBuilder("SELECT v FROM Voyage v WHERE ");
+		//Nombre de critere;
+		int nbCritere = listeParametre.size();
+		System.out.println(nbCritere);
+		System.out.println(listeParametre);
+		for(int i =0;i<=nbCritere-1;i++){
+			System.out.println(listeParametre.get(i));
+			if(i==0){
+				//System.out.println("Premier paramètre");
+				requete.append(listeParametre.get(i));
+			}else{
+				//System.out.println("Paramètre ulterieur");
+				requete.append(" AND ");
+				requete.append(listeParametre.get(i));
+			}
+		}
+		System.out.println(requete);
+
+		Query query = em.createQuery(requete.toString());
+		StringBuilder pays = new StringBuilder();
+		pays.append("%");
+		pays.append(critereVoyage.getPays());
+		pays.append("%");
+		
+		//query.setParameter("pPays", pays.toString());;
+		//query.setParameter("pDate", critereVoyage.getDateDepart());
+//		query.setParameter("pPrix", critereVoyage.getPrix());
+//
+		//System.out.println(query);
+		return query.getResultList();
+	}
 	
 	
 }
