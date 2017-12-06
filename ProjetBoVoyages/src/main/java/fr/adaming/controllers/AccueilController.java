@@ -2,6 +2,7 @@ package fr.adaming.controllers;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -38,22 +39,22 @@ public class AccueilController {
 			session.setAttribute("username", auth.getName());
 			session.setAttribute("logged", true);
 		}
+
+		// Test sur les promotions en PDF.
+		List<Voyage> listeVoyage = serviceVoyage.getAllVoyages();
+		List<Voyage> listeVoyagePromotion = new ArrayList<>();
+		for(Voyage voyage : listeVoyage){
+			if(voyage.getReduction()>0){
+				System.out.println("Promtion pour le voyage");
+				listeVoyagePromotion.add(voyage);
+			}
+		}
 		
-		//Test Liste Voyage
-		//List<Voyage> listeVoyage = serviceVoyage.getAllVoyages();
-		//System.out.println("Ensemble des voyages proposés" +listeVoyage);
+		for(Voy)
 		
-		//Test Récupération voyage
-	//	System.out.println(serviceVoyage.getVoyageById(1));
-		//Test suppression voyage et formule
-		//serviceVoyage.deleteVoyage(1);
-		//Voyage voyageCritere = new Voyage();
-		//voyageCritere.setPays("lda");
-		//voyageCritere.setDuree(3);
-		//voyageCritere.setDateDepart(new Date());
-		//voyageCritere.setPrix(2000);
-		//voyageCritere.setPlacesDisponibles(5);
-		//System.out.println(serviceVoyage.rechercheVoyageAvecCritere(voyageCritere));
+		System.out.println(listeVoyagePromotion);
+		
+		
 		return new ModelAndView("accueil");
 	}
 	

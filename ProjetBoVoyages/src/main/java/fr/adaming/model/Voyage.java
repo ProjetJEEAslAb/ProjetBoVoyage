@@ -46,8 +46,10 @@ public class Voyage implements Serializable {
 	public Voyage() {
 		super();
 	}
-	public Voyage(int placesDisponibles, double prix, Date dateDepart,
-			int duree, String pays, String continent) {
+	
+
+	public Voyage(int placesDisponibles, double prix, Date dateDepart, int duree, String pays, String continent,
+			Formule formule, Set<Dossier> dossiers, String dateString, String descriptionVoyage, double reduction) {
 		super();
 		this.placesDisponibles = placesDisponibles;
 		this.prix = prix;
@@ -55,9 +57,16 @@ public class Voyage implements Serializable {
 		this.duree = duree;
 		this.pays = pays;
 		this.continent = continent;
+		this.formule = formule;
+		this.dossiers = dossiers;
+		this.dateString = dateString;
+		this.descriptionVoyage = descriptionVoyage;
+		this.reduction = reduction;
 	}
-	public Voyage(int id, int placesDisponibles, double prix, Date dateDepart,
-			int duree, String pays, String continent) {
+
+	
+	public Voyage(int id, int placesDisponibles, double prix, Date dateDepart, int duree, String pays, String continent,
+			Formule formule, Set<Dossier> dossiers, String dateString, String descriptionVoyage, double reduction) {
 		super();
 		this.id = id;
 		this.placesDisponibles = placesDisponibles;
@@ -66,7 +75,13 @@ public class Voyage implements Serializable {
 		this.duree = duree;
 		this.pays = pays;
 		this.continent = continent;
+		this.formule = formule;
+		this.dossiers = dossiers;
+		this.dateString = dateString;
+		this.descriptionVoyage = descriptionVoyage;
+		this.reduction = reduction;
 	}
+
 
 	public int getId() {
 		return id;
@@ -134,6 +149,13 @@ public class Voyage implements Serializable {
 	}
 	public void setDescriptionVoyage(String descriptionVoyage) {
 		this.descriptionVoyage = descriptionVoyage;
+	}
+		
+	public double getReduction() {
+		return reduction;
+	}
+	public void setReduction(double reduction) {
+		this.reduction = reduction;
 	}
 	@Override
 	public String toString() {
