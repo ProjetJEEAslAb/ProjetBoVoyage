@@ -57,6 +57,7 @@
 						<li><a href="#">Modification</a></li>
 						<li><a href="#">Suppression</a></li>
 						<li><a href="${pageContext.request.contextPath}/voyage/rechercheVoyage">Recherche</a></li>
+						<li><a href="${pageContext.request.contextPath}/voyage/promotion">Promotion</a></li>
 					</ul>
 				</li>
 				<li class="dropdown"><a class="dropdown-toggle"

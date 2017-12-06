@@ -14,6 +14,7 @@
 	href="<c:url value="/assets/libs/bootstrap-3.3.7/css/bootstrap-theme.css" />">
 <script type="text/javascript"
 	src="<c:url value="/assets/libs/jquery-3.2.1.js" />"></script>
+<script type="text/javascript" src="<c:url value="/assets/js/promotionPDF.js"/>"></script>
 <script type="text/javascript"
 	src="<c:url value="/assets/libs/bootstrap-3.3.7/js/bootstrap.js" />"></script>
 
@@ -78,5 +79,10 @@
 		</div>
 
 	</form:form>
+	
+	
+	
+	
+	
 </body>
 </html>

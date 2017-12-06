@@ -40,19 +40,9 @@ public class AccueilController {
 			session.setAttribute("logged", true);
 		}
 
-		// Test sur les promotions en PDF.
-		List<Voyage> listeVoyage = serviceVoyage.getAllVoyages();
-		List<Voyage> listeVoyagePromotion = new ArrayList<>();
-		for(Voyage voyage : listeVoyage){
-			if(voyage.getReduction()>0){
-				System.out.println("Promtion pour le voyage");
-				listeVoyagePromotion.add(voyage);
-			}
-		}
+	
+
 		
-		for(Voy)
-		
-		System.out.println(listeVoyagePromotion);
 		
 		
 		return new ModelAndView("accueil");
@@ -90,4 +80,18 @@ public class AccueilController {
 		System.out.println(listeVoyageInteressant);
 		return new ModelAndView("accueil");
 	}
+	@RequestMapping(value="/voyage/promotion",method = RequestMethod.GET)
+	public ModelAndView affichagePromotion(){
+		 	// Test sur les promotions en PDF.
+		List<Voyage> listeVoyage = serviceVoyage.getAllVoyages();
+		List<Voyage> listeVoyagePromotion = new ArrayList<>();
+		for(Voyage voyage : listeVoyage){
+			if(voyage.getReduction()>0){
+				System.out.println("Promotion pour le voyage");
+				listeVoyagePromotion.add(voyage);
+			}
+		}
+		return new ModelAndView("Promotion", "listePromotion",listeVoyagePromotion);
+	}
+	
 }
