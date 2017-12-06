@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -21,16 +21,7 @@
 	<h2 style="text-align: center; color: royalblue">Formulaire
 		d'ajout de compte</h2>
 
-	<form class="form-horizontal" method='post' action="/ajoutVoyageur">
-
-		<div class="form-group">
-			<label for="inputNumero" class="col-sm-2 control-label">Id *
-				:</label>
-			<div class="col-sm-4">
-				<input type="number" class="form-control" id="inputId"
-					placeholder="Id" name="pId" required="required">
-			</div>
-		</div>
+	<form class="form-horizontal" method='post' action="ajout" modelAttribute="voyageurAjout">
 
 		<div class="form-group">
 			<label for="inputCivilite" class="col-sm-2 control-label">Civilite
