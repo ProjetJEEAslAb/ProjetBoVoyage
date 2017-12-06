@@ -52,7 +52,8 @@ public class VoyageurDaoImpl implements IVoyageurDao {
 
 	@Override
 	public void deleteVoyageur(Voyageur v) {
-		em.remove(v);
+		Voyageur vOut=em.find(Voyageur.class, v.getId());
+		em.remove(vOut);
 				
 	}
 

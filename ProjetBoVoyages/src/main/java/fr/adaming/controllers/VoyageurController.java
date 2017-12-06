@@ -112,7 +112,7 @@ public class VoyageurController {
 
 	@RequestMapping(value = "/supprVoyageur", method = RequestMethod.POST)
 	public String soumettreFormSup(RedirectAttributes RedirectAttributes, Model model,
-			@ModelAttribute("voyageurModif") Voyageur voyageur) {
+			@ModelAttribute("voyageurSuppr") Voyageur voyageur) {
 
 		// appelle de la methode service
 
@@ -124,7 +124,7 @@ public class VoyageurController {
 		// ajout de la liste au model
 		model.addAttribute("listeVoyageurs", liste);
 
-		return "accueil";
+		return "voyageur/listeVoyageur";
 
 	}
 	// =============controller recherche=========//
@@ -139,19 +139,22 @@ public class VoyageurController {
 	public String soumettreFormRecherche(RedirectAttributes RedirectAttributes, Model model,
 			@ModelAttribute("voyageurRecherche") Voyageur voyageur) {
 
+		
+		
 		// appelle de la methode service
 		Voyageur vOut = voyageurService.getVoyageurById(voyageur);
 
-		// ajout de la liste au model
-		model.addAttribute("listeVoyageurs", vOut);
+		if (vOut != null) {
 
-		// actualiser la liste dans accueil
-		List<Voyageur> liste = voyageurService.getAllVoyageurs();
+			// ajout de la liste au model
+			model.addAttribute("voyageur", vOut);
+			return "voyageur/rechercheVoyageur";
 
-		// ajout de la liste au model
-		model.addAttribute("listeVoyageurs", liste);
-
-		return "voyageur/rechercheVoyageur";
+		} else {
+			// le message d'erreur si le voyageur n'a pas été trouver
+			RedirectAttributes.addFlashAttribute("message", "le voyageur n'a pas été trouvé");
+			return "redirect:afficheRecherche";// redirection
+		}
 
 	}
 
