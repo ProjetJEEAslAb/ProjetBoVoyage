@@ -38,6 +38,16 @@
 		</div>
 		
 		<div class="form-group">
+			<form:label for="dateTemp" class="col-sm-2 control-label"
+				path="dateTemp">Date d'arrivée</form:label>
+			<div class="col-sm-8">
+				<form:input type="date" class="form-control" id="dateTemp"
+					placeholder="Date d'arrivée" path="dateTemp" />
+				<form:errors path="dateTemp" />
+			</div>
+		</div>
+		
+		<div class="form-group">
 			<form:label for="duree" class="col-sm-2 control-label" path="duree">Durée</form:label>
 			<div class="col-sm-8">
 				<form:input class="form-control" id="duree" placeholder="Durée"
@@ -45,6 +55,8 @@
 				<form:errors path="duree" />
 			</div>
 		</div>
+		
+		
 		
 		<div class="col-sm-offset-2 col-sm-8">
 			<input type="submit" value="Ajouter un autre hotel" class="btn btn-info" />
