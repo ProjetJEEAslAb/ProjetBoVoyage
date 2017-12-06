@@ -46,7 +46,7 @@ public class VoyageServiceImpl implements IVoyageService {
 	public List<Voyage> rechercheVoyageAvecCritere(Voyage critereVoyage) {
 		// On vérifie les critères choisis par le client.
 		List<String> listeParametre = new ArrayList<>();
-		if(critereVoyage.getPays()==null){
+		if(critereVoyage.getPays()==null||critereVoyage.getPays().equals("")){
 			
 		}else{
 			StringBuilder pays = new StringBuilder();
@@ -69,7 +69,7 @@ public class VoyageServiceImpl implements IVoyageService {
 			
 		}else{
 
-			String critereDate ="v.date="+critereVoyage.getDateDepart();
+			String critereDate ="v.dateDepart LIKE '"+critereVoyage.getDateDepart().toString()+"'";
 
 			listeParametre.add(critereDate);
 		}
