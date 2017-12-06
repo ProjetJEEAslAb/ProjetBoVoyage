@@ -43,13 +43,17 @@ public class VoyageController {
 		System.out.println(voyage.getFormule());
 		System.out.println(voyage.getFormule().getAvion().getArrivee());
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-		SimpleDateFormat formatterH = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ");
+		SimpleDateFormat formatterH = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
 		try {
-			//voyage.setDateDepart(formatter.parse(voyage.getDateString()));
-			String ble=voyage.getFormule().getAvion().getArrivee()+":00Z";
-			System.out.println("ble : "+ble);
-			Date date = formatterH.parse(ble);
-			System.out.println(date);
+			voyage.setDateDepart(formatter.parse(voyage.getDateString()));
+			String bleD=voyage.getFormule().getAvion().getArrivee();
+			bleD.replaceAll("Z$", "+0000");
+			Date dateD = formatterH.parse(bleD+":00");
+			voyage.getFormule().getAvion().setHoraireArrivee(dateD);
+			String bleA=voyage.getFormule().getAvion().getArrivee();
+			bleA.replaceAll("Z$", "+0000");
+			Date dateA = formatterH.parse(bleD+":00");
+			voyage.getFormule().getAvion().setHoraireDepart(dateA);
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
@@ -59,7 +63,7 @@ public class VoyageController {
 		if(vOut!=null){
 			System.out.println(vOut);
 		}
-		return "accueil";
+		return "hotel";
 	}
 	
 }

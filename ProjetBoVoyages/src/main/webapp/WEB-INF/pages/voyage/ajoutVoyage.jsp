@@ -127,6 +127,26 @@
 			</div>
 		</div>
 
+		
+		
+		<div class="form-group">
+			<form:label for="categorie" class="col-sm-2 control-label" path="formule.voiture.categorie">Catégorie de voiture</form:label>
+			<div class="col-sm-8">
+				<form:input class="form-control" id="categorie" placeholder="Catégorie"
+					path="formule.voiture.categorie" />
+				<form:errors path="formule.voiture.categorie" />
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<form:label for="loueur" class="col-sm-2 control-label" path="formule.voiture.loueur">Loueur de voiture</form:label>
+			<div class="col-sm-8">
+				<form:input class="form-control" id="loueur" placeholder="Loueur"
+					path="formule.voiture.loueur" />
+				<form:errors path="formule.voiture.loueur" />
+			</div>
+		</div>
+		
 		<div class="col-sm-offset-2 col-sm-8">
 			<input type="submit" value="Ajouter voyage" class="btn btn-info" />
 		</div>
