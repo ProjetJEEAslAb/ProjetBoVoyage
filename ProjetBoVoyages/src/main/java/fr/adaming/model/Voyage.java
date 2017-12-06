@@ -14,8 +14,10 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.Cascade;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name="voyages")
@@ -28,6 +30,7 @@ public class Voyage implements Serializable {
 	private int placesDisponibles;
 	private double prix;
 	@Temporal(TemporalType.DATE)
+//	@DateTimeFormat(pattern="dd.MM.yyyy")
 	private Date dateDepart;
 	private int duree;
 	private String pays;
@@ -36,6 +39,8 @@ public class Voyage implements Serializable {
 	private Formule formule;
 	@OneToMany(mappedBy="voyage")
 	private Set<Dossier> dossiers;
+	@Transient
+	private String dateString;
 
 	public Voyage() {
 		super();
@@ -117,6 +122,12 @@ public class Voyage implements Serializable {
 		this.dossiers = dossiers;
 	}
 
+	public String getDateString() {
+		return dateString;
+	}
+	public void setDateString(String dateString) {
+		this.dateString = dateString;
+	}
 	@Override
 	public String toString() {
 		return "Voyage [id=" + id + ", placesDisponibles=" + placesDisponibles
