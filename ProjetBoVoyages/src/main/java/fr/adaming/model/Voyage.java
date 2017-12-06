@@ -35,7 +35,7 @@ public class Voyage implements Serializable {
 	private int duree;
 	private String pays;
 	private String continent;
-	@OneToOne(cascade={CascadeType.REMOVE})
+	@OneToOne(cascade={CascadeType.REMOVE, CascadeType.PERSIST})
 	private Formule formule;
 	@OneToMany(mappedBy="voyage")
 	private Set<Dossier> dossiers;

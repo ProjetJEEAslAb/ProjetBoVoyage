@@ -40,11 +40,16 @@ public class VoyageController {
 	public String soumettreFormAjout(Model modele, @ModelAttribute("voyageAjoute") Voyage voyage){
 		
 		System.out.println(voyage);
-		System.out.println(voyage.getDateString());
+		System.out.println(voyage.getFormule());
+		System.out.println(voyage.getFormule().getAvion().getArrivee());
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat formatterH = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ");
 		try {
-			voyage.setDateDepart(formatter.parse(voyage.getDateString()));
-			System.out.println(voyage.getDateDepart());
+			//voyage.setDateDepart(formatter.parse(voyage.getDateString()));
+			String ble=voyage.getFormule().getAvion().getArrivee()+":00Z";
+			System.out.println("ble : "+ble);
+			Date date = formatterH.parse(ble);
+			System.out.println(date);
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
