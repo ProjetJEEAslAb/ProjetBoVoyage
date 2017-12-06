@@ -130,5 +130,14 @@ public class Voyage {
 	public void setDossiers(Set<Dossier> dossiers) {
 		this.dossiers = dossiers;
 	}
+
+	@Override
+	public String toString() {
+		return "Voyage [id=" + id + ", placesDisponibles=" + placesDisponibles
+				+ ", prix=" + prix + ", dateDepart=" + dateDepart + ", duree="
+				+ duree + ", pays=" + pays + ", continent=" + continent
+				+ ", formule=" + formule + ", dossiers=" + dossiers + "]";
+	}
+	
 	
 }

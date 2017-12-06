@@ -25,14 +25,15 @@ public class VoyageController {
 
 	@RequestMapping(value="/afficheAjout", method=RequestMethod.GET)
 	public ModelAndView afficheFormAjout(){
-		return new ModelAndView("ajoutVoyage", "voyageAjoute", new Voyage());
+		return new ModelAndView("voyage/ajoutVoyage", "voyageAjoute", new Voyage());
 	}
 	
 	@RequestMapping(value="/ajouteVoyage", method=RequestMethod.POST)
 	public String soumettreFormAjout(Model modele, @ModelAttribute("voyageAjoute") Voyage voyage){
 		Voyage vOut=voyageService.ajoutVoyage(voyage);
+		System.out.println(voyage);
 		if(vOut!=null){
-			
+			System.out.println(vOut);
 		}
 		return null;
 	}
