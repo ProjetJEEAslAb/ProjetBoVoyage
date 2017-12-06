@@ -54,8 +54,8 @@
 				<li class="dropdown"><a class="dropdown-toggle"
 					data-toggle="dropdown" href="#">Dossiers<span class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="#">Liste</a></li>
-						<li><a href="#">Ajout</a></li>
+						<li><a href="${pageContext.request.contextPath}/dossier/listeDossiers">Liste</a></li>
+						<li><a href="${pageContext.request.contextPath}/dossier/afficheAjout">Ajout</a></li>
 						<li><a href="#">Modification</a></li>
 						<li><a href="#">Suppression</a></li>
 						<li><a href="#">Recherche</a></li>
