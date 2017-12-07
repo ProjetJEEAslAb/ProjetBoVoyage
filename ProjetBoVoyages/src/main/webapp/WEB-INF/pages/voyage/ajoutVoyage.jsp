@@ -125,7 +125,7 @@
 			<form:label for="heureDepart" class="col-sm-2 control-label"
 				path="formule.avion.arrivee">Horaire de l'avion pour l'arrivée</form:label>
 			<div class="col-sm-8">
-				<form:input type="datetime-local" class="form-control" id="heureDepart"
+				<form:input type="datetime-local" class="form-control" id="heureArrivée"
 					placeholder="Horaire de l'avion pour l'arrivée" path="formule.avion.arrivee" />
 				<form:errors path="dateString" />
 			</div>

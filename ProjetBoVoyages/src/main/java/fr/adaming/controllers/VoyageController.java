@@ -3,6 +3,7 @@ package fr.adaming.controllers;
 import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
@@ -67,12 +68,16 @@ public class VoyageController {
 			voyage.getFormule().getAvion().setHoraireArrivee(dateD);
 			String bleA = voyage.getFormule().getAvion().getDepart();
 			bleA.replaceAll("Z$", "+0000");
-			Date dateA = formatterH.parse(bleD + ":00");
+			Date dateA = formatterH.parse(bleA + ":00");
 			voyage.getFormule().getAvion().setHoraireDepart(dateA);
+			System.out.println("Heure départ"+voyage.getFormule().getAvion().getDepart());
+			System.out.println("Heure arrivée"+voyage.getFormule().getAvion().getArrivee());
+			System.out.println("Heure départ après"+voyage.getFormule().getAvion().getHoraireDepart());
+			System.out.println("Heure arrivée après"+voyage.getFormule().getAvion().getHoraireArrivee());
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		voyage.getFormule().setHotels(new HashSet<Hotel>());
+		voyage.getFormule().setHotels(new ArrayList<Hotel>());
 		voyageEnCours = voyage;
 		
 		DiskFileItemFactory factory = new DiskFileItemFactory();
@@ -162,7 +167,7 @@ public class VoyageController {
 			voyage.getFormule().getAvion().setHoraireArrivee(dateD);
 			String bleA = voyage.getFormule().getAvion().getDepart();
 			bleA.replaceAll("Z$", "+0000");
-			Date dateA = formatterH.parse(bleD + ":00");
+			Date dateA = formatterH.parse(bleA + ":00");
 			voyage.getFormule().getAvion().setHoraireDepart(dateA);
 		} catch (ParseException e) {
 			e.printStackTrace();
@@ -186,7 +191,7 @@ public class VoyageController {
 		// Récupération de la liste des voyages
 		List<Voyage> liste=voyageService.getAllVoyages();
 		
-		return new ModelAndView("/listeVoyages", "listeVoyages", liste);
+		return new ModelAndView("voyage/listeVoyages", "listeVoyages", liste);
 		
 	}
 	
