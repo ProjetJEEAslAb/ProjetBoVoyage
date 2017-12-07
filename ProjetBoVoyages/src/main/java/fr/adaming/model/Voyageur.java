@@ -26,6 +26,7 @@ public class Voyageur implements Serializable {
 	private String adresse;
 	private String telephone;
 	private Date dateNaissance;
+	public String mail;
 	
 	@Transient
 	private String dateString;
@@ -120,6 +121,13 @@ public class Voyageur implements Serializable {
 	}
 	public void setDateString(String dateString) {
 		this.dateString = dateString;
+	}
+	
+	public String getMail() {
+		return mail;
+	}
+	public void setMail(String mail) {
+		this.mail = mail;
 	}
 	@Override
 	public String toString() {

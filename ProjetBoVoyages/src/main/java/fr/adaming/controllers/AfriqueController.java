@@ -30,6 +30,8 @@ public class AfriqueController {
 		for (Voyage voyage : listeVoyage) {
 			if (voyage.getReduction() > 0) {
 				listeVoyagePromotion.add(voyage);
+			}else{
+				listeVoyageSansPromotion.add(voyage);
 			}
 		}
 		System.out.println(listeVoyagePromotion);
