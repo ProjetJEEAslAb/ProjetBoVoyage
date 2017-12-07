@@ -140,7 +140,7 @@
 		modelAttribute="hotelAjoute">
 	
 	<div class="col-sm-offset-2 col-sm-8">
-			<input type="submit" value="Valider" class="btn btn-info" />
+			<input type="submit" value="Valider" class="btn btn-success" />
 		</div>
 	
 	</form:form>
