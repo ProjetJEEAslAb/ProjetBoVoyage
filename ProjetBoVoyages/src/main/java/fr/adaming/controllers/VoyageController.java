@@ -189,10 +189,24 @@ public class VoyageController {
 	@RequestMapping(value="/afficheListeVoyage", method=RequestMethod.GET)
 	public String afficheListeVoyages(Model modele, @RequestParam("pContinent") String continent) {
 		
+		List<Voyage> listePromotion = new ArrayList<>();
+		List<Voyage> listeSansPromotion = new ArrayList<>();
+
 		// Récupération de la liste des voyages
 		List<Voyage> liste=voyageService.getAllVoyages();
-		modele.addAttribute("listeVoyages", liste);
+		//modele.addAttribute("listeVoyages", liste);
+		for(Voyage voyage : liste){
+			if(voyage.getReduction()>0){
+				listePromotion.add(voyage);
+			}else{
+				listeSansPromotion.add(voyage);
+			}
+		}
+		System.out.println(listePromotion);
+		System.out.println(listeSansPromotion);
 		modele.addAttribute("continent", continent);
+		modele.addAttribute("listePromotion", listePromotion);
+		modele.addAttribute("listeSansPromotion", listeSansPromotion);
 		
 		return "voyage/listeVoyages";
 	}
