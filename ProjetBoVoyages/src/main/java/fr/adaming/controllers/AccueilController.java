@@ -116,13 +116,19 @@ public class AccueilController {
 	
 	@RequestMapping(value="voyage/modifierPromotion",method = RequestMethod.GET)
 	public ModelAndView changementPromotion(@RequestParam("identifiantVoyage") int id, @RequestParam("reduction")int reduction){
-		
+		String message ="";
 		if(reduction>0 && reduction<100){
 			Voyage voyagePromotion = serviceVoyage.getVoyageById(id);
 			voyagePromotion.setReduction(reduction);
 			serviceVoyage.updateVoyage(voyagePromotion);
 		}else{
-			
+			if(reduction==0){
+				Voyage voyagePromotion = serviceVoyage.getVoyageById(id);
+				voyagePromotion.setReduction(reduction);
+				serviceVoyage.updateVoyage(voyagePromotion);
+				message="La promotion pour le voyage en direction " +voyagePromotion.getPays() +" du "+voyagePromotion.getDateDepart()+" est terminée.";
+				System.out.println(message);
+			}
 		}
 		
 		List<Voyage> listeVoyage = serviceVoyage.getAllVoyages();
@@ -134,6 +140,7 @@ public class AccueilController {
 		}
 		ModelAndView modeleVue = new ModelAndView("Promotion", "listePromotion", listeVoyagePromotion);
 		modeleVue.addObject("listeVoyage",listeVoyage);
+		modeleVue.addObject("message",message);
 		return modeleVue;
 	}
 	

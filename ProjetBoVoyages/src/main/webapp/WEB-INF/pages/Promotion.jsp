@@ -74,7 +74,7 @@
 	</nav>
 
 	<h1>Liste des voyages</h1>
-
+${message}
 	<table class="table table-bordered">
 		<tr>
 			<td>Destination</td>
