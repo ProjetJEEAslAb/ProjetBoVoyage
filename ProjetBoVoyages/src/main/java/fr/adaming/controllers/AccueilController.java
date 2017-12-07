@@ -5,7 +5,22 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Properties;
 
+import javax.activation.DataHandler;
+import javax.activation.DataSource;
+import javax.activation.FileDataSource;
+import javax.mail.Authenticator;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Multipart;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
+import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,11 +42,13 @@ import fr.adaming.service.IVoyageService;
 @Controller
 @Scope("session")
 public class AccueilController {
+	List<Voyage> listeVoyage;
 	
 	@Autowired
 	IVoyageService serviceVoyage;
 	@Autowired
 	IFormuleService serviceFormule;
+	
 	
 	@RequestMapping(value="accueil", method=RequestMethod.GET)
 	public ModelAndView afficherAccueil(HttpSession session) {
@@ -117,6 +134,58 @@ public class AccueilController {
 		ModelAndView modeleVue = new ModelAndView("Promotion", "listePromotion", listeVoyagePromotion);
 		modeleVue.addObject("listeVoyage",listeVoyage);
 		return modeleVue;
+	}
+	
+	@RequestMapping(value="voyage/envoyerEmail", method=RequestMethod.POST)
+	public ModelAndView envoyerMail(@RequestParam("email") String adresseMail){
+		System.out.println(adresseMail);
+		final String to = "h.boizard@laposte.net";
+		final String username = "thezadzad@gmail.com";
+		final String password = "adaming44";
+		Properties props = new Properties();
+		props.put("mail.smtp.auth", "true");
+		props.put("mail.smtp.starttls.enable", "true");
+		props.put("mail.smtp.host", "smtp.gmail.com");
+		props.put("mail.smtp.port", "587");
+		props.put("mail.smtp.ssl.trust", "smtp.gmail.com");
+		Session session = Session.getInstance(props, new Authenticator() {
+			protected PasswordAuthentication getPasswordAuthentication() {
+				return new PasswordAuthentication(username, password);
+			}
+		});
+		try {
+			Message message = new MimeMessage(session);
+			message.setFrom(new InternetAddress(username));
+			message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
+			message.setSubject("Commande Ecommerce");
+			
+			// Message du mail
+			MimeBodyPart messageBodyPart = new MimeBodyPart();
+			StringBuilder sb = new StringBuilder();
+			sb.append("Cher client / Chère cliente" + "\n");
+			sb.append("Nous vous proposons les promotions suivantes pour votre prochain voyage :\n");
+			
+			sb.append("Le montant total de vos achats s'élève à  euros");
+			
+			sb.append("Une facture plus détaillée se trouve jointe à ce mail.");
+			messageBodyPart.setContent(message, "text/html");
+			messageBodyPart.setText(sb.toString());
+			
+			// Piece Jointe
+			MimeBodyPart attachPart = new MimeBodyPart();
+			DataSource pieceJointe = new FileDataSource(System.getProperty("user.home") + "\\Desktop\\Uneoffreexceptionnelle.pdf");
+			attachPart.setDataHandler(new DataHandler(pieceJointe));
+			attachPart.setFileName("recapitulatif_commande.pdf");
+			
+			Multipart multipart = new MimeMultipart();
+			multipart.addBodyPart(messageBodyPart);
+			multipart.addBodyPart(attachPart);
+			message.setContent(multipart);
+			Transport.send(message);
+		} catch (MessagingException e) {
+			throw new RuntimeException(e);
+		}
+		return new ModelAndView("Promotion");
 	}
 	
 }

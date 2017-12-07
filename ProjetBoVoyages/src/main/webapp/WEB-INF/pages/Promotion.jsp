@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<!DOCTYPE html>
 <html>
 <head>
 
@@ -86,6 +86,17 @@
 		</table>
 	</div>
 	<button onclick="ecrirePDF()">PDF</button>
+	
+	<form method="POST" action="envoyerEmail">
+		<div class="form-group">
+			<label for="email" class="col-sm-2 control-label" >Email</label>
+			<div class="col-sm-8">
+				<input type="email" class="form-control" id="email" placeholder="Email" name="email" />				
+			</div>
+		</div>
+		
+		<input type="submit" value="Envoyer mail">
+	</form>
 
 
 </body>
