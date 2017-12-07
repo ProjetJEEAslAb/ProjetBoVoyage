@@ -22,6 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -195,5 +196,27 @@ public class VoyageController {
 		
 	}
 	
+	
+	// Suppression d'un voyage
+	@RequestMapping(value="/afficheSuppr", method=RequestMethod.GET)
+	public ModelAndView afficheFormSuppr() {
+		return new ModelAndView("voyage/supprVoyage", "voyageSuppr", new Voyage());
+	}
+	
+	@RequestMapping(value="/supprimerVoyage", method=RequestMethod.POST)
+	public String soumettreFormSuppr(Model modele, @ModelAttribute("voyageSuppr") Voyage voyage, BindingResult result) {
+		
+		// Appel de la méthode Service
+		voyageService.deleteVoyage(voyage.getId());
+		
+		// Actualiser la liste des voyages
+		List<Voyage> liste = voyageService.getAllVoyages();
+		
+		// Ajout de la liste au modèle
+		modele.addAttribute("listeVoyages", liste);
+		
+		return "voyage/listeVoyages";
+		
+	}
 
 }
