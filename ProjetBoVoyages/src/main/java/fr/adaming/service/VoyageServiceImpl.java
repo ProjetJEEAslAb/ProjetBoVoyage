@@ -19,7 +19,6 @@ public class VoyageServiceImpl implements IVoyageService {
 
 	@Override
 	public Voyage ajoutVoyage(Voyage v) {
-		// TODO Auto-generated method stub
 		return daoVoyage.ajoutVoyage(v);
 	}
 
@@ -47,8 +46,8 @@ public class VoyageServiceImpl implements IVoyageService {
 	public List<Voyage> rechercheVoyageAvecCritere(Voyage critereVoyage) {
 		// On vérifie les critères choisis par le client.
 		List<String> listeParametre = new ArrayList<>();
-		if(critereVoyage.getPays()==null){
-			System.out.println("Pas de préférence pour le pays");
+		if(critereVoyage.getPays()==null||critereVoyage.getPays().equals("")){
+			
 		}else{
 			StringBuilder pays = new StringBuilder();
 			pays.append("'%");
@@ -58,20 +57,19 @@ public class VoyageServiceImpl implements IVoyageService {
 			
 			StringBuilder criterePays =new StringBuilder("v.pays LIKE") ;
 			criterePays.append(pays);
-			System.out.println(criterePays);
 			listeParametre.add(criterePays.toString());
 		}
 		if(critereVoyage.getDuree()==0){
-			System.out.println("Pas de durée choisie");
+			
 		}else{
 			String critereDuree ="v.duree="+critereVoyage.getDuree();
 			listeParametre.add(critereDuree);
 		}
 		if(critereVoyage.getDateDepart()==null){
-			System.out.println("Pas de date de départ choisie");
+			
 		}else{
 
-			String critereDate ="v.date="+critereVoyage.getDateDepart();
+			String critereDate ="v.dateDepart LIKE '"+critereVoyage.getDateDepart().toString()+"'";
 
 			listeParametre.add(critereDate);
 		}
@@ -91,7 +89,7 @@ public class VoyageServiceImpl implements IVoyageService {
 		}
 		
 		if(critereVoyage.getDescriptionVoyage()==null){
-			System.out.println("Pas de restriction demandées");
+
 		}else{
 			StringBuilder descri = new StringBuilder();
 			descri.append("'%");

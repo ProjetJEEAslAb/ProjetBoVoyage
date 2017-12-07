@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 @Entity
 public class Hotel implements Serializable {
@@ -22,6 +23,8 @@ public class Hotel implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date dateArrivee;
 	private int duree;
+	@Transient
+	private String dateTemp;
 	
 	public Hotel() {
 		super();
@@ -73,7 +76,12 @@ public class Hotel implements Serializable {
 	public void setDuree(int duree) {
 		this.duree = duree;
 	}
-	
+	public String getDateTemp() {
+		return dateTemp;
+	}
+	public void setDateTemp(String dateTemp) {
+		this.dateTemp = dateTemp;
+	}
 	@Override
 	public String toString() {
 		return "Hotel [id=" + id + ", adresse=" + adresse + ", chambre="

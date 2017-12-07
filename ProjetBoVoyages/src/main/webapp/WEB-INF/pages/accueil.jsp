@@ -54,9 +54,10 @@
 					<ul class="dropdown-menu">
 						<li><a href="#">Liste</a></li>
 						<li><a href="${pageContext.request.contextPath}/voyage/afficheAjout">Ajout</a></li>
-						<li><a href="#">Modification</a></li>
+						<li><a href="${pageContext.request.contextPath}/voyage/modifVoyage">Modification</a></li>
 						<li><a href="#">Suppression</a></li>
-						<li><a href="#">Recherche</a></li>
+						<li><a href="${pageContext.request.contextPath}/voyage/rechercheVoyage">Recherche</a></li>
+						<li><a href="${pageContext.request.contextPath}/voyage/promotion">Promotion</a></li>
 					</ul>
 				</li>
 				<li class="dropdown"><a class="dropdown-toggle"
@@ -75,6 +76,7 @@
 						<li><a href="${pageContext.request.contextPath}/dossier/listeDossiers">Liste</a></li>
 						<li><a href="${pageContext.request.contextPath}/dossier/afficheAjout">Ajout</a></li>
 						<li><a href="${pageContext.request.contextPath}/dossier/afficheModif">Modification</a></li>
+						<li><a href="${pageContext.request.contextPath}/dossier/afficheModifStatut">Modification statut</a></li>
 						<li><a href="${pageContext.request.contextPath}/dossier/afficheSuppr">Suppression</a></li>
 						<li><a href="${pageContext.request.contextPath}/dossier/afficheRecherche">Recherche</a></li>
 					</ul>
