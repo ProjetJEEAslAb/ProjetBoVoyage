@@ -29,7 +29,7 @@
 		</div>
 		
 		<div class="form-group">
-			<form:label for="chambre" class="col-sm-2 control-label" path="chambre">Chambre</form:label>
+			<form:label for="hebergement" class="col-sm-2 control-label" path="chambre">Chambre</form:label>
 			<div class="col-sm-8">
 				<form:select class="form-control" id="hebergement"
 					placeholder="Hébergement" path="formule.hebergement">
