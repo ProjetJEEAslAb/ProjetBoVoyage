@@ -25,8 +25,11 @@
 				path="civilite">Civilite
 				* :</form:label>
 			<div class="col-sm-4">
-				<form:input type="text" class="form-control" id="civilite"
-					placeholder="Civilite" path="civilite" required="required" />
+			<form:select class="form-control" id="civilite"
+				model="type" path="civilite" required="required">
+				<option value="Mr">Mr.</option>
+				<option selected="selected" value="Mme">Mme.</option>
+			</form:select>
 			</div>
 		</div>
 
