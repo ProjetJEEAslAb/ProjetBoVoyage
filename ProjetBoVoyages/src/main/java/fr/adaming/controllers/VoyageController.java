@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 
 import javax.servlet.http.HttpSession;
@@ -155,6 +156,16 @@ public class VoyageController {
 		}
 	}
 	
+	// Méthode d'affichage de la liste de voyages
+	@RequestMapping(value="/afficheListeVoyage", method=RequestMethod.GET)
+	public ModelAndView afficheListeVoyages() {
+		
+		// Récupération de la liste des voyages
+		List<Voyage> liste=voyageService.getAllVoyages();
+		
+		return new ModelAndView("/listeVoyages", "listeVoyages", liste);
+		
+	}
 	
 
 }
