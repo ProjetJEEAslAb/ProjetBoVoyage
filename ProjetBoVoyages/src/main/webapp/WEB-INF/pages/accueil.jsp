@@ -114,6 +114,21 @@
 				#south_america:hover {
 					fill: #FF00AA;
 				}
+				#north_america:hover {
+					fill: #1C6438;
+				}
+				#asia:hover {
+					fill: #FFD000;
+				}
+				#europe:hover {
+					fill: #0000FF;
+				}
+				#australia:hover {
+					fill: #FFA500;
+				}
+				#africa:hover {
+					fill: #6A5ACD;
+				}
 			</style>
 			<amcharts:ammap projection="mercator" leftLongitude="-169.110266" topLatitude="83.600842" rightLongitude="190.486279" bottomLatitude="-55.902263"></amcharts:ammap>
 		</defs>
