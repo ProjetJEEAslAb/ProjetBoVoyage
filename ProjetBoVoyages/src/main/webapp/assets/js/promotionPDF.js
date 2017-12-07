@@ -1,6 +1,6 @@
 function ecrirePDF() {
 console.log("le bouton a été cliqué")
-var agence = $("#Promotion").html();
+var agence = $("#promotion").html();
 var printWindow = window.open('', '_blank', 'height=400,width=800');
 var is_chrome = Boolean(printWindow.chrome);
 // ecrire le html dans la nouvelle fenêtre

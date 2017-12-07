@@ -20,36 +20,36 @@ import org.hibernate.annotations.Cascade;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-@Table(name="voyages")
+@Table(name = "voyages")
 public class Voyage implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private int placesDisponibles;
 	private double prix;
 	@Temporal(TemporalType.DATE)
-//	@DateTimeFormat(pattern="dd.MM.yyyy")
+	// @DateTimeFormat(pattern="dd.MM.yyyy")
 	private Date dateDepart;
 	private int duree;
 	private String pays;
 	private String continent;
-	@OneToOne(cascade={CascadeType.ALL})
+	@OneToOne(cascade = { CascadeType.ALL })
 	private Formule formule;
-	@OneToMany(mappedBy="voyage")
+	@OneToMany(mappedBy = "voyage")
 	private Set<Dossier> dossiers;
 	@Transient
 	private String dateString;
 	private String descriptionVoyage;
-	private double reduction;
+	private int reduction;
+
 	public Voyage() {
 		super();
 	}
-	
 
 	public Voyage(int placesDisponibles, double prix, Date dateDepart, int duree, String pays, String continent,
-			Formule formule, Set<Dossier> dossiers, String dateString, String descriptionVoyage, double reduction) {
+			Formule formule, Set<Dossier> dossiers, String dateString, String descriptionVoyage, int reduction) {
 		super();
 		this.placesDisponibles = placesDisponibles;
 		this.prix = prix;
@@ -64,9 +64,8 @@ public class Voyage implements Serializable {
 		this.reduction = reduction;
 	}
 
-	
 	public Voyage(int id, int placesDisponibles, double prix, Date dateDepart, int duree, String pays, String continent,
-			Formule formule, Set<Dossier> dossiers, String dateString, String descriptionVoyage, double reduction) {
+			Formule formule, Set<Dossier> dossiers, String dateString, String descriptionVoyage, int reduction) {
 		super();
 		this.id = id;
 		this.placesDisponibles = placesDisponibles;
@@ -81,59 +80,75 @@ public class Voyage implements Serializable {
 		this.descriptionVoyage = descriptionVoyage;
 		this.reduction = reduction;
 	}
-
 
 	public int getId() {
 		return id;
 	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
+
 	public int getPlacesDisponibles() {
 		return placesDisponibles;
 	}
+
 	public void setPlacesDisponibles(int placesDisponibles) {
 		this.placesDisponibles = placesDisponibles;
 	}
+
 	public double getPrix() {
 		return prix;
 	}
+
 	public void setPrix(double prix) {
 		this.prix = prix;
 	}
+
 	public Date getDateDepart() {
 		return dateDepart;
 	}
+
 	public void setDateDepart(Date dateDepart) {
 		this.dateDepart = dateDepart;
 	}
+
 	public int getDuree() {
 		return duree;
 	}
+
 	public void setDuree(int duree) {
 		this.duree = duree;
 	}
+
 	public String getPays() {
 		return pays;
 	}
+
 	public void setPays(String pays) {
 		this.pays = pays;
 	}
+
 	public String getContinent() {
 		return continent;
 	}
+
 	public void setContinent(String continent) {
 		this.continent = continent;
 	}
+
 	public Formule getFormule() {
 		return formule;
 	}
+
 	public void setFormule(Formule formule) {
 		this.formule = formule;
 	}
+
 	public Set<Dossier> getDossiers() {
 		return dossiers;
 	}
+
 	public void setDossiers(Set<Dossier> dossiers) {
 		this.dossiers = dossiers;
 	}
@@ -141,26 +156,30 @@ public class Voyage implements Serializable {
 	public String getDateString() {
 		return dateString;
 	}
+
 	public void setDateString(String dateString) {
 		this.dateString = dateString;
 	}
+
 	public String getDescriptionVoyage() {
 		return descriptionVoyage;
 	}
+
 	public void setDescriptionVoyage(String descriptionVoyage) {
 		this.descriptionVoyage = descriptionVoyage;
 	}
-		
-	public double getReduction() {
+
+	public int getReduction() {
 		return reduction;
 	}
-	public void setReduction(double reduction) {
+
+	public void setReduction(int reduction) {
 		this.reduction = reduction;
 	}
+
 	@Override
 	public String toString() {
-		return "Voyage [id=" + id + ", placesDisponibles=" + placesDisponibles
-				+ ", prix=" + prix + ", dateDepart=" + dateDepart + ", duree="
-				+ duree + ", pays=" + pays + ", continent=" + continent + "]";
+		return "Voyage [id=" + id + ", placesDisponibles=" + placesDisponibles + ", prix=" + prix + ", dateDepart="
+				+ dateDepart + ", duree=" + duree + ", pays=" + pays + ", continent=" + continent + "]";
 	}
 }

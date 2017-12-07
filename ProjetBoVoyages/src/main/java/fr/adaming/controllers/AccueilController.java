@@ -17,6 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import fr.adaming.model.Voyage;
@@ -87,11 +88,35 @@ public class AccueilController {
 		List<Voyage> listeVoyagePromotion = new ArrayList<>();
 		for(Voyage voyage : listeVoyage){
 			if(voyage.getReduction()>0){
-				System.out.println("Promotion pour le voyage");
 				listeVoyagePromotion.add(voyage);
 			}
 		}
-		return new ModelAndView("Promotion", "listePromotion",listeVoyagePromotion);
+		ModelAndView modeleVue = new ModelAndView("Promotion", "listePromotion", listeVoyagePromotion);
+		modeleVue.addObject("listeVoyage",listeVoyage);
+		return modeleVue;
+	}
+	
+	@RequestMapping(value="voyage/modifierPromotion",method = RequestMethod.GET)
+	public ModelAndView changementPromotion(@RequestParam("identifiantVoyage") int id, @RequestParam("reduction")int reduction){
+		
+		if(reduction>0 && reduction<100){
+			Voyage voyagePromotion = serviceVoyage.getVoyageById(id);
+			voyagePromotion.setReduction(reduction);
+			serviceVoyage.updateVoyage(voyagePromotion);
+		}else{
+			
+		}
+		
+		List<Voyage> listeVoyage = serviceVoyage.getAllVoyages();
+		List<Voyage> listeVoyagePromotion = new ArrayList<>();
+		for(Voyage voyage : listeVoyage){
+			if(voyage.getReduction()>0){
+				listeVoyagePromotion.add(voyage);
+			}
+		}
+		ModelAndView modeleVue = new ModelAndView("Promotion", "listePromotion", listeVoyagePromotion);
+		modeleVue.addObject("listeVoyage",listeVoyage);
+		return modeleVue;
 	}
 	
 }

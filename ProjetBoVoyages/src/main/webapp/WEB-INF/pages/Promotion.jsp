@@ -22,29 +22,71 @@
 </head>
 <body>
 
-	<h1>Liste des promotions</h1>
+	<h1>Liste des voyages en promotions</h1>
 
-	<table class="">
+	<table class="table table-bordered">
 		<tr>
 			<td>Destination</td>
-			<td>Prix</td>
+			<td>Prix de base</td>
+			<td>Prix avec réduction</td>
 			<td>Date de Départ</td>
-			<td>Durée du séjour</td>
+			<td>Durée du séjour (jours)</td>
+			<td>Changer la promotion</td>
+
 		</tr>
 
-		<c:forEach var="promotion" items="${listePromotion}">
+		<c:forEach var="voyage" items="${listeVoyage}">
 			<tr>
-				<td>${promotion.pays}</td>
-				<td>${promotion.prix}</td>
-				<td>${promotion.duree}</td>
-				<td>${promotion.dateDepart}</td>
+				<td>${voyage.pays}</td>
+				<td>${voyage.prix}</td>
+				<td>${voyage.prix-voyage.prix*voyage.reduction/100}</td>
+				<td>${voyage.dateDepart}</td>
+				<td>${voyage.duree}</td>
+				<th><form method="GET" action="modifierPromotion">
+						<input type="hidden" name="identifiantVoyage" value="${voyage.id}">
+						<input type="number" name="reduction"> <input
+							type="submit">
+					</form>
 			</tr>
 
 		</c:forEach>
 	</table>
-	
-		<button onclick="ecrirePDF()">PDF</button>
-	
+
+
+
+	<div id="promotion">
+
+
+
+
+		<h1>Liste des voyages en promotions</h1>
+
+		<table class="table table-bordered">
+			<tr>
+				<td>Destination</td>
+				<td>Prix de base</td>
+				<td>Prix après promotion</td>
+				<td>Taux de réduction (en %)</td>
+				<td>Date de Départ</td>
+				<td>Durée du séjour (jours)</td>
+			</tr>
+
+			<c:forEach var="promotion" items="${listePromotion}">
+				<tr>
+					<td>${promotion.pays}</td>
+					<td>${promotion.prix}</td>
+					<td>${promotion.prix - promotion.prix*promotion.reduction/100}</td>
+					<td>${promotion.reduction}</td>
+					<td>${promotion.dateDepart}</td>
+					<td>${promotion.duree}</td>
+
+				</tr>
+
+			</c:forEach>
+		</table>
+	</div>
+	<button onclick="ecrirePDF()">PDF</button>
+
 
 </body>
 </html>
