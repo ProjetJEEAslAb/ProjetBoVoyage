@@ -11,7 +11,7 @@
 	<script type="text/javascript" src="<c:url value="/assets/libs/bootstrap-3.3.7/js/bootstrap.js" />"></script>
 	<title>Login</title>
 </head>
-<body>
+<body background="<c:url value="/assets/images/login.jpeg" />">
 	<br /><br />
 	<h1 align="center">Entrez vos identifiants</h1>
 	<br /><br />
@@ -30,7 +30,7 @@
 		</div>
 		<br />
 		<div align="center">
-			<button type="submit" class="btn btn-primary">
+			<button type="submit" class="btn btn-success">
 				<i class="glyphicon glyphicon-log-in"></i> Login
 			</button>
 		</div>

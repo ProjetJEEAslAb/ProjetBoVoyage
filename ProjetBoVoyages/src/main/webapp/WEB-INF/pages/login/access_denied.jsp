@@ -12,7 +12,7 @@
 	<script type="text/javascript" src="<c:url value="/assets/libs/bootstrap-3.3.7/js/bootstrap.js" />"></script>
 	<title>Accès refusé</title>
 </head>
-<body>
+<body background="<c:url value="/assets/images/login.jpeg" />">
 	<div align="center">
 		<br/>
 		<br/>
