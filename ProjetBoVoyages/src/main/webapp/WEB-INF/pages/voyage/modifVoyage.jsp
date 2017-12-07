@@ -1,32 +1,109 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="<c:url value="/assets/libs/bootstrap-3.3.7/css/bootstrap.css" />">
-	<link rel="stylesheet" href="<c:url value="/assets/libs/bootstrap-3.3.7/css/bootstrap-theme.css" />">
-	<script type="text/javascript" src="<c:url value="/assets/libs/jquery-3.2.1.js" />"></script>
-	<script type="text/javascript" src="<c:url value="/assets/libs/bootstrap-3.3.7/js/bootstrap.js" />"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="<c:url value="/assets/libs/bootstrap-3.3.7/css/bootstrap.css" />">
+<link rel="stylesheet"
+	href="<c:url value="/assets/libs/bootstrap-3.3.7/css/bootstrap-theme.css" />">
+<script type="text/javascript"
+	src="<c:url value="/assets/libs/jquery-3.2.1.js" />"></script>
+<script type="text/javascript"
+	src="<c:url value="/assets/libs/bootstrap-3.3.7/js/bootstrap.js" />"></script>
 <title>Modification d'un voyage</title>
 </head>
-<body>
+<body background="<c:url value="/assets/images/ajoutVoyage.jpg" />">
 
-<form:form method="POST" action="modifierVoyage" class="form-horizontal"
-		modelAttribute="voyageModif">
-		
+	<nav class="navbar navbar-inverse">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">BoVoyage</a>
+			</div>
+			<ul class="nav navbar-nav">
+				<li class="dropdown"><a class="dropdown-toggle"
+					data-toggle="dropdown" href="#">Voyages<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a
+							href="${pageContext.request.contextPath}/voyage/afficheListeVoyage">Liste</a></li>
+						<li><a
+							href="${pageContext.request.contextPath}/voyage/afficheAjout">Ajout</a></li>
+						<li><a
+							href="${pageContext.request.contextPath}/voyage/modifVoyage">Modification</a></li>
+						<li><a href="#">Suppression</a></li>
+						<li><a
+							href="${pageContext.request.contextPath}/voyage/rechercheVoyage">Recherche</a></li>
+						<li><a
+							href="${pageContext.request.contextPath}/voyage/promotion">Promotion</a></li>
+					</ul></li>
+				<li class="dropdown"><a class="dropdown-toggle"
+					data-toggle="dropdown" href="#">Voyageurs<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a
+							href="${pageContext.request.contextPath}/voyageur/listeVoyageurs">Liste</a></li>
+						<li><a
+							href="${pageContext.request.contextPath}/voyageur/afficheAjout">Ajout</a></li>
+						<li><a
+							href="${pageContext.request.contextPath}/voyageur/afficheModif">Modification</a></li>
+						<li><a
+							href="${pageContext.request.contextPath}/voyageur/afficheSuppr">Suppression</a></li>
+						<li><a
+							href="${pageContext.request.contextPath}/voyageur/afficheRecherche">Recherche</a></li>
+					</ul></li>
+				<li class="dropdown"><a class="dropdown-toggle"
+					data-toggle="dropdown" href="#">Dossiers<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a
+							href="${pageContext.request.contextPath}/dossier/listeDossiers">Liste</a></li>
+						<li><a
+							href="${pageContext.request.contextPath}/dossier/afficheAjout">Ajout</a></li>
+						<li><a
+							href="${pageContext.request.contextPath}/dossier/afficheModif">Modification</a></li>
+						<li><a
+							href="${pageContext.request.contextPath}/dossier/afficheModifStatut">Modification
+								statut</a></li>
+						<li><a
+							href="${pageContext.request.contextPath}/dossier/afficheSuppr">Suppression</a></li>
+						<li><a
+							href="${pageContext.request.contextPath}/dossier/afficheRecherche">Recherche</a></li>
+					</ul></li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<c:if test="${sessionScope.logged}">
+					<li><a href="#">${sessionScope.username}</a></li>
+					<li class="disabled"><a href="#"><img
+							src="http://crdp-pupitre.ac-clermont.fr/upload/_237_587_2015-01-05_09-46-46_.gif"
+							height="30px" /></a></li>
+					<li><a href="${pageContext.request.contextPath}/logout"><span
+							class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+				</c:if>
+				<c:if test="${not sessionScope.logged}">
+					<li><a href="${pageContext.request.contextPath}/login"><span
+							class="glyphicon glyphicon-log-in"></span> Login</a></li>
+				</c:if>
+			</ul>
+		</div>
+	</nav>
+
+	<h2>Modification de voyage</h2>
+
+	<form:form method="POST" action="modifierVoyage"
+		class="form-horizontal" modelAttribute="voyageModif">
+		<hr />
+
+		<h4 style="text-align: center">Destination</h4>
 		<div class="form-group">
 			<form:label for="id" class="col-sm-2 control-label" path="id">ID</form:label>
 			<div class="col-sm-8">
-				<form:input class="form-control" id="id" placeholder="ID"
-					path="id" />
+				<form:input class="form-control" id="id" placeholder="ID" path="id" />
 				<form:errors path="id" />
 			</div>
 		</div>
-		
+
 		<div class="form-group">
 			<form:label for="pays" class="col-sm-2 control-label" path="pays">Pays</form:label>
 			<div class="col-sm-8">
@@ -50,6 +127,22 @@
 				</form:select>
 			</div>
 		</div>
+
+
+		<div class="form-group">
+			<form:label for="descriptionVoyage" class="col-sm-2 control-label"
+				path="descriptionVoyage">Description de voyage</form:label>
+			<div class="col-sm-8">
+				<form:input type="textarea" class="form-control"
+					id="descriptionVoyage" placeholder="Description de voyage"
+					path="descriptionVoyage" />
+				<form:errors path="descriptionVoyage" />
+			</div>
+		</div>
+
+		<hr />
+
+		<h4>Considérations pratiques</h4>
 
 		<div class="form-group">
 			<form:label for="places" class="col-sm-2 control-label"
@@ -102,12 +195,15 @@
 				</form:select>
 			</div>
 		</div>
+		<hr />
+		<h4>Avion</h4>
 
 		<div class="form-group">
-			<form:label for="compagnie" class="col-sm-2 control-label" path="formule.avion.compagnie">Compagnie aérienne</form:label>
+			<form:label for="compagnie" class="col-sm-2 control-label"
+				path="formule.avion.compagnie">Compagnie aérienne</form:label>
 			<div class="col-sm-8">
-				<form:input class="form-control" id="compagnie" placeholder="Compagnie aérienne"
-					path="formule.avion.compagnie" />
+				<form:input class="form-control" id="compagnie"
+					placeholder="Compagnie aérienne" path="formule.avion.compagnie" />
 				<form:errors path="formule.avion.compagnie" />
 			</div>
 		</div>
@@ -117,8 +213,9 @@
 			<form:label for="heureDepart" class="col-sm-2 control-label"
 				path="formule.avion.depart">Horaire de l'avion pour le départ</form:label>
 			<div class="col-sm-8">
-				<form:input type="datetime-local" class="form-control" id="heureDepart"
-					placeholder="Horaire de l'avion pour le départ" path="formule.avion.depart" />
+				<form:input type="datetime-local" class="form-control"
+					id="heureDepart" placeholder="Horaire de l'avion pour le départ"
+					path="formule.avion.depart" />
 				<form:errors path="dateString" />
 			</div>
 		</div>
@@ -127,50 +224,41 @@
 			<form:label for="heureDepart" class="col-sm-2 control-label"
 				path="formule.avion.arrivee">Horaire de l'avion pour l'arrivée</form:label>
 			<div class="col-sm-8">
-				<form:input type="datetime-local" class="form-control" id="heureDepart"
-					placeholder="Horaire de l'avion pour l'arrivée" path="formule.avion.arrivee" />
+				<form:input type="datetime-local" class="form-control"
+					id="heureDepart" placeholder="Horaire de l'avion pour l'arrivée"
+					path="formule.avion.arrivee" />
 				<form:errors path="dateString" />
 			</div>
 		</div>
 
-		
-		
+		<hr />
+
+		<h4>Voiture</h4>
+
 		<div class="form-group">
-			<form:label for="categorie" class="col-sm-2 control-label" path="formule.voiture.categorie">Catégorie de voiture</form:label>
+			<form:label for="categorie" class="col-sm-2 control-label"
+				path="formule.voiture.categorie">Catégorie de voiture</form:label>
 			<div class="col-sm-8">
-				<form:input class="form-control" id="categorie" placeholder="Catégorie"
-					path="formule.voiture.categorie" />
+				<form:input class="form-control" id="categorie"
+					placeholder="Catégorie" path="formule.voiture.categorie" />
 				<form:errors path="formule.voiture.categorie" />
 			</div>
 		</div>
-		
+
 		<div class="form-group">
-			<form:label for="loueur" class="col-sm-2 control-label" path="formule.voiture.loueur">Loueur de voiture</form:label>
+			<form:label for="loueur" class="col-sm-2 control-label"
+				path="formule.voiture.loueur">Loueur de voiture</form:label>
 			<div class="col-sm-8">
 				<form:input class="form-control" id="loueur" placeholder="Loueur"
 					path="formule.voiture.loueur" />
 				<form:errors path="formule.voiture.loueur" />
 			</div>
 		</div>
-		
-		<div class="form-group">
-			<form:label for="descriptionVoyage" class="col-sm-2 control-label" path="descriptionVoyage">Description de voyage</form:label>
-			<div class="col-sm-8">
-				<form:input type="textarea" class="form-control" id="descriptionVoyage" placeholder="Description de voyage"
-					path="descriptionVoyage" />
-				<form:errors path="descriptionVoyage" />
-			</div>
-		</div>
-		
-		<div class="form-group">
-			<form:label for="reduction" class="col-sm-2 control-label" path="reduction">Réduction</form:label>
-			<div class="col-sm-8">
-				<form:input class="form-control" id="reduction" placeholder="Réduction"
-					path="reduction" />
-				<form:errors path="reduction" />
-			</div>
-		</div>
-		
+
+
+
+
+
 		<div class="col-sm-offset-2 col-sm-8">
 			<input type="submit" value="Modifier voyage" class="btn btn-info" />
 		</div>

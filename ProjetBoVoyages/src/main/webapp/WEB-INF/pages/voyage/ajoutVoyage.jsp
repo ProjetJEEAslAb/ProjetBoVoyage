@@ -12,12 +12,67 @@
 	<script type="text/javascript" src="<c:url value="/assets/libs/bootstrap-3.3.7/js/bootstrap.js" />"></script>
 	<title>Ajout d'un voyage</title>
 </head>
-<body>
-	<h2>Ajout</h2>
+<body background="<c:url value="/assets/images/ajoutVoyage.jpg" />">
+<nav class="navbar navbar-inverse">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">BoVoyage</a>
+			</div>
+			<ul class="nav navbar-nav">
+				<li class="dropdown"><a class="dropdown-toggle"
+					data-toggle="dropdown" href="#">Voyages<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="${pageContext.request.contextPath}/voyage/afficheListeVoyage">Liste</a></li>
+						<li><a href="${pageContext.request.contextPath}/voyage/afficheAjout">Ajout</a></li>
+						<li><a href="${pageContext.request.contextPath}/voyage/modifVoyage">Modification</a></li>
+						<li><a href="#">Suppression</a></li>
+						<li><a href="${pageContext.request.contextPath}/voyage/rechercheVoyage">Recherche</a></li>
+						<li><a href="${pageContext.request.contextPath}/voyage/promotion">Promotion</a></li>
+					</ul>
+				</li>
+				<li class="dropdown"><a class="dropdown-toggle"
+					data-toggle="dropdown" href="#">Voyageurs<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="${pageContext.request.contextPath}/voyageur/listeVoyageurs">Liste</a></li>
+						<li><a href="${pageContext.request.contextPath}/voyageur/afficheAjout">Ajout</a></li>
+						<li><a href="${pageContext.request.contextPath}/voyageur/afficheModif">Modification</a></li>
+						<li><a href="${pageContext.request.contextPath}/voyageur/afficheSuppr">Suppression</a></li>
+						<li><a href="${pageContext.request.contextPath}/voyageur/afficheRecherche">Recherche</a></li>
+					</ul>
+				</li>
+				<li class="dropdown"><a class="dropdown-toggle"
+					data-toggle="dropdown" href="#">Dossiers<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="${pageContext.request.contextPath}/dossier/listeDossiers">Liste</a></li>
+						<li><a href="${pageContext.request.contextPath}/dossier/afficheAjout">Ajout</a></li>
+						<li><a href="${pageContext.request.contextPath}/dossier/afficheModif">Modification</a></li>
+						<li><a href="${pageContext.request.contextPath}/dossier/afficheModifStatut">Modification statut</a></li>
+						<li><a href="${pageContext.request.contextPath}/dossier/afficheSuppr">Suppression</a></li>
+						<li><a href="${pageContext.request.contextPath}/dossier/afficheRecherche">Recherche</a></li>
+					</ul>
+				</li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<c:if test="${sessionScope.logged}">
+					<li><a href="#">${sessionScope.username}</a></li>
+					<li class="disabled"><a href="#"><img src="http://crdp-pupitre.ac-clermont.fr/upload/_237_587_2015-01-05_09-46-46_.gif" height="30px" /></a></li>
+					<li><a href="${pageContext.request.contextPath}/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+				</c:if>
+				<c:if test="${not sessionScope.logged}">
+					<li><a href="${pageContext.request.contextPath}/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+				</c:if>
+			</ul>
+		</div>
+	</nav>
+
+	<h2>Ajout de voyage</h2>
 
 	<form:form method="POST" action="ajouteVoyage" class="form-horizontal"
 		enctype="multipart/form-data" modelAttribute="voyageAjoute">
-
+		
+		<hr/>
+		
+		<h4 style="text-align: center">Destination</h4>
 		<div class="form-group">
 			<form:label for="pays" class="col-sm-2 control-label"
 				path="continent">Continent</form:label>
@@ -33,7 +88,7 @@
 			</div>
 		</div>
 		<div class="form-group">
-			<form:label for="pays" class="col-sm-2 control-label" path="pays">Pays</form:label>
+			<form:label for="pays" class="col-sm-2 control-label" path="pays" required="true">Pays</form:label>
 			<div class="col-sm-8">
 				<form:input class="form-control" id="pays" placeholder="Pays"
 					path="pays" />
@@ -55,7 +110,9 @@
 				<input type="file" name="file" size="50" />
 			</div>
 		</div>
+		<hr/>
 		
+		<h4>Considérations pratiques</h4>
 		<div class="form-group">
 			<form:label for="prix" class="col-sm-2 control-label" path="prix">Prix</form:label>
 			<div class="col-sm-8">
@@ -90,6 +147,7 @@
 				<form:errors path="duree" />
 			</div>
 		</div>
+		
 		<div class="form-group">
 			<form:label for="hebergement" class="col-sm-2 control-label"
 				path="formule.hebergement">Hébergement</form:label>
@@ -104,6 +162,8 @@
 			</div>
 		</div>
 
+<hr/>
+		<h4>Avion</h4>
 		<div class="form-group">
 			<form:label for="compagnie" class="col-sm-2 control-label" path="formule.avion.compagnie">Compagnie aérienne</form:label>
 			<div class="col-sm-8">
@@ -131,6 +191,9 @@
 			</div>
 		</div>
 		
+		<hr/>
+		
+		<h4>Voiture</h4>
 		<div class="form-group">
 			<form:label for="categorie" class="col-sm-2 control-label" path="formule.voiture.categorie">Catégorie de voiture</form:label>
 			<div class="col-sm-8">
@@ -148,14 +211,6 @@
 			</div>
 		</div>
 		
-		<div class="form-group">
-			<form:label for="reduction" class="col-sm-2 control-label" path="reduction">Réduction</form:label>
-			<div class="col-sm-8">
-				<form:input class="form-control" id="reduction" placeholder="Réduction"
-					path="reduction" />
-				<form:errors path="reduction" />
-			</div>
-		</div>
 		
 		<div class="col-sm-offset-2 col-sm-8">
 			<input type="submit" value="Ajouter voyage" class="btn btn-success" />
