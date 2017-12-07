@@ -20,4 +20,10 @@ public class AfriqueController {
 
 	}
 
+	@RequestMapping(value = "/reserverPage", method = RequestMethod.GET)
+	public ModelAndView afficherFormModifReserver() {
+
+		return new ModelAndView("reserverPage", "pageReserver", new Voyage());
+
+	}
 }
