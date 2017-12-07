@@ -19,7 +19,7 @@
 <title>Affichage des voyages Agent</title>
 </head>
 <body>
-
+	<h1>${continent}</h1>
 	<h1 style="color: blue; text-align: center">Liste des Voyages
 		disponibles</h1>
 	<div align="center">
@@ -42,6 +42,7 @@
 			</tr>
 
 			<c:forEach var="voyage" items="${listeVoyages}">
+			<c:if test="${voyage.continent==continent}">
 				<tr>
 					<td>${voyage.id}</td>
 					<td>${voyage.placesDisponibles}</td>
@@ -61,6 +62,7 @@
 						href="${pageContext.request.contextPath}/voyageur/SupprimeViaLien?pId=${etudiant.id}">supprimer</a>|<a
 						href="${pageContext.request.contextPath}/etudiant/ModifViaLien${etudiant.id}">modifier</a></td>
 				</tr>
+				</c:if>
 			</c:forEach>
 		</table>
 	</div>

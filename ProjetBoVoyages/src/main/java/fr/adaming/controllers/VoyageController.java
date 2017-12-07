@@ -187,13 +187,14 @@ public class VoyageController {
 	
 	// Méthode d'affichage de la liste de voyages
 	@RequestMapping(value="/afficheListeVoyage", method=RequestMethod.GET)
-	public ModelAndView afficheListeVoyages() {
+	public String afficheListeVoyages(Model modele, @RequestParam("pContinent") String continent) {
 		
 		// Récupération de la liste des voyages
 		List<Voyage> liste=voyageService.getAllVoyages();
+		modele.addAttribute("listeVoyages", liste);
+		modele.addAttribute("continent", continent);
 		
-		return new ModelAndView("voyage/listeVoyages", "listeVoyages", liste);
-		
+		return "voyage/listeVoyages";
 	}
 	
 	
