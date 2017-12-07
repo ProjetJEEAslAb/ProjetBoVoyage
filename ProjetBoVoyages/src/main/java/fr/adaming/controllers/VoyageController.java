@@ -71,10 +71,6 @@ public class VoyageController {
 			bleA.replaceAll("Z$", "+0000");
 			Date dateA = formatterH.parse(bleA + ":00");
 			voyage.getFormule().getAvion().setHoraireDepart(dateA);
-			System.out.println("Heure départ"+voyage.getFormule().getAvion().getDepart());
-			System.out.println("Heure arrivée"+voyage.getFormule().getAvion().getArrivee());
-			System.out.println("Heure départ après"+voyage.getFormule().getAvion().getHoraireDepart());
-			System.out.println("Heure arrivée après"+voyage.getFormule().getAvion().getHoraireArrivee());
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
@@ -119,7 +115,9 @@ public class VoyageController {
 	@RequestMapping(value = "/ajouteDernierHotel", method = RequestMethod.POST)
 	public ModelAndView ajoutDernierHotel(
 			@ModelAttribute("hotelAjoute") Hotel hotel) {
-		
+		System.out.println("Voyage : "+voyageEnCours);
+		System.out.println("Hotel : "+hotel);
+		System.out.println("Formule : "+voyageEnCours.getFormule());
 		Voyage vOut = voyageService.ajoutVoyage(voyageEnCours);		
 		if (vOut != null) {
 			System.out.println("hotels de vOut : "+vOut.getFormule().getHotels());
@@ -144,7 +142,9 @@ public class VoyageController {
 		voyageEnCours.getFormule().getHotels().add(hotel);
 		ModelAndView modele = new ModelAndView("voyage/hotel", "hotelAjoute",
 				new Hotel());
-
+		System.out.println("Voyage : "+voyageEnCours);
+		System.out.println("Hotel : "+hotel);
+		System.out.println("Formule : "+voyageEnCours.getFormule());
 		return modele;
 	}
 	
