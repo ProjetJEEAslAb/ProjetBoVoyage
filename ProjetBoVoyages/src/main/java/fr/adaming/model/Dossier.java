@@ -3,8 +3,10 @@ package fr.adaming.model;
 import java.io.Serializable;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -27,7 +29,7 @@ public class Dossier implements Serializable {
 	
 	@ManyToOne
 	private Voyage voyage;
-	@ManyToMany
+	@ManyToMany(cascade={CascadeType.ALL},fetch=FetchType.EAGER)
 	@JoinTable(name="jointureDossierVoyageurs",joinColumns=@JoinColumn(name="id_dossier",referencedColumnName="id_dossier"),inverseJoinColumns=@JoinColumn(name="id_voyageur",referencedColumnName="id_voyageur"))
 	private Set<Voyageur> voyageurs;
 
