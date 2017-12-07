@@ -73,7 +73,7 @@
 		</div>
 	</nav>
 
-	<h1>Liste des voyages en promotions</h1>
+	<h1>Liste des voyages</h1>
 
 	<table class="table table-bordered">
 		<tr>
@@ -137,6 +137,17 @@
 		</table>
 	</div>
 	<button onclick="ecrirePDF()">PDF</button>
+	
+	<form method="POST" action="envoyerEmail">
+		<div class="form-group">
+			<label for="email" class="col-sm-2 control-label" >Email</label>
+			<div class="col-sm-8">
+				<input type="email" class="form-control" id="email" placeholder="Email" name="email" />				
+			</div>
+		</div>
+		
+		<input type="submit" value="Envoyer mail">
+	</form>
 
 
 </body>
