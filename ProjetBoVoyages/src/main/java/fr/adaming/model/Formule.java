@@ -25,7 +25,7 @@ public class Formule implements Serializable {
 	private Avion avion;
 	@Embedded
 	private Voiture voiture;
-	@OneToMany(mappedBy="id", cascade={CascadeType.ALL},fetch=FetchType.EAGER)
+	@OneToMany(cascade={CascadeType.ALL},fetch=FetchType.EAGER)
 	private List<Hotel> hotels;
 	
 	public Formule() {
