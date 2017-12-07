@@ -1,6 +1,7 @@
 package fr.adaming.controllers;
 
 import java.io.File;
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -11,6 +12,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -22,7 +24,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -41,6 +45,8 @@ public class VoyageController {
 
 	@Autowired
 	IVoyageService voyageService;
+	@Autowired
+	ServletContext context;
 
 	Voyage voyageEnCours;
 
@@ -56,7 +62,7 @@ public class VoyageController {
 	}
 
 	@RequestMapping(value = "/ajouteVoyage", method = RequestMethod.POST)
-	public ModelAndView soumettreFormAjout(HttpServletRequest request,
+	public ModelAndView soumettreFormAjout(@Validated FileModel file, BindingResult result, HttpServletRequest request,
 			@ModelAttribute("voyageAjoute") Voyage voyage) {
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 		SimpleDateFormat formatterH = new SimpleDateFormat(
@@ -98,6 +104,32 @@ public class VoyageController {
 			e.printStackTrace();
 		} catch (Exception e) {
 			e.printStackTrace();
+		}
+		if (result.hasErrors()) {
+			System.out.println("Erreur lors de l'upload de l'image");
+		} else {
+			Integer idVoyage = voyage.getId();
+			String uploadPath = context.getRealPath("/images/") + "voyage_" + idVoyage.toString() + File.separator;
+			File imagesDir = new File(uploadPath);
+			if (!imagesDir.exists()) {
+				imagesDir.mkdirs();
+			}
+			String filePath;
+			Integer i = 0;
+			while(true) {
+				String tmpFilePath = uploadPath + i.toString() + ".jpg";
+				File imageFile = new File(tmpFilePath);
+				if (!imageFile.exists()) {
+					filePath = tmpFilePath;
+					break;
+				}
+				i++;
+			}
+			try {
+				FileCopyUtils.copy(file.getFile().getBytes(), new File(filePath));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 		return new ModelAndView("voyage/hotelRedirect", "voyageAjoute", voyage);
 	}

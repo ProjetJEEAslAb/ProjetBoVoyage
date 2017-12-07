@@ -97,6 +97,12 @@
 			</div>
 		</div>
 		<div class="form-group">
+			<label class="col-sm-2 control-label">Pays</label>
+			<div class="col-sm-8">
+				<input type="file" name="file" />
+			</div>
+		</div>
+		<div class="form-group">
 			<form:label for="descriptionVoyage" class="col-sm-2 control-label" path="descriptionVoyage">Description de voyage</form:label>
 			<div class="col-sm-8">
 				<form:input type="textarea" class="form-control" id="descriptionVoyage" placeholder="Description de voyage"
@@ -104,14 +110,6 @@
 				<form:errors path="descriptionVoyage" />
 			</div>
 		</div>
-		
-		<div class="form-group">
-			<div class="col-sm-offset-2 col-sm-8">
-				Image :
-				<input type="file" name="file" size="50" />
-			</div>
-		</div>
-		<hr/>
 		
 		<h4>Considérations pratiques</h4>
 		<div class="form-group">
