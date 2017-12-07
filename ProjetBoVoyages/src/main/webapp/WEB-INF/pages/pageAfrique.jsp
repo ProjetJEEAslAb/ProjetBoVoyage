@@ -68,7 +68,7 @@
 								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
 								<p>
 									<button class="btn btn-primary btn-lg" data-toggle="modal"
-										data-target="#id-popup">Infos</button>
+										data-target="#popupPromotion">Infos</button>
 								</p>
 							</div>
 						</div>
@@ -89,101 +89,67 @@
 		<!-- /.row -->
 
 		<!-- Page Features -->
-		<div class="row text-center">
-			<div class="col-md-3 col-sm-6 hero-feature">
-				<div class="thumbnail">
-					<img src="http://placehold.it/800x500" alt="">
-					<div class="caption">
-						<h3>Afrique du Sud</h3>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-						<p>
-							<a href="#" class="btn btn-primary">Reservé</a> <a href="#"
-								class="btn btn-default">More Info</a>
-						</p>
-					</div>
-				</div>
-			</div>
+		<div class="tout" class="row text-center">
+			<c:forEach var="voyage" items="${listeSansPromotion}">
+				<div class="col-md-3 col-sm-6 hero-feature">
+					<div class="thumbnail">
+						<img src="http://placehold.it/800x500" alt="">
 
-			<div class="col-md-3 col-sm-6 hero-feature">
-				<div class="thumbnail">
-					<img src="http://placehold.it/800x500" alt="">
-					<div class="caption">
-						<h3>Kenya</h3>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-						<p>
-							<a href="#" class="btn btn-primary">Reservé</a> <a href="#"
-								class="btn btn-default">More Info</a>
-						</p>
-					</div>
-				</div>
-			</div>
+						<div class="caption">
+							<h3>${voyage.pays}</h3>
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+							<p>
+							
+								<button class="btn btn-primary btn-lg" data-toggle="modal"
+									data-target="#popupVoyage">Infos</button>
+							</p>
+						</div>
 
-			<div class="col-md-3 col-sm-6 hero-feature">
-				<div class="thumbnail">
-					<img src="http://placehold.it/800x500" alt="">
-					<div class="caption">
-						<h3>Algérie</h3>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-						<p>
-							<a href="#" class="btn btn-primary">Reservé</a> <a href="#"
-								class="btn btn-default">More Info</a>
-						</p>
-					</div>
-				</div>
-			</div>
 
-			<div class="col-md-3 col-sm-6 hero-feature">
-				<div class="thumbnail">
-					<img src="http://placehold.it/800x500" alt="">
-					<div class="caption">
-						<h3>Madagascar</h3>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-						<p>
-							<a href="#" class="btn btn-primary">Reservé</a> <a href="#"
-								class="btn btn-default">More Info</a>
-						</p>
 					</div>
 				</div>
-			</div>
+			</c:forEach>
 		</div>
 	</div>
+	<!-- Popup pour les voyages en promotion -->
+	<c:forEach var="promotion" items="${listePromotion}">
+		<div class="container">
 
-
-	<div class="container">
-
-		<!-- construction de la popup 
+			<!-- construction de la popup 
           data-backdrop="false" pour supprimer le voile au-dessus de la popup
           data-keyboard="false" pour supprimer la touche Echap -->
-		<div class="modal slide" id="id-popup" tabindex="-1" role="dialog"
-			aria-labelledby="titrePopUp" aria-hidden="true"
-			style="text-align: center">
+			<div class="modal slide" id="popupPromotion" tabindex="-1"
+				role="dialog" aria-labelledby="titrePopUp" aria-hidden="true"
+				style="text-align: center">
 
-			<div class="modal-dialog">
+				<div class="modal-dialog">
 
-				<div class="modal-content">
+					<div class="modal-content">
 
-					<!-- le titre de la popup -->
-					<div class="modal-header">
-						<h4 class="modal-title" id="titrePopUp">
-							Johanesburg, Afrique du Sud
-							<!-- lla croix de fermeture de la popup -->
-							<button type="button" class="close" data-dismiss="modal"
-								aria-hidden="true">&times;</button>
-						</h4>
-					</div>
+						<!-- le titre de la popup -->
+						<div class="modal-header">
+							<h4 class="modal-title" id="titrePopUp">
+								Johanesburg, Afrique du Sud
+								<!-- lla croix de fermeture de la popup -->
+								<button type="button" class="close" data-dismiss="modal"
+									aria-hidden="true">&times;</button>
+							</h4>
+						</div>
 
-					<!-- le contenu HTML de la popup -->
-					<div class="modal-body">
-						<p class="lead">
-							<img src="assets/libs/img/téléchargement.jpg" class="pull-right" />
-							Mettre details du voyage
-						</p>
-						<p>Mettre details du voyage</p>
-					</div>
+						<!-- le contenu HTML de la popup -->
+						<div class="modal-body">
+							<p class="lead">
+								<img src="assets/libs/img/téléchargement.jpg" class="pull-right" />
+								Détails du voyage
+							</p>
+							<p>${promotion.descriptionVoyage}</p>
+						</div>
 
-					<!-- le pied de page de la popup -->
-					<div class="modal-footer">
-						<a href="" class="btn btn-primary pull-left">Reserver</a>
+						<!-- le pied de page de la popup -->
+						<div class="modal-footer">
+							<a href="" class="btn btn-primary pull-left">Reserver</a>
+						</div>
+
 					</div>
 
 				</div>
@@ -191,9 +157,39 @@
 			</div>
 
 		</div>
+	</c:forEach>
+	<!-- Popup pour les voyages qui ne sont pas en promotions -->
+	<c:forEach var="voyage" items="${listeSansPromotion}">
+		<div class="container">
+			<div class="modal slide" id="popupVoyage" tabindex="-1" role="dialog"
+				aria-labelledby="titrePopUp" aria-hidden="true"
+				style="text-align: center">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h4 class="modal-title" id="titrePopUp">${voyage.pays}
+								<button type="button" class="close" data-dismiss="modal"
+									aria-hidden="true">&times;</button>
+							</h4>
+						</div>
+						
+						<!-- le contenu HTML de la popup -->
+						<div class="modal-body">
+							<p class="lead">
+								<img src="assets/libs/img/téléchargement.jpg" class="pull-right" />
+								Détails du voyage
+							</p>
+							<p>${promotion.descriptionVoyage}</p>
+						</div>
+						<!-- le pied de page de la popup -->
+						<div class="modal-footer">
+							<a href="" class="btn btn-primary pull-left">Reserver</a>
+						</div>
 
-	</div>
-
-
+					</div>
+				</div>
+			</div>
+		</div>
+	</c:forEach>
 </body>
 </html>
