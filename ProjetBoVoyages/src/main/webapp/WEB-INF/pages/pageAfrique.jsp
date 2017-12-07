@@ -99,7 +99,7 @@
 							<h3>${voyage.pays}</h3>
 							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
 							<p>
-							
+
 								<button class="btn btn-primary btn-lg" data-toggle="modal"
 									data-target="#popupVoyage">Infos</button>
 							</p>
@@ -147,7 +147,12 @@
 
 						<!-- le pied de page de la popup -->
 						<div class="modal-footer">
-							<a href="" class="btn btn-primary pull-left">Reserver</a>
+							<form method="GET" action="reserver">
+								<input type="hidden" name="identifiantVoyage"
+									value="${promotion.id}">
+									Nombre de voyageurs<input type="number" name="nbVoyageur">
+									  <input type="submit">
+							</form>
 						</div>
 
 					</div>
@@ -172,7 +177,7 @@
 									aria-hidden="true">&times;</button>
 							</h4>
 						</div>
-						
+
 						<!-- le contenu HTML de la popup -->
 						<div class="modal-body">
 							<p class="lead">
