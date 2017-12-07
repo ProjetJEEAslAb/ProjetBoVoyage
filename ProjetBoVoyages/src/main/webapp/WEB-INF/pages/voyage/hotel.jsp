@@ -29,10 +29,10 @@
 		</div>
 		
 		<div class="form-group">
-			<form:label for="hebergement" class="col-sm-2 control-label" path="chambre">Chambre</form:label>
+			<form:label class="col-sm-2 control-label" path="chambre">Chambre</form:label>
 			<div class="col-sm-8">
-				<form:select class="form-control" id="hebergement"
-					placeholder="Hébergement" path="formule.hebergement">
+				<form:select class="form-control" 
+					 path="chambre">
 					<option>Simple</option>
 					<option>Double</option>
 				</form:select>
@@ -61,7 +61,7 @@
 		
 		
 		<div class="col-sm-offset-2 col-sm-8">
-			<input type="submit" value="Ajouter un autre hotel" class="btn btn-info" />
+			<input type="submit" value="Ajouter un hotel" class="btn btn-info" />
 		</div>
 		
 	</form:form>

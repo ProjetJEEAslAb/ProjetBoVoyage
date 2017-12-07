@@ -113,13 +113,7 @@ public class VoyageController {
 	@RequestMapping(value = "/ajouteDernierHotel", method = RequestMethod.POST)
 	public ModelAndView ajoutDernierHotel(
 			@ModelAttribute("hotelAjoute") Hotel hotel) {
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-		try {
-			hotel.setDateArrivee(formatter.parse(hotel.getDateTemp()));
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		voyageEnCours.getFormule().getHotels().add(hotel);
+		
 		Voyage vOut = voyageService.ajoutVoyage(voyageEnCours);		
 		if (vOut != null) {
 			System.out.println("hotels de vOut : "+vOut.getFormule().getHotels());
@@ -134,11 +128,13 @@ public class VoyageController {
 	public ModelAndView ajoutAutreHotel(
 			@ModelAttribute("hotelAjoute") Hotel hotel) {
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		System.out.println(hotel);
 		try {
 			hotel.setDateArrivee(formatter.parse(hotel.getDateTemp()));
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
+		System.out.println("avec date : " +hotel);
 		voyageEnCours.getFormule().getHotels().add(hotel);
 		ModelAndView modele = new ModelAndView("voyage/hotel", "hotelAjoute",
 				new Hotel());
