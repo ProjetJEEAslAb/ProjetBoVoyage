@@ -25,7 +25,7 @@
 						<li><a href="${pageContext.request.contextPath}/voyage/afficheListeVoyage">Liste</a></li>
 						<li><a href="${pageContext.request.contextPath}/voyage/afficheAjout">Ajout</a></li>
 						<li><a href="${pageContext.request.contextPath}/voyage/modifVoyage">Modification</a></li>
-						<li><a href="#">Suppression</a></li>
+						<li><a href="${pageContext.request.contextPath}/voyage/afficheSuppr">Suppression</a></li>
 						<li><a href="${pageContext.request.contextPath}/voyage/rechercheVoyage">Recherche</a></li>
 						<li><a href="${pageContext.request.contextPath}/voyage/promotion">Promotion</a></li>
 					</ul>
@@ -81,9 +81,10 @@
 					placeholder="Continent" path="continent">
 					<option>Europe</option>
 					<option>Asie</option>
-					<option>Amérique du nord</option>
-					<option>Amérique du sud</option>
-					<option>Océanie</option>
+					<option>Afrique</option>
+					<option value="AmNord">Amérique du nord</option>
+					<option value="AmSud">Amérique du sud</option>
+					<option value="Oceanie">Océanie</option>
 				</form:select>
 			</div>
 		</div>

@@ -121,9 +121,10 @@
 					placeholder="Continent" path="continent">
 					<option>Europe</option>
 					<option>Asie</option>
-					<option>Amérique du nord</option>
-					<option>Amérique du sud</option>
-					<option>Océanie</option>
+					<option>Afrique</option>
+					<option value="AmNord">Amérique du nord</option>
+					<option value="AmSud">Amérique du sud</option>
+					<option value="Oceanie">Océanie</option>
 				</form:select>
 			</div>
 		</div>
