@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
@@ -47,82 +48,34 @@
 		<!-- /.row -->
 		<div class="tout" style="text-align: center;">
 			<!-- Page Features -->
-			<div></div>
-			<div class="row text-center">
+			<c:forEach var="promotion" items="${listePromotion}">
 				<div class="col-md-3 col-sm-6 hero-feature">
 					<div>
 						<div class="thumbnail">
+
+
 							<div class="ribbon">
 								<span>PROMOTIONS</span>
 							</div>
 
 							<img
 								src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfMtC4vtpnT4i4xlZfQ0ptJAvXHBpdZWzyVcrLRLTySpto43udpw"
-								alt="">
+								alt="" height="10%" width="300px">
+
 
 							<div class="caption">
-								<h3>Afrique du Sud</h3>
+								<h3>${promotion.pays}</h3>
 								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
 								<p>
 									<button class="btn btn-primary btn-lg" data-toggle="modal"
 										data-target="#id-popup">Infos</button>
 								</p>
-
 							</div>
 						</div>
 					</div>
 				</div>
-				<div class="col-md-3 col-sm-6 hero-feature">
-					<div class="thumbnail">
-						<div class="ribbon">
-							<span>PROMOTIONS</span>
-						</div>
-						<img src="http://placehold.it/800x500" alt="">
-						<div class="caption">
-							<h3>Kenya</h3>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-							<p>
-								<a href="#" class="btn btn-primary">Reservé</a> <a href="#"
-									class="btn btn-default">More Info</a>
-							</p>
-						</div>
-					</div>
-				</div>
+			</c:forEach>
 
-				<div class="col-md-3 col-sm-6 hero-feature">
-					<div class="thumbnail">
-						<div class="ribbon">
-							<span>PROMOTIONS</span>
-						</div>
-						<img src="http://placehold.it/800x500" alt="">
-						<div class="caption">
-							<h3>Algérie</h3>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-							<p>
-								<a href="#" class="btn btn-primary">Reservé</a> <a href="#"
-									class="btn btn-default">More Info</a>
-							</p>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-md-3 col-sm-6 hero-feature">
-					<div class="thumbnail">
-						<div class="ribbon">
-							<span>PROMOTIONS</span>
-						</div>
-						<img src="http://placehold.it/800x500" alt="">
-						<div class="caption">
-							<h3>Madagascar</h3>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-							<p>
-								<a href="#" class="btn btn-primary">Reservé</a> <a href="#"
-									class="btn btn-default">More Info</a>
-							</p>
-						</div>
-					</div>
-				</div>
-			</div>
 		</div>
 		<!-- /.row -->
 
@@ -202,7 +155,8 @@
           data-backdrop="false" pour supprimer le voile au-dessus de la popup
           data-keyboard="false" pour supprimer la touche Echap -->
 		<div class="modal slide" id="id-popup" tabindex="-1" role="dialog"
-			aria-labelledby="titrePopUp" aria-hidden="true" style="text-align: center">
+			aria-labelledby="titrePopUp" aria-hidden="true"
+			style="text-align: center">
 
 			<div class="modal-dialog">
 

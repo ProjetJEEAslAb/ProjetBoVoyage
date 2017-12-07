@@ -1,15 +1,22 @@
 package fr.adaming.controllers;
 
+import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileUploadException;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -47,7 +54,7 @@ public class VoyageController {
 	}
 
 	@RequestMapping(value = "/ajouteVoyage", method = RequestMethod.POST)
-	public ModelAndView soumettreFormAjout(
+	public ModelAndView soumettreFormAjout(HttpServletRequest request,
 			@ModelAttribute("voyageAjoute") Voyage voyage) {
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 		SimpleDateFormat formatterH = new SimpleDateFormat(
@@ -66,9 +73,30 @@ public class VoyageController {
 			e.printStackTrace();
 		}
 		voyage.getFormule().setHotels(new HashSet<Hotel>());
-
 		voyageEnCours = voyage;
-
+		
+		DiskFileItemFactory factory = new DiskFileItemFactory();
+		ServletFileUpload upload = new ServletFileUpload(factory);
+		try {
+			@SuppressWarnings("rawtypes")
+			List items = upload.parseRequest(request);
+			String uploadFolder = request.getServletContext().getRealPath("/");
+			@SuppressWarnings("rawtypes")
+			Iterator iter = items.iterator();
+            while (iter.hasNext()) {
+                FileItem item = (FileItem) iter.next();
+                if (!item.isFormField()) {
+                    String fileName = new File(item.getName()).getName();
+                    String filePath = uploadFolder + File.separator + fileName;
+                    File uploadedFile = new File(filePath);
+                    item.write(uploadedFile);
+                }
+            }
+		} catch (FileUploadException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return new ModelAndView("voyage/hotelRedirect", "voyageAjoute", voyage);
 	}
 
@@ -155,6 +183,16 @@ public class VoyageController {
 		}
 	}
 	
+	// Méthode d'affichage de la liste de voyages
+	@RequestMapping(value="/afficheListeVoyage", method=RequestMethod.GET)
+	public ModelAndView afficheListeVoyages() {
+		
+		// Récupération de la liste des voyages
+		List<Voyage> liste=voyageService.getAllVoyages();
+		
+		return new ModelAndView("/listeVoyages", "listeVoyages", liste);
+		
+	}
 	
 
 }

@@ -16,15 +16,7 @@
 	<h2>Ajout</h2>
 
 	<form:form method="POST" action="ajouteVoyage" class="form-horizontal"
-		modelAttribute="voyageAjoute">
-		<div class="form-group">
-			<form:label for="pays" class="col-sm-2 control-label" path="pays">Pays</form:label>
-			<div class="col-sm-8">
-				<form:input class="form-control" id="pays" placeholder="Pays"
-					path="pays" />
-				<form:errors path="pays" />
-			</div>
-		</div>
+		enctype="multipart/form-data" modelAttribute="voyageAjoute">
 
 		<div class="form-group">
 			<form:label for="pays" class="col-sm-2 control-label"
@@ -40,7 +32,38 @@
 				</form:select>
 			</div>
 		</div>
-
+		<div class="form-group">
+			<form:label for="pays" class="col-sm-2 control-label" path="pays">Pays</form:label>
+			<div class="col-sm-8">
+				<form:input class="form-control" id="pays" placeholder="Pays"
+					path="pays" />
+				<form:errors path="pays" />
+			</div>
+		</div>
+		<div class="form-group">
+			<form:label for="descriptionVoyage" class="col-sm-2 control-label" path="descriptionVoyage">Description de voyage</form:label>
+			<div class="col-sm-8">
+				<form:input type="textarea" class="form-control" id="descriptionVoyage" placeholder="Description de voyage"
+					path="descriptionVoyage" />
+				<form:errors path="descriptionVoyage" />
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<div class="col-sm-offset-2 col-sm-8">
+				Image :
+				<input type="file" name="file" size="50" />
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<form:label for="prix" class="col-sm-2 control-label" path="prix">Prix</form:label>
+			<div class="col-sm-8">
+				<form:input class="form-control" id="prix" placeholder="Prix"
+					path="prix" />
+				<form:errors path="prix" />
+			</div>
+		</div>
 		<div class="form-group">
 			<form:label for="places" class="col-sm-2 control-label"
 				path="placesDisponibles">Places disponibles</form:label>
@@ -50,16 +73,6 @@
 				<form:errors path="placesDisponibles" />
 			</div>
 		</div>
-
-		<div class="form-group">
-			<form:label for="prix" class="col-sm-2 control-label" path="prix">Prix</form:label>
-			<div class="col-sm-8">
-				<form:input class="form-control" id="prix" placeholder="Prix"
-					path="prix" />
-				<form:errors path="prix" />
-			</div>
-		</div>
-
 		<div class="form-group">
 			<form:label for="dateDepart" class="col-sm-2 control-label"
 				path="dateString">Date de départ</form:label>
@@ -69,7 +82,6 @@
 				<form:errors path="dateString" />
 			</div>
 		</div>
-
 		<div class="form-group">
 			<form:label for="duree" class="col-sm-2 control-label" path="duree">Durée</form:label>
 			<div class="col-sm-8">
@@ -78,7 +90,6 @@
 				<form:errors path="duree" />
 			</div>
 		</div>
-
 		<div class="form-group">
 			<form:label for="hebergement" class="col-sm-2 control-label"
 				path="formule.hebergement">Hébergement</form:label>
@@ -101,8 +112,6 @@
 				<form:errors path="formule.avion.compagnie" />
 			</div>
 		</div>
-
-
 		<div class="form-group">
 			<form:label for="heureDepart" class="col-sm-2 control-label"
 				path="formule.avion.depart">Horaire de l'avion pour le départ</form:label>
@@ -112,7 +121,6 @@
 				<form:errors path="dateString" />
 			</div>
 		</div>
-
 		<div class="form-group">
 			<form:label for="heureDepart" class="col-sm-2 control-label"
 				path="formule.avion.arrivee">Horaire de l'avion pour l'arrivée</form:label>
@@ -122,8 +130,6 @@
 				<form:errors path="dateString" />
 			</div>
 		</div>
-
-		
 		
 		<div class="form-group">
 			<form:label for="categorie" class="col-sm-2 control-label" path="formule.voiture.categorie">Catégorie de voiture</form:label>
@@ -133,22 +139,12 @@
 				<form:errors path="formule.voiture.categorie" />
 			</div>
 		</div>
-		
 		<div class="form-group">
 			<form:label for="loueur" class="col-sm-2 control-label" path="formule.voiture.loueur">Loueur de voiture</form:label>
 			<div class="col-sm-8">
 				<form:input class="form-control" id="loueur" placeholder="Loueur"
 					path="formule.voiture.loueur" />
 				<form:errors path="formule.voiture.loueur" />
-			</div>
-		</div>
-		
-		<div class="form-group">
-			<form:label for="descriptionVoyage" class="col-sm-2 control-label" path="descriptionVoyage">Description de voyage</form:label>
-			<div class="col-sm-8">
-				<form:input type="textarea" class="form-control" id="descriptionVoyage" placeholder="Description de voyage"
-					path="descriptionVoyage" />
-				<form:errors path="descriptionVoyage" />
 			</div>
 		</div>
 		
@@ -162,7 +158,7 @@
 		</div>
 		
 		<div class="col-sm-offset-2 col-sm-8">
-			<input type="submit" value="Ajouter voyage" class="btn btn-info" />
+			<input type="submit" value="Ajouter voyage" class="btn btn-success" />
 		</div>
 
 	</form:form>
