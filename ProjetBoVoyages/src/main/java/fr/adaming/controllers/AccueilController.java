@@ -43,6 +43,7 @@ import fr.adaming.service.IVoyageService;
 @Scope("session")
 public class AccueilController {
 	List<Voyage> listeVoyage;
+	List<Voyage> listeVoyagePromotion;
 	
 	@Autowired
 	IVoyageService serviceVoyage;
@@ -101,8 +102,8 @@ public class AccueilController {
 	@RequestMapping(value="/voyage/promotion",method = RequestMethod.GET)
 	public ModelAndView affichagePromotion(){
 		 	// Test sur les promotions en PDF.
-		List<Voyage> listeVoyage = serviceVoyage.getAllVoyages();
-		List<Voyage> listeVoyagePromotion = new ArrayList<>();
+		listeVoyage = serviceVoyage.getAllVoyages();
+		listeVoyagePromotion = new ArrayList<>();
 		for(Voyage voyage : listeVoyage){
 			if(voyage.getReduction()>0){
 				listeVoyagePromotion.add(voyage);
@@ -139,7 +140,7 @@ public class AccueilController {
 	@RequestMapping(value="voyage/envoyerEmail", method=RequestMethod.POST)
 	public ModelAndView envoyerMail(@RequestParam("email") String adresseMail){
 		System.out.println(adresseMail);
-		final String to = "h.boizard@laposte.net";
+		final String to = adresseMail;
 		final String username = "thezadzad@gmail.com";
 		final String password = "adaming44";
 		Properties props = new Properties();
@@ -157,25 +158,31 @@ public class AccueilController {
 			Message message = new MimeMessage(session);
 			message.setFrom(new InternetAddress(username));
 			message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
-			message.setSubject("Commande Ecommerce");
+			message.setSubject("Offre promotionnelle BoVoyage");
 			
 			// Message du mail
 			MimeBodyPart messageBodyPart = new MimeBodyPart();
 			StringBuilder sb = new StringBuilder();
 			sb.append("Cher client / Chère cliente" + "\n");
 			sb.append("Nous vous proposons les promotions suivantes pour votre prochain voyage :\n");
+			for (Voyage v : listeVoyagePromotion){
+				double prixReduit=v.getPrix()*v.getReduction();
+				sb.append("Partez en "+v.getPays()+" pour seulement "+prixReduit+" !\n");
+			}
 			
-			sb.append("Le montant total de vos achats s'élève à  euros");
 			
-			sb.append("Une facture plus détaillée se trouve jointe à ce mail.");
+			sb.append("\nPour plus de détails, voyez la pièce jointe.\n");
+			
+			sb.append("Nous espérons que vous voyagerez bientôt à nouveau avec nous !\nL'équipe BoVoyage");
 			messageBodyPart.setContent(message, "text/html");
 			messageBodyPart.setText(sb.toString());
 			
-			// Piece Jointe
+			
+			//Piece Jointe
 			MimeBodyPart attachPart = new MimeBodyPart();
-			DataSource pieceJointe = new FileDataSource(System.getProperty("user.home") + "\\Desktop\\Uneoffreexceptionnelle.pdf");
+			DataSource pieceJointe = new FileDataSource(System.getProperty("user.home") + "\\Desktop\\Offres.pdf");
 			attachPart.setDataHandler(new DataHandler(pieceJointe));
-			attachPart.setFileName("recapitulatif_commande.pdf");
+			attachPart.setFileName("offres.pdf");
 			
 			Multipart multipart = new MimeMultipart();
 			multipart.addBodyPart(messageBodyPart);
@@ -185,7 +192,9 @@ public class AccueilController {
 		} catch (MessagingException e) {
 			throw new RuntimeException(e);
 		}
-		return new ModelAndView("Promotion");
+		ModelAndView modeleVue = new ModelAndView("Promotion", "listePromotion", listeVoyagePromotion);
+		modeleVue.addObject("listeVoyage",listeVoyage);
+		return modeleVue;
 	}
 	
 }

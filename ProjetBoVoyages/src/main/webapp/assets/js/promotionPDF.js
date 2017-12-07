@@ -4,7 +4,7 @@ var agence = $("#promotion").html();
 var printWindow = window.open('', '_blank', 'height=400,width=800');
 var is_chrome = Boolean(printWindow.chrome);
 // ecrire le html dans la nouvelle fenêtre
-printWindow.document.write('<html><head><title>Une offre exceptionnelle</title>');
+printWindow.document.write('<html><head><title>Offres</title>');
 // printWindow.document.write('<link rel="stylesheet"
 // href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
 // absolute = true>');
