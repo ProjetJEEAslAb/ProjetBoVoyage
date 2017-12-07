@@ -1,11 +1,13 @@
 package fr.adaming.model;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -23,8 +25,8 @@ public class Formule implements Serializable {
 	private Avion avion;
 	@Embedded
 	private Voiture voiture;
-	@OneToMany(mappedBy="id", cascade={CascadeType.ALL})
-	private Set<Hotel> hotels;
+	@OneToMany(mappedBy="id", cascade={CascadeType.ALL},fetch=FetchType.EAGER)
+	private List<Hotel> hotels;
 	
 	public Formule() {
 		super();
@@ -63,10 +65,10 @@ public class Formule implements Serializable {
 	public void setVoiture(Voiture voiture) {
 		this.voiture = voiture;
 	}
-	public Set<Hotel> getHotels() {
+	public List<Hotel> getHotels() {
 		return hotels;
 	}
-	public void setHotels(Set<Hotel> hotels) {
+	public void setHotels(List<Hotel> hotels) {
 		this.hotels = hotels;
 	}
 	

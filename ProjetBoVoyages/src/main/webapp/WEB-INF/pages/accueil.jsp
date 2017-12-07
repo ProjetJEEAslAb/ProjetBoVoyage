@@ -52,7 +52,7 @@
 				<li class="dropdown"><a class="dropdown-toggle"
 					data-toggle="dropdown" href="#">Voyages<span class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="#">Liste</a></li>
+						<li><a href="${pageContext.request.contextPath}/voyage/afficheListeVoyage">Liste</a></li>
 						<li><a href="${pageContext.request.contextPath}/voyage/afficheAjout">Ajout</a></li>
 						<li><a href="${pageContext.request.contextPath}/voyage/modifVoyage">Modification</a></li>
 						<li><a href="#">Suppression</a></li>
