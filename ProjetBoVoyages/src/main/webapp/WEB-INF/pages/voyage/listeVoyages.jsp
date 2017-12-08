@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
@@ -120,8 +121,13 @@ body {
 
 		</c:if>
 		<hr>
+		<!-- Message d'erreur si on veut reserver trop de places -->
 		<h2 style="text-align: center">${message }</h2>
+		<!-- Barre de recherche -->
+
+
 		<!-- Title -->
+		
 		<div class="row">
 			<div class="col-lg-12">
 				<h3 style="color: #267326">Promotions</h3>
@@ -142,7 +148,7 @@ body {
 									<span>PROMOTIONS</span>
 								</div>
 
-								<img src="<c:url value="/images/${voyage.pays}/0.jpg" />" alt="image de ${voyage.pays}" height="10%" width="300px">
+								<img src="<c:url value="/images/${voyage.pays}/0.jpg" />" alt="image de ${promotion.pays}" height="10%" width="300px">
 
 
 								<div class="caption">
@@ -151,7 +157,7 @@ body {
 										elit.</p>
 									<p>
 										<button class="btn btn-success btn-lg" data-toggle="modal"
-											data-target="#popupPromotion">Infos</button>
+											data-target="#popupPromotion_${promotion.id}">Infos</button>
 									</p>
 								</div>
 							</div>
@@ -187,7 +193,7 @@ body {
 								<p>
 
 									<button class="btn btn-success btn-lg" data-toggle="modal"
-										data-target="#popupVoyage">Infos</button>
+										data-target="#popupVoyage_${voyage.id}">Infos</button>
 								</p>
 							</div>
 
@@ -207,7 +213,7 @@ body {
 				<!-- construction de la popup 
           data-backdrop="false" pour supprimer le voile au-dessus de la popup
           data-keyboard="false" pour supprimer la touche Echap -->
-				<div class="modal slide" id="popupPromotion" tabindex="-1"
+				<div class="modal slide" id="popupPromotion_${promotion.id}" tabindex="-1"
 					role="dialog" aria-labelledby="titrePopUp" aria-hidden="true"
 					style="text-align: center">
 
@@ -259,7 +265,7 @@ body {
 		<c:if test="${voyage.continent==continent}">
 
 			<div class="container">
-				<div class="modal slide" id="popupVoyage" tabindex="-1"
+				<div class="modal slide" id="popupVoyage_${voyage.id}" tabindex="-1"
 					role="dialog" aria-labelledby="titrePopUp" aria-hidden="true"
 					style="text-align: center">
 					<div class="modal-dialog">
@@ -277,7 +283,7 @@ body {
 									<img src="assets/libs/img/téléchargement.jpg"
 										class="pull-right" /> Détails du voyage
 								</p>
-								<p>${promotion.descriptionVoyage}</p>
+								<p>${voyage.descriptionVoyage}</p>
 							</div>
 							<!-- le pied de page de la popup -->
 							<div class="modal-footer">
