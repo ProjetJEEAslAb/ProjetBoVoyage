@@ -10,11 +10,11 @@ import com.sun.jersey.api.client.config.DefaultClientConfig;
 import com.sun.jersey.api.json.JSONConfiguration;
 
 public class PaypalWS {
-	public Payment getPaysById(Integer id) {
+	public Payment init() {
 		ClientConfig config = new DefaultClientConfig();
 		config.getFeatures().put(JSONConfiguration.FEATURE_POJO_MAPPING, Boolean.TRUE);
 		Client client = Client.create(config);
 		WebResource service = client.resource("http://localhost:8080/ProjetBoVoyages/paypal/init");
-		return service.accept(MediaType.APPLICATION_JSON).get(Payment.class);
+		return service.accept(MediaType.APPLICATION_JSON).post(Payment.class);
 	}
 }
