@@ -17,6 +17,7 @@
 			<div class="navbar-header">
 				<a class="navbar-brand" href="#"><img src="<c:url value="/assets/images/logo_poney.png" />" height="45px" /></a>
 			</div>
+			<div style="padding-top: 10px;">
 				<c:if test="${sessionScope.logged}">
 					<ul class="nav navbar-nav">
 						<li class="dropdown"><a class="dropdown-toggle"
@@ -75,8 +76,10 @@
 					<li><a href="${pageContext.request.contextPath}/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
 				</c:if>
 			</ul>
+			</div>
 		</div>
 	</nav>
+	
 <br><br><br><br>
 	<h1 id="question" align="center" style="margin-top:75px; color:  #2d8659"><strong>Où voulez-vous aller ? </strong></h1>
 	<br/>

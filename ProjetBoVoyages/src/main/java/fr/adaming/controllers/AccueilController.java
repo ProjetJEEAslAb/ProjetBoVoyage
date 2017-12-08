@@ -82,7 +82,6 @@ public class AccueilController {
 		try {
 			voyageDemande.setDateDepart(format.parse(voyageDemande.getDateString()));
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -177,6 +176,7 @@ public class AccueilController {
 				sb.append("Partez en "+v.getPays()+" pour seulement "+prixReduit+" !\n");
 			}
 			
+			sb.append("\nhttp://localhost:8080/ProjetBoVoyages/voyage/pubPromo");
 			
 			sb.append("\nPour plus de détails, voyez la pièce jointe.\n");
 			

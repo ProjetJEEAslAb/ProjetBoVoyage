@@ -24,9 +24,78 @@
 <script type="text/javascript"
 	src="<c:url value="/assets/libs/js/script.js" />"></script>
 
-<title>Insert title here</title>
+<title>Liste des voyages</title>
 </head>
 <body id="vert">
+	<nav class="navbar navbar-inverse navbar-fixed-top" style="padding-bottom: 10px;">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#"><img src="<c:url value="/assets/images/logo_poney.png" />" height="45px" /></a>
+			</div>
+			<div style="padding-top: 10px;">
+				<c:if test="${sessionScope.logged}">
+					<ul class="nav navbar-nav">
+						<li class="dropdown"><a class="dropdown-toggle"
+							data-toggle="dropdown" href="#">Voyages<span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="${pageContext.request.contextPath}/voyage/afficheAjout">Ajout</a></li>
+								<li><a href="${pageContext.request.contextPath}/voyage/modifVoyage">Modification</a></li>
+								<li><a href="${pageContext.request.contextPath}/voyage/afficheSuppr">Suppression</a></li>
+								<li><a href="${pageContext.request.contextPath}/voyage/rechercheVoyage">Recherche</a></li>
+								<li><a href="${pageContext.request.contextPath}/voyage/promotion">Promotion</a></li>
+							</ul>
+						</li>
+						<li class="dropdown"><a class="dropdown-toggle"
+							data-toggle="dropdown" href="#">Voyageurs<span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="${pageContext.request.contextPath}/voyageur/listeVoyageurs">Liste</a></li>
+								<li><a href="${pageContext.request.contextPath}/voyageur/afficheAjout">Ajout</a></li>
+								<li><a href="${pageContext.request.contextPath}/voyageur/afficheModif">Modification</a></li>
+								<li><a href="${pageContext.request.contextPath}/voyageur/afficheSuppr">Suppression</a></li>
+								<li><a href="${pageContext.request.contextPath}/voyageur/afficheRecherche">Recherche</a></li>
+							</ul>
+						</li>
+						<li class="dropdown"><a class="dropdown-toggle"
+							data-toggle="dropdown" href="#">Dossiers<span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="${pageContext.request.contextPath}/dossier/listeDossiers">Liste</a></li>
+								<li><a href="${pageContext.request.contextPath}/dossier/afficheAjout">Ajout</a></li>
+								<li><a href="${pageContext.request.contextPath}/dossier/afficheModif">Modification</a></li>
+								<li><a href="${pageContext.request.contextPath}/dossier/afficheModifStatut">Modification statut</a></li>
+								<li><a href="${pageContext.request.contextPath}/dossier/afficheSuppr">Suppression</a></li>
+								<li><a href="${pageContext.request.contextPath}/dossier/afficheRecherche">Recherche</a></li>
+							</ul>
+						</li>
+						<li class="dropdown"><a class="dropdown-toggle"
+							data-toggle="dropdown" href="#">Agences<span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="${pageContext.request.contextPath}/agence/listeAgences">Liste</a></li>
+								<li><a href="${pageContext.request.contextPath}/agence/afficheAjout">Ajout</a></li>
+							</ul>
+						</li>
+					</ul>
+				</c:if>
+				<c:if test="${not sessionScope.logged}">
+					<ul class="nav navbar-nav">
+						<li class="active"><a href="${pageContext.request.contextPath}/accueil">Nos Offres</a></li>
+						<li class="active"><a href="${pageContext.request.contextPath}/agence/listeAgences">Nos Agences</a></li>
+					</ul>
+				</c:if>
+			<ul class="nav navbar-nav navbar-right">
+				<c:if test="${sessionScope.logged}">
+					<li><a href="#">${sessionScope.username}</a></li>
+					<li class="disabled"><a href="#"><img src="<c:url value="/assets/images/iconeconnecte.svg" />" height="30px" /></a></li>
+					<li><a href="${pageContext.request.contextPath}/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+				</c:if>
+				<c:if test="${not sessionScope.logged}">
+					<li><a href="${pageContext.request.contextPath}/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+				</c:if>
+			</ul>
+			</div>
+		</div>
+	</nav>
+	
+	<div style="margin-top: 100px"></div>
 	<br />
 
 	<!-- Page Content -->
@@ -121,22 +190,44 @@ body {
 
 		</c:if>
 		<hr>
-		<!-- Message d'erreur si on veut reserver trop de places -->
-		<h2 style="text-align: center">${message }</h2>
 		<!-- Barre de recherche -->
-		<form:form method="GET" action="filtrer" modelAttribute="voyageDesirer">
-		
+		<form:form method="GET" action="filtrer"
+			modelAttribute="voyageDesirer">
+
 			<input type="hidden" name="continent" value="${continent}">
-			
-			Pays : <form:input path="pays" placeholder="Pays" /><br>
-			Durée du voyage : <form:input path="duree" placeholder="Durée du voyage" />
-			Prix maximale (par personne)<form:input path="prix" placeholder="Prix" />
-			Places disponibles <form:input path="placesDisponibles" placeholder="Places Disponibles" />
-			Détails  <form:input path="descriptionVoyage" />
-			<button class="btn btn-success btn-lg pull-right" type="submit">Submit</button>
-			
+
+			<div>
+				<table>
+					<tr>
+						<td style="text-align: center">Pays</td>
+						<td style="text-align: center">Durée</td>
+						<td style="text-align: center">Prix Maximal</td>
+						<td style="text-align: center">Nombre de voyageurs</td>
+						<td style="text-align: center">Détails</td>
+					</tr>
+					<tr>
+						<td><form:input path="pays" placeholder="Pays" /></td>
+						<td><form:input path="duree" placeholder="Durée du voyage" /></td>
+						<td><form:input path="prix" placeholder="Prix" /></td>
+						<td><form:input path="placesDisponibles"
+								placeholder="Nombre de voyageurs" /></td>
+						<td><form:input path="descriptionVoyage" /></td>
+
+					</tr>
+					<button class="btn btn-success btn-md pull-right" type="submit">Rechercher</button>
+
+				</table>
+			</div>
+
+
+
+
 
 		</form:form>
+
+		<!-- Message d'erreur si on veut reserver trop de places -->
+		<br> <br> <br>
+		<h2 style="text-align: center">${message}</h2>
 
 		<!-- Title -->
 
@@ -145,8 +236,12 @@ body {
 				<h3 style="color: #267326">Promotions</h3>
 			</div>
 		</div>
+		<hr>
+
 		<!-- /.row -->
 		<div class="tout" style="text-align: center;">
+			<br>
+
 			<!-- Page Features -->
 			<c:forEach var="promotion" items="${listePromotion}">
 				<c:if test="${promotion.continent==continent}">
@@ -155,12 +250,12 @@ body {
 						<div>
 							<div class="thumbnail">
 
-
 								<div class="ribbon">
 									<span>PROMOTIONS</span>
-								</div>
 
-								<img src="<c:url value="/images/${voyage.pays}/0.jpg" />"
+								</div>
+								<br> <img
+									src="<c:url value="/images/${voyage.pays}/0.jpg" />"
 									alt="image de ${promotion.pays}" height="10%" width="300px">
 
 
@@ -182,14 +277,15 @@ body {
 		</div>
 		<!-- /.row -->
 
-		<hr>
 		<!-- Title -->
+
 		<div class="row">
 			<div class="col-lg-12">
 				<h3 style="color: #267326">Populaires</h3>
 			</div>
 		</div>
 		<!-- /.row -->
+		<hr>
 
 		<!-- Page Features -->
 		<div class="tout" class="row text-center">
@@ -238,7 +334,7 @@ body {
 							<!-- le titre de la popup -->
 							<div class="modal-header">
 								<h4 class="modal-title" id="titrePopUp">
-									Johanesburg, Afrique du Sud
+									${promotion.pays}
 									<!-- lla croix de fermeture de la popup -->
 									<button type="button" class="close" data-dismiss="modal"
 										aria-hidden="true">&times;</button>
@@ -258,9 +354,9 @@ body {
 							<div class="modal-footer">
 								<form method="GET" action="reserver">
 									<input type="hidden" name="identifiantVoyage"
-										value="${promotion.id}"> Nombre de voyageurs <input
-										type="number" name="nbVoyageur"> <input type="hidden"
-										value="${continent}" name="continent"><input
+										value="${promotion.id}"> <label class="control-label">Nombre
+										de voyageurs </label><input type="number" name="nbVoyageur"> <input
+										type="hidden" value="${continent}" name="continent"><input
 										type="submit">
 								</form>
 							</div>
@@ -303,9 +399,9 @@ body {
 							<div class="modal-footer">
 								<form method="GET" action="reserver">
 									<input type="hidden" name="identifiantVoyage"
-										value="${voyage.id}"> Nombre de voyageurs <input
-										type="number" name="nbVoyageur"> <input type="hidden"
-										value="${continent}" name="continent"><input
+										value="${voyage.id}"> <label class="control-label">Nombre
+										de voyageurs </label><input type="number" name="nbVoyageur"> <input
+										type="hidden" value="${continent}" name="continent"><input
 										type="submit">
 								</form>
 

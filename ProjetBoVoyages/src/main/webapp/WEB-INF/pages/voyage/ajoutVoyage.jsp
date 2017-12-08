@@ -13,57 +13,75 @@
 	<title>Ajout d'un voyage</title>
 </head>
 <body background="<c:url value="/assets/images/ajoutVoyage.jpg" />">
-<nav class="navbar navbar-inverse">
+	<nav class="navbar navbar-inverse navbar-fixed-top" style="padding-bottom: 10px;">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<a class="navbar-brand" href="#">BoVoyage</a>
+				<a class="navbar-brand" href="#"><img src="<c:url value="/assets/images/logo_poney.png" />" height="45px" /></a>
 			</div>
-			<ul class="nav navbar-nav">
-				<li class="dropdown"><a class="dropdown-toggle"
-					data-toggle="dropdown" href="#">Voyages<span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a href="${pageContext.request.contextPath}/voyage/afficheListeVoyage">Liste</a></li>
-						<li><a href="${pageContext.request.contextPath}/voyage/afficheAjout">Ajout</a></li>
-						<li><a href="${pageContext.request.contextPath}/voyage/modifVoyage">Modification</a></li>
-						<li><a href="${pageContext.request.contextPath}/voyage/afficheSuppr">Suppression</a></li>
-						<li><a href="${pageContext.request.contextPath}/voyage/rechercheVoyage">Recherche</a></li>
-						<li><a href="${pageContext.request.contextPath}/voyage/promotion">Promotion</a></li>
+			<div style="padding-top: 10px;">
+				<c:if test="${sessionScope.logged}">
+					<ul class="nav navbar-nav">
+						<li class="dropdown"><a class="dropdown-toggle"
+							data-toggle="dropdown" href="#">Voyages<span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="${pageContext.request.contextPath}/voyage/afficheAjout">Ajout</a></li>
+								<li><a href="${pageContext.request.contextPath}/voyage/modifVoyage">Modification</a></li>
+								<li><a href="${pageContext.request.contextPath}/voyage/afficheSuppr">Suppression</a></li>
+								<li><a href="${pageContext.request.contextPath}/voyage/rechercheVoyage">Recherche</a></li>
+								<li><a href="${pageContext.request.contextPath}/voyage/promotion">Promotion</a></li>
+							</ul>
+						</li>
+						<li class="dropdown"><a class="dropdown-toggle"
+							data-toggle="dropdown" href="#">Voyageurs<span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="${pageContext.request.contextPath}/voyageur/listeVoyageurs">Liste</a></li>
+								<li><a href="${pageContext.request.contextPath}/voyageur/afficheAjout">Ajout</a></li>
+								<li><a href="${pageContext.request.contextPath}/voyageur/afficheModif">Modification</a></li>
+								<li><a href="${pageContext.request.contextPath}/voyageur/afficheSuppr">Suppression</a></li>
+								<li><a href="${pageContext.request.contextPath}/voyageur/afficheRecherche">Recherche</a></li>
+							</ul>
+						</li>
+						<li class="dropdown"><a class="dropdown-toggle"
+							data-toggle="dropdown" href="#">Dossiers<span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="${pageContext.request.contextPath}/dossier/listeDossiers">Liste</a></li>
+								<li><a href="${pageContext.request.contextPath}/dossier/afficheAjout">Ajout</a></li>
+								<li><a href="${pageContext.request.contextPath}/dossier/afficheModif">Modification</a></li>
+								<li><a href="${pageContext.request.contextPath}/dossier/afficheModifStatut">Modification statut</a></li>
+								<li><a href="${pageContext.request.contextPath}/dossier/afficheSuppr">Suppression</a></li>
+								<li><a href="${pageContext.request.contextPath}/dossier/afficheRecherche">Recherche</a></li>
+							</ul>
+						</li>
+						<li class="dropdown"><a class="dropdown-toggle"
+							data-toggle="dropdown" href="#">Agences<span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="${pageContext.request.contextPath}/agence/listeAgences">Liste</a></li>
+								<li><a href="${pageContext.request.contextPath}/agence/afficheAjout">Ajout</a></li>
+							</ul>
+						</li>
 					</ul>
-				</li>
-				<li class="dropdown"><a class="dropdown-toggle"
-					data-toggle="dropdown" href="#">Voyageurs<span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a href="${pageContext.request.contextPath}/voyageur/listeVoyageurs">Liste</a></li>
-						<li><a href="${pageContext.request.contextPath}/voyageur/afficheAjout">Ajout</a></li>
-						<li><a href="${pageContext.request.contextPath}/voyageur/afficheModif">Modification</a></li>
-						<li><a href="${pageContext.request.contextPath}/voyageur/afficheSuppr">Suppression</a></li>
-						<li><a href="${pageContext.request.contextPath}/voyageur/afficheRecherche">Recherche</a></li>
+				</c:if>
+				<c:if test="${not sessionScope.logged}">
+					<ul class="nav navbar-nav">
+						<li class="active"><a href="${pageContext.request.contextPath}/accueil">Nos Offres</a></li>
+						<li class="active"><a href="${pageContext.request.contextPath}/agence/listeAgences">Nos Agences</a></li>
 					</ul>
-				</li>
-				<li class="dropdown"><a class="dropdown-toggle"
-					data-toggle="dropdown" href="#">Dossiers<span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a href="${pageContext.request.contextPath}/dossier/listeDossiers">Liste</a></li>
-						<li><a href="${pageContext.request.contextPath}/dossier/afficheAjout">Ajout</a></li>
-						<li><a href="${pageContext.request.contextPath}/dossier/afficheModif">Modification</a></li>
-						<li><a href="${pageContext.request.contextPath}/dossier/afficheModifStatut">Modification statut</a></li>
-						<li><a href="${pageContext.request.contextPath}/dossier/afficheSuppr">Suppression</a></li>
-						<li><a href="${pageContext.request.contextPath}/dossier/afficheRecherche">Recherche</a></li>
-					</ul>
-				</li>
-			</ul>
+				</c:if>
 			<ul class="nav navbar-nav navbar-right">
 				<c:if test="${sessionScope.logged}">
 					<li><a href="#">${sessionScope.username}</a></li>
-					<li class="disabled"><a href="#"><img src="http://crdp-pupitre.ac-clermont.fr/upload/_237_587_2015-01-05_09-46-46_.gif" height="30px" /></a></li>
+					<li class="disabled"><a href="#"><img src="<c:url value="/assets/images/iconeconnecte.svg" />" height="30px" /></a></li>
 					<li><a href="${pageContext.request.contextPath}/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
 				</c:if>
 				<c:if test="${not sessionScope.logged}">
 					<li><a href="${pageContext.request.contextPath}/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
 				</c:if>
 			</ul>
+			</div>
 		</div>
 	</nav>
+	
+	<div style="margin-top: 100px"></div>
 
 	<h2>Ajout de voyage</h2>
 
@@ -110,8 +128,9 @@
 				<form:errors path="descriptionVoyage" />
 			</div>
 		</div>
+		<hr/>
 		
-		<h4>Considérations pratiques</h4>
+		<h4 style="text-align: center">Considérations pratiques</h4>
 		<div class="form-group">
 			<form:label for="prix" class="col-sm-2 control-label" path="prix">Prix</form:label>
 			<div class="col-sm-8">
@@ -162,7 +181,7 @@
 		</div>
 
 <hr/>
-		<h4>Avion</h4>
+		<h4  style="text-align: center">Avion</h4>
 		<div class="form-group">
 			<form:label for="compagnie" class="col-sm-2 control-label" path="formule.avion.compagnie">Compagnie aérienne</form:label>
 			<div class="col-sm-8">
@@ -192,7 +211,7 @@
 		
 		<hr/>
 		
-		<h4>Voiture</h4>
+		<h4  style="text-align: center">Voiture</h4>
 		<div class="form-group">
 			<form:label for="categorie" class="col-sm-2 control-label" path="formule.voiture.categorie">Catégorie de voiture</form:label>
 			<div class="col-sm-8">
