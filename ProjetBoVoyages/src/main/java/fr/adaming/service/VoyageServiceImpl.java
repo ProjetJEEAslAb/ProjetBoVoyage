@@ -84,7 +84,7 @@ public class VoyageServiceImpl implements IVoyageService {
 		if(critereVoyage.getPlacesDisponibles()==0){
 			System.out.println("Pas de places demandées");
 		}else {
-			String criterePlace ="v.placesDisponibles<=" + critereVoyage.getPlacesDisponibles();
+			String criterePlace ="v.placesDisponibles>=" + critereVoyage.getPlacesDisponibles();
 			listeParametre.add(criterePlace);
 		}
 		

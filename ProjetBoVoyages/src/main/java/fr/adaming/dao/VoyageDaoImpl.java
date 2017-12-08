@@ -55,13 +55,14 @@ public class VoyageDaoImpl implements IVoyageDao{
 
 	@Override
 	public List<Voyage> rechercherVoyageAvecCritere(Voyage critereVoyage,List<String> listeParametre) {
-		StringBuilder requete = new StringBuilder("SELECT v FROM Voyage v WHERE ");
+		StringBuilder requete = new StringBuilder("SELECT v FROM Voyage v");
 		//Nombre de critere;
 		int nbCritere = listeParametre.size();
 		for(int i =0;i<=nbCritere-1;i++){
 			System.out.println(listeParametre.get(i));
 			if(i==0){
 				//System.out.println("Premier paramètre");
+				requete.append(" WHERE ");
 				requete.append(listeParametre.get(i));
 			}else{
 				//System.out.println("Paramètre ulterieur");
