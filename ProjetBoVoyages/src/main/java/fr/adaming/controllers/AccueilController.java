@@ -204,4 +204,12 @@ public class AccueilController {
 		return modeleVue;
 	}
 	
+	//pub promotions
+	
+		@RequestMapping(value="/voyage/pubPromo",method = RequestMethod.GET)
+		public String afficherPub(Model model){
+			model.addAttribute("pubPage",new Voyage());
+			return "pubPage";
+			
+		}
 }
