@@ -212,4 +212,5 @@ public class AccueilController {
 			return "pubPage";
 			
 		}
+		
 }
