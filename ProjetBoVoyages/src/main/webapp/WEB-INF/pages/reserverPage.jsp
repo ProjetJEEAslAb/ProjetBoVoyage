@@ -116,7 +116,13 @@
 								class="form-control" placeholder="Date de naissance"
 								path="dateString" />
 						</div>
-
+						
+						<div class="form-group">
+							<label class="control-label">Mail</label>
+							<form:input maxlength="100" type="text" required="required"
+								class="form-control" placeholder="Mail"
+								path="mail" />
+						</div>
 
 						<button class="btn btn-success nextBtn btn-lg pull-right"
 							type="button">Suivant</button>

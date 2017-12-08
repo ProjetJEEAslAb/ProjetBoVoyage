@@ -46,6 +46,7 @@ import fr.adaming.service.IVoyageService;
 public class AfriqueController {
 	int voyageurInscrit;
 	int nombreDeVoyageur;
+	Voyageur clientPayeur;
 	Dossier dossier;
 	@Autowired
 	IVoyageService serviceVoyage;
@@ -82,7 +83,6 @@ public class AfriqueController {
 		System.out.println(id);
 		String message;
 		Voyage voyageAReserver = serviceVoyage.getVoyageById(id);
-		System.out.println(voyageAReserver);
 
 		if (nbVoyageur > voyageAReserver.getPlacesDisponibles()) {
 			message = "Il n'y pas assez de place disponibles";
@@ -131,6 +131,7 @@ public class AfriqueController {
 			@RequestParam("codeCB") String codeCB) {
 		String message;
 		nombreDeVoyageur = nbVoyageur;
+		clientPayeur=client;
 		// Voyage reservation = serviceVoyage.getVoyageById(idReservation);
 
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
@@ -185,7 +186,7 @@ public class AfriqueController {
 		if (voyageurInscrit == nombreDeVoyageur) {
 			serviceDossier.addDossier(dossier);
 			// envoi mail
-			this.envoyerMail();
+			this.envoyerMail(clientPayeur);
 			return new ModelAndView("accueil");
 		} else {
 			ModelAndView modeleVue = new ModelAndView("inscriptionAccompagnants", "accompagnant", new Voyageur());
@@ -195,9 +196,9 @@ public class AfriqueController {
 		}
 	}
 
-	public void envoyerMail() {
+	public void envoyerMail(Voyageur v) {
 		// On envoie un mail à cette adresse parce qu'on est à l'arrache
-		final String to = "bluechicken.ab@gmail.com";
+		final String to = v.getMail();
 		final String username = "thezadzad@gmail.com";
 		final String password = "adaming44";
 		Properties props = new Properties();
