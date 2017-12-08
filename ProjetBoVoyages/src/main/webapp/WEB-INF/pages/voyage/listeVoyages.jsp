@@ -285,18 +285,25 @@ body {
 
 
 								<div class="caption">
-									<h3>${promotion.pays}</h3>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing
-										elit.</p>
+									<h3 style="text-align: center;">${promotion.pays}</h3>
+
+									<div align="center" style="border-radius: 3px">
+										<h4 style="color: red">${promotion.prix} euros</h4>
+									</div> 
+
 									<p>
-										<button class="btn btn-success btn-lg" data-toggle="modal"
+										<button class="btn btn-success btn-md" data-toggle="modal"
 											data-target="#popupPromotion_${promotion.id}">Infos</button>
 									</p>
+
 									<div style="margin-bottom: 10px; margin-top: 50px">
-										<p style="float: left">${promotion.prix}euros</p>
-										<p style="float: right">${promotion.placesDisponibles}
-											places</p>
+
+										<p style="text-align: center;">Places disponibles :
+											${promotion.placesDisponibles} place(s)</p>
 									</div>
+
+
+
 									<div style="clear: left; clear: right"></div>
 								</div>
 							</div>
@@ -332,17 +339,19 @@ body {
 
 							<div class="caption">
 								<h3 style="text-align: center;">${voyage.pays}</h3>
-								<p style="text-align: center">Lorem ipsum dolor sit amet,
-									consectetur adipisicing elit.</p>
-								<p>
-									<button class="btn btn-success btn-lg" data-toggle="modal"
-										data-target="#popupVoyage_${voyage.id}">Infos</button>
-								</p>
-								<div style="margin-bottom: 10px; margin-top: 50px">
-									<p style="float: left">${voyage.prix}euros</p>
-									<p style="float: right">${voyage.placesDisponibles}places</p>
+								<div align="center" style="border-radius: 3px">
+									<h4 style="color: red">${voyage.prix} euros</h4>
 								</div>
-								<div style="clear: left; clear: right"></div>
+								<div align="center">
+									<button class="btn btn-success btn-md" data-toggle="modal"
+										data-target="#popupVoyage_${voyage.id}">Infos</button>
+								</div>
+								<div style="margin-bottom: 10px; margin-top: 50px">
+
+									<p style="text-align: center;">Places disponibles :
+										${voyage.placesDisponibles} place(s)</p>
+								</div>
+
 							</div>
 
 
@@ -381,9 +390,10 @@ body {
 
 							<!-- le contenu HTML de la popup -->
 							<div class="modal-body">
+							<img src="<c:url value="/images/${promotion.pays}/0.jpg" />"
+								alt="image de ${promotion.pays}" height="10%" width="300px">
 								<p class="lead">
-									<img src="assets/libs/img/téléchargement.jpg"
-										class="pull-right" /> Détails du voyage
+									 Détails du voyage
 								</p>
 								<p>${promotion.descriptionVoyage}</p>
 							</div>
@@ -393,7 +403,7 @@ body {
 								<form method="GET" action="reserver">
 									<input type="hidden" name="identifiantVoyage"
 										value="${promotion.id}"> <label class="control-label">Nombre
-										de voyageurs </label><input type="number" name="nbVoyageur"> <input
+										de voyageurs </label><span style="margin-left: 30px"><input type="number" name="nbVoyageur" required="required"> <input
 										type="hidden" value="${continent}" name="continent"><input
 										type="submit">
 								</form>
@@ -427,9 +437,12 @@ body {
 
 							<!-- le contenu HTML de la popup -->
 							<div class="modal-body">
+							
+							<img src="<c:url value="/images/${voyage.pays}/0.jpg" />"
+								alt="image de ${voyage.pays}" height="10%" width="300px">
+							
 								<p class="lead">
-									<img src="assets/libs/img/téléchargement.jpg"
-										class="pull-right" /> Détails du voyage
+									 Détails du voyage
 								</p>
 								<p>${voyage.descriptionVoyage}</p>
 							</div>
@@ -437,9 +450,9 @@ body {
 							<div class="modal-footer">
 								<form method="GET" action="reserver">
 									<input type="hidden" name="identifiantVoyage"
-										value="${voyage.id}"> <label class="control-label">Nombre
-										de voyageurs </label><input type="number" name="nbVoyageur"> <input
-										type="hidden" value="${continent}" name="continent"><input
+										value="${voyage.id}"> <label  class="control-label">Nombre
+										de voyageurs </label><span style="margin-left: 30px"></span><input type="number" name="nbVoyageur" required="required"> <input
+										type="hidden" value="${continent}" name="continent" ><input
 										type="submit">
 								</form>
 

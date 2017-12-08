@@ -32,14 +32,14 @@
 
 </head>
 <body>
-	<div>
+	<div align="center">
 		<!-- Entête du voyage -->
 		<h1 style="text-align: center;">Réservation du voyage</h1>
-		<img
-			src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Flag_of_Syldavia.svg/900px-Flag_of_Syldavia.svg.png"
-			width="400px">
-	</div>
+		<br/>
+		<img src="<c:url value="/assets/images/logo_poney.png" />" width="300px"/>
 
+	</div>
+	<br/>
 
 
 	<div class="container">
@@ -78,7 +78,7 @@
 			<div class="row setup-content" id="step-1">
 				<div class="col-xs-6 col-md-offset-3">
 					<div class="col-md-12">
-						<h3>Etape 1</h3>
+						<h3 style="text-align: center;">Etape 1</h3>
 						<div class="form-group">
 							<label class="control-label">Civilité</label>
 							<form:select class="form-control" id="hebergement"
@@ -132,7 +132,7 @@
 			<div class="row setup-content" id="step-2">
 				<div class="col-xs-6 col-md-offset-3">
 					<div class="col-md-12">
-						<h3>Etape 2</h3>
+						<h3 style="text-align: center;">Etape 2</h3>
 
 						Notre agence vous propose différentes assurances pour vous assurer
 						toute la sérénité et la tranquilité nécessaire pour passer de
@@ -166,7 +166,7 @@
 			<div class="row setup-content" id="step-3">
 				<div class="col-xs-6 col-md-offset-3">
 					<div class="col-md-12">
-						<h3>Step 2</h3>
+						<h3 style="text-align: center;">Etape 3</h3>
 						<div class="form-group">
 							<label class="control-label">Numéro de carte Bancaire</label> <input
 								maxlength="200" type="text" required="required"
@@ -190,12 +190,14 @@
 						<h2 style="text-align: center;">Résumé de votre commande</h2>
 						<input type="hidden" value="${nbVoyageurs}" name="nbVoyageur">
 						<input type="hidden" value="${voyageAReserver.id}"
-							name="identifiantReservation"> Id : ${voyageAReserver.id}
-						Destination : ${voyageAReserver.pays} <br> Prix Unitaire :
-						${voyageAReserver.prix-voyageAReserver.prix*voyageAReserver.reduction/100 }
-						euros. Prix total :
-						${(voyageAReserver.prix-voyageAReserver.prix*voyageAReserver.reduction/100 )* nbVoyageurs}.
-						<button class="btn btn-success btn-lg pull-right" type="submit">Submit</button>
+							name="identifiantReservation"> Vous avez choisi de réserver un voyage pour ${nbVoyageurs} personne(s)
+							en partance pour le/la/l' ${voyageAReserver.pays}. Le prix unitaire étant de ${voyageAReserver.prix-voyageAReserver.prix*voyageAReserver.reduction/100 } euros 
+							le prix total est estimé à ${(voyageAReserver.prix-voyageAReserver.prix*voyageAReserver.reduction/100 )* nbVoyageurs} euros. Ce prix ne tient pas
+							compte des éventuelles réductions accordées pour les enfants.
+						
+						<br>
+						<br>
+						<button class="btn btn-success btn-lg pull-right" type="submit">Continuer la réservation</button>
 					</div>
 				</div>
 			</div>

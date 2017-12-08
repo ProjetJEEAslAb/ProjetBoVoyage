@@ -70,7 +70,7 @@
 			<div class="row setup-content" id="step-5">
 				<div class="col-xs-6 col-md-offset-3">
 					<div class="col-md-12">
-						<h3>Etape 1</h3>
+						<h3 style="text-align: center;">Etape 5</h3>
 						<div class="form-group">
 							<label class="control-label">Civilité</label>
 							<form:select class="form-control" id="hebergement"
