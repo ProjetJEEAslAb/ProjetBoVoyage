@@ -2,29 +2,18 @@
 	pageEncoding="ISO-8859-1"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-
-<link rel="stylesheet"
-	href="<c:url value="/assets/libs/bootstrap-3.3.7/css/bootstrap.css" />">
-
-<link rel="stylesheet"
-	href="<c:url value="/assets/libs/css/heroic-features.css" />">
-<link rel="stylesheet"
-	href="<c:url value="/assets/libs/css/font-awesome.min.css" />">
-
-<script type="text/javascript"
-	src="<c:url value="/assets/libs/jquery-3.2.1.js" />"></script>
-<script type="text/javascript"
-	src="<c:url value="/assets/libs/bootstrap-3.3.7/js/bootstrap.js" />"></script>
-<script type="text/javascript"
-	src="<c:url value="/assets/libs/js/script.js" />"></script>
-
-<title>Liste des voyages</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="<c:url value="/assets/libs/bootstrap-3.3.7/css/bootstrap.css" />">
+	<link rel="stylesheet" href="<c:url value="/assets/libs/bootstrap-3.3.7/css/bootstrap-theme.css" />">
+	<script type="text/javascript" src="<c:url value="/assets/libs/jquery-3.2.1.js" />"></script>
+	<script type="text/javascript" src="<c:url value="/assets/libs/bootstrap-3.3.7/js/bootstrap.js" />"></script>
+	<script type="text/javascript" src="<c:url value="/assets/libs/js/script.js" />"></script>
+	<script type="text/javascript" src="<c:url value="/assets/libs/scrollreveal.min.js" />"></script>
+	<title>Liste des voyages</title>
 </head>
 <body id="vert">
 	<nav class="navbar navbar-inverse navbar-fixed-top" style="padding-bottom: 10px;">
@@ -104,7 +93,7 @@
 		<!-- Jumbotron Header -->
 		<c:if test="${continent=='Afrique'}">
 
-			<header class="jumbotron hero-spacer"
+			<header class="jumbotron hero-spacer cadre-continent"
 				style="background-image: url('http://www.ivtci.com/tourisme/cote_ivoire/data1/images/masquewobc3a9ouestdelacc3b4tedivoire.jpg')">
 				<h1 style="color: white">AFRIQUE</h1>
 				<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
@@ -119,7 +108,7 @@ body {
 		</c:if>
 
 		<c:if test="${continent=='Asie'}">
-			<header class="jumbotron hero-spacer"
+			<header class="jumbotron hero-spacer cadre-continent"
 				style="background-image: url('http://shaktatravels.com/pic/flexslider/Ganga-Valley-Varanasi-Tour/l-6.jpg')">
 				<h1 style="color: white">ASIE</h1>
 				<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
@@ -134,7 +123,7 @@ body {
 		</c:if>
 
 		<c:if test="${continent=='Oceanie'}">
-			<header class="jumbotron hero-spacer"
+			<header class="jumbotron hero-spacer cadre-continent"
 				style="background-image: url('https://www.esplweb.fr/eta209/images/sydney-campus-01.jpg')">
 				<h1 style="color: white">OCEANIE</h1>
 				<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
@@ -150,7 +139,7 @@ body {
 
 		<c:if test="${continent=='AmNord'}">
 
-			<header class="jumbotron hero-spacer"
+			<header class="jumbotron hero-spacer cadre-continent"
 				style="background-image: url('https://d1qq9lwf5ow8iz.cloudfront.net/live-images-1/ImageDetail_71a2019f-89e1-4e48-b5b3-3ac01b70b183_ThreeByOne?v=636202685923833133')">
 				<h1 style="color: white">AMERIQUE DU NORD</h1>
 				<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
@@ -163,7 +152,7 @@ body {
 </style>
 		</c:if>
 		<c:if test="${continent=='AmSud'}">
-			<header class="jumbotron hero-spacer"
+			<header class="jumbotron hero-spacer cadre-continent"
 				style="background-image: url('http://www.intern-brazil.com/wp-content/uploads/2016/12/Banner_Corcovado.jpg')">
 				<h1 style="color: white">AMERIQUE DU SUD</h1>
 				<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
@@ -176,7 +165,7 @@ body {
 </style>
 		</c:if>
 		<c:if test="${continent=='Europe'}">
-			<header class="jumbotron hero-spacer"
+			<header class="jumbotron hero-spacer cadre-continent"
 				style="background-image: url('http://www.voyages18.fr/wp-content/uploads/2017/08/blue.jpg')">
 				<h1 style="color: white">EUROPE</h1>
 				<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
@@ -424,5 +413,15 @@ body {
 			</div>
 		</c:if>
 	</c:forEach>
+	
+	<script type="text/javascript">
+	window.sr = ScrollReveal();
+	sr.reveal('.cadre-continent', {
+		duration: 1000,
+		origin:'right',
+		distance:'600px'
+	});
+	</script>
+	
 </body>
 </html>
