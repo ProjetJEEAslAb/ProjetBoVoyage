@@ -121,29 +121,44 @@ body {
 
 		</c:if>
 		<hr>
-		<!-- Message d'erreur si on veut reserver trop de places -->
-		<h2 style="text-align: center">${message }</h2>
 		<!-- Barre de recherche -->
 		<form:form method="GET" action="filtrer"
 			modelAttribute="voyageDesirer">
 
 			<input type="hidden" name="continent" value="${continent}">
-			
-			Pays : <form:input path="pays" placeholder="Pays" />
-			<br>
-			Durée du voyage : <form:input path="duree"
-				placeholder="Durée du voyage" />
-			Prix maximum (par personne)<form:input path="prix"
-				placeholder="Prix" />
-			Places disponibles <form:input path="placesDisponibles"
-				placeholder="Places Disponibles" />
-			Détails  <form:input path="descriptionVoyage" />
+
+			<div>
+				<table>
+					<tr>
+						<td style="text-align: center">Pays</td>
+						<td style="text-align: center">Durée</td>
+						<td style="text-align: center">Prix Maximal</td>
+						<td style="text-align: center">Nombre de voyageurs</td>
+						<td style="text-align: center">Détails</td>
+					</tr>
+					<tr>
+						<td><form:input path="pays" placeholder="Pays" /></td>
+						<td><form:input path="duree" placeholder="Durée du voyage" /></td>
+						<td><form:input path="prix" placeholder="Prix" /></td>
+						<td><form:input path="placesDisponibles"
+								placeholder="Nombre de voyageurs" /></td>
+						<td><form:input path="descriptionVoyage" /></td>
+
+					</tr>
+					<button class="btn btn-success btn-md pull-right" type="submit">Rechercher</button>
+
+				</table>
+			</div>
 
 
-			<button class="btn btn-success btn-lg pull-right" type="submit">Submit</button>
+
 
 
 		</form:form>
+
+		<!-- Message d'erreur si on veut reserver trop de places -->
+		<br> <br> <br>
+		<h2 style="text-align: center">${message}</h2>
 
 		<!-- Title -->
 
@@ -152,8 +167,12 @@ body {
 				<h3 style="color: #267326">Promotions</h3>
 			</div>
 		</div>
+		<hr>
+
 		<!-- /.row -->
 		<div class="tout" style="text-align: center;">
+			<br>
+
 			<!-- Page Features -->
 			<c:forEach var="promotion" items="${listePromotion}">
 				<c:if test="${promotion.continent==continent}">
@@ -162,12 +181,12 @@ body {
 						<div>
 							<div class="thumbnail">
 
-
 								<div class="ribbon">
 									<span>PROMOTIONS</span>
-								</div>
 
-								<img src="<c:url value="/images/${voyage.pays}/0.jpg" />"
+								</div>
+								<br> <img
+									src="<c:url value="/images/${voyage.pays}/0.jpg" />"
 									alt="image de ${promotion.pays}" height="10%" width="300px">
 
 
@@ -189,14 +208,15 @@ body {
 		</div>
 		<!-- /.row -->
 
-		<hr>
 		<!-- Title -->
+
 		<div class="row">
 			<div class="col-lg-12">
 				<h3 style="color: #267326">Populaires</h3>
 			</div>
 		</div>
 		<!-- /.row -->
+		<hr>
 
 		<!-- Page Features -->
 		<div class="tout" class="row text-center">
@@ -245,7 +265,7 @@ body {
 							<!-- le titre de la popup -->
 							<div class="modal-header">
 								<h4 class="modal-title" id="titrePopUp">
-									Johanesburg, Afrique du Sud
+									${promotion.pays}
 									<!-- lla croix de fermeture de la popup -->
 									<button type="button" class="close" data-dismiss="modal"
 										aria-hidden="true">&times;</button>
@@ -265,9 +285,9 @@ body {
 							<div class="modal-footer">
 								<form method="GET" action="reserver">
 									<input type="hidden" name="identifiantVoyage"
-										value="${promotion.id}"> Nombre de voyageurs <input
-										type="number" name="nbVoyageur"> <input type="hidden"
-										value="${continent}" name="continent"><input
+										value="${promotion.id}"> <label class="control-label">Nombre
+										de voyageurs </label><input type="number" name="nbVoyageur"> <input
+										type="hidden" value="${continent}" name="continent"><input
 										type="submit">
 								</form>
 							</div>
@@ -310,9 +330,9 @@ body {
 							<div class="modal-footer">
 								<form method="GET" action="reserver">
 									<input type="hidden" name="identifiantVoyage"
-										value="${voyage.id}"> Nombre de voyageurs <input
-										type="number" name="nbVoyageur"> <input type="hidden"
-										value="${continent}" name="continent"><input
+										value="${voyage.id}"> <label class="control-label">Nombre
+										de voyageurs </label><input type="number" name="nbVoyageur"> <input
+										type="hidden" value="${continent}" name="continent"><input
 										type="submit">
 								</form>
 
