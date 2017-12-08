@@ -124,10 +124,22 @@ body {
 		<!-- Message d'erreur si on veut reserver trop de places -->
 		<h2 style="text-align: center">${message }</h2>
 		<!-- Barre de recherche -->
+		<form:form method="GET" action="filtrer" modelAttribute="voyageDesirer">
+		
+			<input type="hidden" name="continent" value="${continent}">
+			
+			Pays : <form:input path="pays" placeholder="Pays" /><br>
+			Durée du voyage : <form:input path="duree" placeholder="Durée du voyage" />
+			Prix maximale (par personne)<form:input path="prix" placeholder="Prix" />
+			Places disponibles <form:input path="placesDisponibles" placeholder="Places Disponibles" />
+			Détails  <form:input path="descriptionVoyage" />
+			<button class="btn btn-success btn-lg pull-right" type="submit">Submit</button>
+			
 
+		</form:form>
 
 		<!-- Title -->
-		
+
 		<div class="row">
 			<div class="col-lg-12">
 				<h3 style="color: #267326">Promotions</h3>
@@ -148,7 +160,8 @@ body {
 									<span>PROMOTIONS</span>
 								</div>
 
-								<img src="<c:url value="/images/${voyage.pays}/0.jpg" />" alt="image de ${promotion.pays}" height="10%" width="300px">
+								<img src="<c:url value="/images/${voyage.pays}/0.jpg" />"
+									alt="image de ${promotion.pays}" height="10%" width="300px">
 
 
 								<div class="caption">
@@ -185,7 +198,8 @@ body {
 
 					<div class="col-md-3 col-sm-6 hero-feature">
 						<div class="thumbnail">
-							<img src="<c:url value="/images/${voyage.pays}/0.jpg" />" alt="image de ${voyage.pays}" height="10%" width="300px">
+							<img src="<c:url value="/images/${voyage.pays}/0.jpg" />"
+								alt="image de ${voyage.pays}" height="10%" width="300px">
 
 							<div class="caption">
 								<h3>${voyage.pays}</h3>
@@ -213,9 +227,9 @@ body {
 				<!-- construction de la popup 
           data-backdrop="false" pour supprimer le voile au-dessus de la popup
           data-keyboard="false" pour supprimer la touche Echap -->
-				<div class="modal slide" id="popupPromotion_${promotion.id}" tabindex="-1"
-					role="dialog" aria-labelledby="titrePopUp" aria-hidden="true"
-					style="text-align: center">
+				<div class="modal slide" id="popupPromotion_${promotion.id}"
+					tabindex="-1" role="dialog" aria-labelledby="titrePopUp"
+					aria-hidden="true" style="text-align: center">
 
 					<div class="modal-dialog">
 

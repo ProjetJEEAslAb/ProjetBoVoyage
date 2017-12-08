@@ -107,10 +107,11 @@ public class AfriqueController {
 			ModelAndView modeleVue = new ModelAndView("voyage/listeVoyages", "message", message);
 			modeleVue.addObject("continent", continent);
 			modeleVue.addObject("message", message);
+			modeleVue.addObject("voyageDesirer",new Voyage());
 
 			modeleVue.addObject("listePromotion", listePromotion);
 			modeleVue.addObject("listeSansPromotion", listeSansPromotion);
-
+			
 			return modeleVue;
 
 		}

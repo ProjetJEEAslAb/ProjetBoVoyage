@@ -238,10 +238,18 @@ public class VoyageController {
 		System.out.println(listePromotion);
 		System.out.println(listeSansPromotion);
 		modele.addAttribute("continent", continent);
+		modele.addAttribute("voyageDesirer",new Voyage());
 		modele.addAttribute("listePromotion", listePromotion);
 		modele.addAttribute("listeSansPromotion", listeSansPromotion);
 		
 		return "voyage/listeVoyages";
+	}
+	
+	@RequestMapping(value="filtrer",method=RequestMethod.GET)
+	public ModelAndView filtrerVoyage(@ModelAttribute("voyageDesirer") Voyage voyageDesirer,@RequestParam("continent") String continent){
+		System.out.println(voyageDesirer);
+		
+		return new ModelAndView("accueil");
 	}
 	
 	
