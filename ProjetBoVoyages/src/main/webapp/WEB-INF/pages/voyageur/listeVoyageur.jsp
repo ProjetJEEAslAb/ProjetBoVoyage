@@ -93,7 +93,6 @@
 				<th class="table-success">telephone</th>
 				<th class="table-success">dateNaissance</th>
 				<th class="table-success">client</th>
-				<th class="table-success">operation</th>
 
 			</tr>
 
@@ -107,9 +106,6 @@
 					<td class="table-success">${voyageur.telephone}</td>
 					<td class="table-success">${voyageur.dateNaissance}</td>
 					<td class="table-success">${voyageur.client}</td>
-					<td class="table-success"><a
-						href="${pageContext.request.contextPath}/voyageur/SupprimeViaLien?pId=${etudiant.id}">supprimer</a>|<a
-						href="${pageContext.request.contextPath}/etudiant/ModifViaLien${etudiant.id}">modifier</a></td>
 				</tr>
 			</c:forEach>
 		</table></b>

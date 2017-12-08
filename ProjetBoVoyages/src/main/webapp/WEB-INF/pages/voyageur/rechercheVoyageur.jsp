@@ -123,7 +123,6 @@
 				<th>telephone</th>
 				<th>dateNaissance</th>
 				<th>client</th>
-				<th>operation</th>
 			</tr>
 
 			<tr>

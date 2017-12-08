@@ -96,7 +96,6 @@
 				<th>Statut</th>
 				<th>Assurance</th>
 				<th>Code CB</th>
-				<th>operations</th>
 			</tr>
 
 			<c:forEach var="dossier" items="${listeDossiers}">
@@ -106,9 +105,6 @@
 					<td>${dossier.assurance}</td>
 					<td>${dossier.codeCB}</td>
 					
-					<td><a
-						href="${pageContext.request.contextPath}/voyageur/SupprimeViaLien?pId=${etudiant.id}">supprimer</a>|<a
-						href="${pageContext.request.contextPath}/etudiant/ModifViaLien${etudiant.id}">modifier</a></td>
 				</tr>
 			</c:forEach>
 		</table>
