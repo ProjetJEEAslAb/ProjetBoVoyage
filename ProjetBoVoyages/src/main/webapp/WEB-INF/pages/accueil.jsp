@@ -11,7 +11,7 @@
 	<script type="text/javascript" src="<c:url value="/assets/libs/bootstrap-3.3.7/js/bootstrap.js" />"></script>
 	<script type="text/javascript" src="<c:url value="/assets/libs/scrollreveal.min.js" />"></script>
 	<title>Accueil</title>
-<body>
+<body style="background: radial-gradient( rgb(153, 214, 255),rgb(204, 243, 255),rgb(204, 255, 242));background-repeat: no-repeat; margin: 0;background-attachment: fixed">
 	<nav class="navbar navbar-inverse navbar-fixed-top">
 		<div class="container-fluid">
 			<div class="navbar-header">
@@ -22,7 +22,6 @@
 						<li class="dropdown"><a class="dropdown-toggle"
 							data-toggle="dropdown" href="#">Voyages<span class="caret"></span></a>
 							<ul class="dropdown-menu">
-								<li><a href="${pageContext.request.contextPath}/voyage/afficheListeVoyage">Liste</a></li>
 								<li><a href="${pageContext.request.contextPath}/voyage/afficheAjout">Ajout</a></li>
 								<li><a href="${pageContext.request.contextPath}/voyage/modifVoyage">Modification</a></li>
 								<li><a href="${pageContext.request.contextPath}/voyage/afficheSuppr">Suppression</a></li>
@@ -78,10 +77,11 @@
 			</ul>
 		</div>
 	</nav>
-
-	<h1 id="question" align="center" style="margin-top:75px">Où voulez-vous aller ?</h1>
+<br><br><br><br>
+	<h1 id="question" align="center" style="margin-top:75px; color:  #2d8659"><strong>Où voulez-vous aller ? </strong></h1>
 	<br/>
 	<br/>
+	<br>
 	<div id="carte" align="center">
 		<svg width="1050" height="700" xmlns="http://www.w3.org/2000/svg" xmlns:amcharts="http://amcharts.com/ammap" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">
 		<defs>

@@ -150,7 +150,7 @@
 							<form method="GET" action="reserver">
 								<input type="hidden" name="identifiantVoyage"
 									value="${promotion.id}">
-									Nombre de voyageurs<input type="number" name="nbVoyageur">
+									Nombre de voyageurs<input type="number" name="nbVoyageur" value="1">
 									  <input type="submit">
 							</form>
 						</div>
@@ -184,11 +184,16 @@
 								<img src="assets/libs/img/téléchargement.jpg" class="pull-right" />
 								Détails du voyage
 							</p>
-							<p>${promotion.descriptionVoyage}</p>
+							<p>${voyage.descriptionVoyage}</p>
 						</div>
 						<!-- le pied de page de la popup -->
 						<div class="modal-footer">
-							<a href="" class="btn btn-primary pull-left">Reserver</a>
+							<form method="GET" action="reserver">
+								<input type="hidden" name="identifiantVoyage"
+									value="${voyage.id}">
+									Nombre de voyageurs<input type="number" name="nbVoyageur">
+									  <input type="submit">
+							</form>
 						</div>
 
 					</div>
