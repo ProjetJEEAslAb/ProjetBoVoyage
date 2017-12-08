@@ -23,7 +23,7 @@
 	<nav class="navbar navbar-inverse navbar-fixed-top" style="padding-bottom: 10px;">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<a class="navbar-brand" href="#"><img src="<c:url value="/assets/images/logo_poney.png" />" height="45px" /></a>
+				<a class="navbar-brand" href="${pageContext.request.contextPath}/accueil"><img src="<c:url value="/assets/images/logo_poney.png" />" height="45px" /></a>
 			</div>
 			<div style="padding-top: 10px;">
 				<c:if test="${sessionScope.logged}">
