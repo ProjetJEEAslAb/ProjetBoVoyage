@@ -79,6 +79,7 @@
 			</div>
 		</div>
 	</nav>
+	
 <br><br><br><br>
 	<h1 id="question" align="center" style="margin-top:75px; color:  #2d8659"><strong>Où voulez-vous aller ? </strong></h1>
 	<br/>
