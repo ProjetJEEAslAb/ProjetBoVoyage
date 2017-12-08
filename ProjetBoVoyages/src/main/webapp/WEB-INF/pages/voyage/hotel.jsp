@@ -131,11 +131,13 @@
 		
 		
 		<div class="col-sm-offset-2 col-sm-8">
-			<input type="submit" value="Ajouter un hotel" class="btn btn-info" />
+			<input type="submit" value="Ajouter un hotel" class="btn btn-success" />
 		</div>
 		
 	</form:form>
-	
+	<br/>
+	<br/>
+	<br/>
 	<form:form method="POST" action="ajouteDernierHotel" class="form-horizontal"
 		modelAttribute="hotelAjoute">
 	

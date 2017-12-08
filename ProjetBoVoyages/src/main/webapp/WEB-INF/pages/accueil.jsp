@@ -12,10 +12,10 @@
 	<script type="text/javascript" src="<c:url value="/assets/libs/scrollreveal.min.js" />"></script>
 	<title>Accueil</title>
 <body style="background: radial-gradient( rgb(153, 214, 255),rgb(204, 243, 255),rgb(204, 255, 242));background-repeat: no-repeat; margin: 0;background-attachment: fixed">
-	<nav class="navbar navbar-inverse navbar-fixed-top">
+	<nav class="navbar navbar-inverse navbar-fixed-top" style="padding-bottom: 10px;">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<a class="navbar-brand" href="#">BoVoyage</a>
+				<a class="navbar-brand" href="#"><img src="<c:url value="/assets/images/logo_poney.png" />" height="45px" /></a>
 			</div>
 				<c:if test="${sessionScope.logged}">
 					<ul class="nav navbar-nav">
@@ -68,7 +68,7 @@
 			<ul class="nav navbar-nav navbar-right">
 				<c:if test="${sessionScope.logged}">
 					<li><a href="#">${sessionScope.username}</a></li>
-					<li class="disabled"><a href="#"><img src="http://crdp-pupitre.ac-clermont.fr/upload/_237_587_2015-01-05_09-46-46_.gif" height="30px" /></a></li>
+					<li class="disabled"><a href="#"><img src="<c:url value="/assets/images/iconeconnecte.svg" />" height="30px" /></a></li>
 					<li><a href="${pageContext.request.contextPath}/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
 				</c:if>
 				<c:if test="${not sessionScope.logged}">
