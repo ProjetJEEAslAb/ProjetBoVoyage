@@ -64,39 +64,40 @@
 	</nav>
 
 
-
-	<h2>Liste des voyageurs</h2>
-	<div align="center">
-		<table class="table table-bordered">
-			<tr>
-				<th>ID</th>
-				<th>civilite</th>
-				<th>nom</th>
-				<th>prenom</th>
-				<th>adresse</th>
-				<th>telephone</th>
-				<th>dateNaissance</th>
-				<th>client</th>
-				<th>operation</th>
+<div>
+	<h2 style="text-align: center;">Liste des voyageurs</h2>
+	<div align="center" >
+		<b><table class="table table-inverse" style="color: white">
+			<tr class="table-success">
+				<th class="table-success">ID</th>
+				<th class="table-success">civilite</th>
+				<th class="table-success">nom</th>
+				<th class="table-success">prenom</th>
+				<th class="table-success">adresse</th>
+				<th class="table-success">telephone</th>
+				<th class="table-success">dateNaissance</th>
+				<th class="table-success">client</th>
+				<th class="table-success">operation</th>
 
 			</tr>
 
 			<c:forEach var="voyageur" items="${listeVoyageurs}">
-				<tr>
-					<td>${voyageur.id}</td>
-					<td>${voyageur.civilite}</td>
-					<td>${voyageur.nom}</td>
-					<td>${voyageur.prenom}</td>
-					<td>${voyageur.adresse}</td>
-					<td>${voyageur.telephone}</td>
-					<td>${voyageur.dateNaissance}</td>
-					<td>${voyageur.client}</td>
-					<td><a
+				<tr class="table-success">
+					<td class="table-success">${voyageur.id}</td>
+					<td class="table-success">${voyageur.civilite}</td>
+					<td class="table-success">${voyageur.nom}</td>
+					<td class="table-success">${voyageur.prenom}</td>
+					<td class="table-success">${voyageur.adresse}</td>
+					<td class="table-success">${voyageur.telephone}</td>
+					<td class="table-success">${voyageur.dateNaissance}</td>
+					<td class="table-success">${voyageur.client}</td>
+					<td class="table-success"><a
 						href="${pageContext.request.contextPath}/voyageur/SupprimeViaLien?pId=${etudiant.id}">supprimer</a>|<a
 						href="${pageContext.request.contextPath}/etudiant/ModifViaLien${etudiant.id}">modifier</a></td>
 				</tr>
 			</c:forEach>
-		</table>
+		</table></b>
+	</div>
 	</div>
 </body>
 </html>

@@ -32,17 +32,100 @@
 	<div class="container">
 
 		<!-- Jumbotron Header -->
-		<header class="jumbotron hero-spacer" id="imageAfrique">
-			<h1>AFRIQUE</h1>
-			<br /> <br /> <br /> <br /> <br />
-		</header>
+		<c:if test="${continent=='Afrique'}">
 
+			<header class="jumbotron hero-spacer"
+				style="background-image: url('http://www.ivtci.com/tourisme/cote_ivoire/data1/images/masquewobc3a9ouestdelacc3b4tedivoire.jpg')">
+				<h1 style="color: white">AFRIQUE</h1>
+				<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
+				<br />
+			</header>
+
+			<style>
+				body {
+					background-color:  #f2e6d9
+					;
+					}
+			</style>
+		</c:if>
+
+		<c:if test="${continent=='Asie'}">
+			<header class="jumbotron hero-spacer"
+				style="background-image: url('http://shaktatravels.com/pic/flexslider/Ganga-Valley-Varanasi-Tour/l-6.jpg')">
+				<h1 style="color: white">ASIE</h1>
+				<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
+				<br />
+			</header>
+
+			<style>
+				body {
+					background-color:  #ffebe6;
+					}
+			</style>
+		</c:if>
+
+		<c:if test="${continent=='Oceanie'}">
+			<header class="jumbotron hero-spacer"
+				style="background-image: url('https://www.esplweb.fr/eta209/images/sydney-campus-01.jpg')">
+				<h1 style="color: white">OCEANIE</h1>
+				<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
+				<br />
+			</header>
+			 <style>
+				body {
+					background-color:  #ecf8f2;
+					}
+			</style>
+			
+		</c:if>
+
+		<c:if test="${continent=='AmNord'}">
+
+			<header class="jumbotron hero-spacer"
+				style="background-image: url('https://d1qq9lwf5ow8iz.cloudfront.net/live-images-1/ImageDetail_71a2019f-89e1-4e48-b5b3-3ac01b70b183_ThreeByOne?v=636202685923833133')">
+				<h1 style="color: white">AMERIQUE DU NORD</h1>
+				<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
+				<br />
+			</header>
+			<style>
+				body {
+					background-color: #f8ecf2;
+					}
+			</style>
+		</c:if>
+		<c:if test="${continent=='AmSud'}">
+			<header class="jumbotron hero-spacer"
+				style="background-image: url('http://www.intern-brazil.com/wp-content/uploads/2016/12/Banner_Corcovado.jpg')">
+				<h1 style="color: white">AMERIQUE DU SUD</h1>
+				<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
+				<br />
+			</header>
+			<style>
+				body {
+					background-color: #e6f2ff;
+					}
+			</style>
+		</c:if>
+		<c:if test="${continent=='Europe'}">
+			<header class="jumbotron hero-spacer"
+				style="background-image: url('http://www.voyages18.fr/wp-content/uploads/2017/08/blue.jpg')">
+				<h1 style="color: white">EUROPE</h1>
+				<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
+				<br />
+			</header>
+			 <style>
+				body {
+					background-color: #cce0ff;
+					}
+			</style>
+			
+		</c:if>
 		<hr>
 
 		<!-- Title -->
 		<div class="row">
 			<div class="col-lg-12">
-				<h3>Promotions</h3>
+				<h3 style="color: #267326">Promotions</h3>
 			</div>
 		</div>
 		<!-- /.row -->
@@ -57,7 +140,7 @@
 
 
 								<div class="ribbon">
-									<span>PROMOTIONS</span>
+									<span >PROMOTIONS</span>
 								</div>
 
 								<img
@@ -70,7 +153,7 @@
 									<p>Lorem ipsum dolor sit amet, consectetur adipisicing
 										elit.</p>
 									<p>
-										<button class="btn btn-primary btn-lg" data-toggle="modal"
+										<button class="btn btn-success btn-lg" data-toggle="modal"
 											data-target="#popupPromotion">Infos</button>
 									</p>
 								</div>
@@ -87,7 +170,7 @@
 		<!-- Title -->
 		<div class="row">
 			<div class="col-lg-12">
-				<h3>Populaires</h3>
+				<h3 style="color: #267326">Populaires</h3>
 			</div>
 		</div>
 		<!-- /.row -->
@@ -106,7 +189,7 @@
 								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
 								<p>
 
-									<button class="btn btn-primary btn-lg" data-toggle="modal"
+									<button class="btn btn-success btn-lg" data-toggle="modal"
 										data-target="#popupVoyage">Infos</button>
 								</p>
 							</div>
@@ -199,7 +282,7 @@
 							</div>
 							<!-- le pied de page de la popup -->
 							<div class="modal-footer">
-								<a href="" class="btn btn-primary pull-left">Reserver</a>
+								<a href="" class="btn btn-success pull-left">Reserver</a>
 							</div>
 
 						</div>
