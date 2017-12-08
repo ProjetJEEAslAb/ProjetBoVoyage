@@ -161,6 +161,9 @@ public class AfriqueController {
 			modeleVue.addObject(dossier);
 			return modeleVue;
 		} else {
+			// Enregistrement du dossier
+			serviceDossier.addDossier(dossier);
+			
 			return new ModelAndView("accueil");
 		}
 	}
