@@ -267,6 +267,11 @@ body {
 										<button class="btn btn-success btn-lg" data-toggle="modal"
 											data-target="#popupPromotion_${promotion.id}">Infos</button>
 									</p>
+								<div style="margin-bottom: 10px;margin-top: 50px">
+									<p style="float: left">${promotion.prix} euros</p>
+									<p style="float: right">${promotion.placesDisponibles} places</p>
+								</div>
+								<div style="clear: left;clear:right"></div>
 								</div>
 							</div>
 						</div>
@@ -298,13 +303,18 @@ body {
 								alt="image de ${voyage.pays}" height="10%" width="300px">
 
 							<div class="caption">
-								<h3>${voyage.pays}</h3>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+								<h3 style="text-align: center;">${voyage.pays}</h3>
+								<p style="text-align: center">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
 								<p>
 
 									<button class="btn btn-success btn-lg" data-toggle="modal"
 										data-target="#popupVoyage_${voyage.id}">Infos</button>
 								</p>
+								<div style="margin-bottom: 10px;margin-top: 50px">
+									<p style="float: left">${voyage.prix} euros</p>
+									<p style="float: right">${voyage.placesDisponibles} places</p>
+								</div>
+								<div style="clear: left;clear:right"></div>
 							</div>
 
 
