@@ -142,9 +142,7 @@ body {
 									<span>PROMOTIONS</span>
 								</div>
 
-								<img
-									src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfMtC4vtpnT4i4xlZfQ0ptJAvXHBpdZWzyVcrLRLTySpto43udpw"
-									alt="" height="10%" width="300px">
+								<img src="<c:url value="/images/${voyage.pays}/0.jpg" />" alt="image de ${voyage.pays}" height="10%" width="300px">
 
 
 								<div class="caption">
@@ -181,7 +179,7 @@ body {
 
 					<div class="col-md-3 col-sm-6 hero-feature">
 						<div class="thumbnail">
-							<img src="http://placehold.it/800x500" alt="">
+							<img src="<c:url value="/images/${voyage.pays}/0.jpg" />" alt="image de ${voyage.pays}" height="10%" width="300px">
 
 							<div class="caption">
 								<h3>${voyage.pays}</h3>
