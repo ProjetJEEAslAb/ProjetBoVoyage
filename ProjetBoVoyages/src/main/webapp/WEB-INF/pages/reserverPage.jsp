@@ -38,9 +38,6 @@
 		<img
 			src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Flag_of_Syldavia.svg/900px-Flag_of_Syldavia.svg.png"
 			width="400px">
-
-
-
 	</div>
 
 
@@ -50,11 +47,11 @@
 		<div class="stepwizard col-md-offset-3">
 			<div class="stepwizard-row setup-panel">
 				<div class="stepwizard-step">
-					<a href="#step-1" type="button" class="btn btn-primary btn-circle">1</a>
+					<a href="#step-1" type="button" class="btn  btn-primary btn-circle">1</a>
 					<p>Etape 1 : Enregistrement du client</p>
 				</div>
 				<div class="stepwizard-step">
-					<a href="#step-2" type="button" class="btn btn-primary btn-circle">2</a>
+					<a href="#step-2" type="button" class="btn  btn-default btn-circle">2</a>
 					<p>Etape 2 : Choix de l'assurance</p>
 				</div>
 				<div class="stepwizard-step">
@@ -66,6 +63,11 @@
 					<a href="#step-4" type="button" class="btn btn-default btn-circle"
 						disabled="disabled">4</a>
 					<p>Etape 4 : Résumé de votre commande</p>
+				</div>
+				<div class="stepwizard-step">
+					<a href="#step-5" type="button" class="btn btn-default btn-circle"
+						disabled="disabled">5</a>
+					<p>Etape 5 : Accompagnants</p>
 				</div>
 			</div>
 		</div>
@@ -109,13 +111,14 @@
 						</div>
 
 						<div class="form-group">
-							<label class="control-label">Date de naissance</label> <form:input
-								maxlength="100" type="date" required="required"
-								class="form-control" placeholder="Date de naissance" path="dateString"/>
+							<label class="control-label">Date de naissance</label>
+							<form:input maxlength="100" type="date" required="required"
+								class="form-control" placeholder="Date de naissance"
+								path="dateString" />
 						</div>
 
 
-						<button class="btn btn-primary nextBtn btn-lg pull-right"
+						<button class="btn btn-success nextBtn btn-lg pull-right"
 							type="button">Suivant</button>
 					</div>
 				</div>
@@ -146,7 +149,7 @@
 						</div>
 
 
-						<button class="btn btn-primary nextBtn btn-lg pull-right"
+						<button class="btn btn-success nextBtn btn-lg pull-right"
 							type="button">Suivant</button>
 					</div>
 				</div>
@@ -170,7 +173,7 @@
 								placeholder="Code" name="codeCB" />
 						</div>
 
-						<button class="btn btn-primary nextBtn btn-lg pull-right"
+						<button class="btn btn-success nextBtn btn-lg pull-right"
 							type="button">Suivant</button>
 					</div>
 				</div>

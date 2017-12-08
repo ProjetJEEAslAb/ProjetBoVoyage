@@ -241,8 +241,8 @@
 							<div class="modal-footer">
 								<form method="GET" action="reserver">
 									<input type="hidden" name="identifiantVoyage"
-										value="${promotion.id}"> Nombre de voyageurs<input
-										type="number" name="nbVoyageur"> <input type="submit">
+										value="${promotion.id}"> Nombre de voyageurs <input
+										type="number" name="nbVoyageur"> <input type="submit" >
 								</form>
 							</div>
 
