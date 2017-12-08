@@ -84,7 +84,7 @@ public class AfriqueController {
 		String message;
 		Voyage voyageAReserver = serviceVoyage.getVoyageById(id);
 
-		if (nbVoyageur > voyageAReserver.getPlacesDisponibles()) {
+		if (nbVoyageur >= voyageAReserver.getPlacesDisponibles()|| nbVoyageur<=0) {
 			message = "Il n'y pas assez de place disponibles";
 			System.out.println(message);
 

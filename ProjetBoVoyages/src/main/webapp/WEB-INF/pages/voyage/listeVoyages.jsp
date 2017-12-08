@@ -33,7 +33,7 @@
 			<div class="navbar-header">
 				<a class="navbar-brand"
 					href="${pageContext.request.contextPath}/accueil"><img
-					src="<c:url value="/assets/images/logo_poney.png" />" height="45px" /></a>
+					src="<c:url value="/assets/images/logo_poney.png" />" height="40px" /></a>
 			</div>
 			<div style="padding-top: 10px;">
 				<c:if test="${sessionScope.logged}">
@@ -132,7 +132,7 @@
 			<header class="jumbotron hero-spacer cadre-continent"
 				style="background-image: url('http://www.ivtci.com/tourisme/cote_ivoire/data1/images/masquewobc3a9ouestdelacc3b4tedivoire.jpg')">
 				<h1 style="color: white">AFRIQUE</h1>
-				<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
+				<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
 				<br />
 			</header>
 
@@ -147,7 +147,7 @@ body {
 			<header class="jumbotron hero-spacer cadre-continent"
 				style="background-image: url('http://shaktatravels.com/pic/flexslider/Ganga-Valley-Varanasi-Tour/l-6.jpg')">
 				<h1 style="color: white">ASIE</h1>
-				<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
+				<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
 				<br />
 			</header>
 
@@ -162,7 +162,7 @@ body {
 			<header class="jumbotron hero-spacer cadre-continent"
 				style="background-image: url('https://www.esplweb.fr/eta209/images/sydney-campus-01.jpg')">
 				<h1 style="color: white">OCEANIE</h1>
-				<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
+				<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> 
 				<br />
 			</header>
 			<style>
@@ -178,7 +178,7 @@ body {
 			<header class="jumbotron hero-spacer cadre-continent"
 				style="background-image: url('https://d1qq9lwf5ow8iz.cloudfront.net/live-images-1/ImageDetail_71a2019f-89e1-4e48-b5b3-3ac01b70b183_ThreeByOne?v=636202685923833133')">
 				<h1 style="color: white">AMERIQUE DU NORD</h1>
-				<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
+				<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> 
 				<br />
 			</header>
 			<style>
@@ -191,7 +191,7 @@ body {
 			<header class="jumbotron hero-spacer cadre-continent"
 				style="background-image: url('http://www.intern-brazil.com/wp-content/uploads/2016/12/Banner_Corcovado.jpg')">
 				<h1 style="color: white">AMERIQUE DU SUD</h1>
-				<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
+				<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> 
 				<br />
 			</header>
 			<style>
@@ -204,7 +204,7 @@ body {
 			<header class="jumbotron hero-spacer cadre-continent"
 				style="background-image: url('http://www.voyages18.fr/wp-content/uploads/2017/08/blue.jpg')">
 				<h1 style="color: white">EUROPE</h1>
-				<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
+				<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
 				<br />
 			</header>
 			<style>
