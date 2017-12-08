@@ -42,11 +42,10 @@
 			</header>
 
 			<style>
-				body {
-					background-color:  #f2e6d9
-					;
-					}
-			</style>
+body {
+	background-color: #f2e6d9;
+}
+</style>
 		</c:if>
 
 		<c:if test="${continent=='Asie'}">
@@ -58,10 +57,10 @@
 			</header>
 
 			<style>
-				body {
-					background-color:  #ffebe6;
-					}
-			</style>
+body {
+	background-color: #ffebe6;
+}
+</style>
 		</c:if>
 
 		<c:if test="${continent=='Oceanie'}">
@@ -71,12 +70,12 @@
 				<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
 				<br />
 			</header>
-			 <style>
-				body {
-					background-color:  #ecf8f2;
-					}
-			</style>
-			
+			<style>
+body {
+	background-color: #ecf8f2;
+}
+</style>
+
 		</c:if>
 
 		<c:if test="${continent=='AmNord'}">
@@ -88,10 +87,10 @@
 				<br />
 			</header>
 			<style>
-				body {
-					background-color: #f8ecf2;
-					}
-			</style>
+body {
+	background-color: #f8ecf2;
+}
+</style>
 		</c:if>
 		<c:if test="${continent=='AmSud'}">
 			<header class="jumbotron hero-spacer"
@@ -101,10 +100,10 @@
 				<br />
 			</header>
 			<style>
-				body {
-					background-color: #e6f2ff;
-					}
-			</style>
+body {
+	background-color: #e6f2ff;
+}
+</style>
 		</c:if>
 		<c:if test="${continent=='Europe'}">
 			<header class="jumbotron hero-spacer"
@@ -113,15 +112,15 @@
 				<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
 				<br />
 			</header>
-			 <style>
-				body {
-					background-color: #cce0ff;
-					}
-			</style>
-			
+			<style>
+body {
+	background-color: #cce0ff;
+}
+</style>
+
 		</c:if>
 		<hr>
-
+		<h2 style="text-align: center">${message }</h2>
 		<!-- Title -->
 		<div class="row">
 			<div class="col-lg-12">
@@ -140,12 +139,10 @@
 
 
 								<div class="ribbon">
-									<span >PROMOTIONS</span>
+									<span>PROMOTIONS</span>
 								</div>
 
-								<img
-									src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfMtC4vtpnT4i4xlZfQ0ptJAvXHBpdZWzyVcrLRLTySpto43udpw"
-									alt="" height="10%" width="300px">
+								<img src="<c:url value="/images/${voyage.pays}/0.jpg" />" alt="image de ${voyage.pays}" height="10%" width="300px">
 
 
 								<div class="caption">
@@ -182,7 +179,7 @@
 
 					<div class="col-md-3 col-sm-6 hero-feature">
 						<div class="thumbnail">
-							<img src="http://placehold.it/800x500" alt="">
+							<img src="<c:url value="/images/${voyage.pays}/0.jpg" />" alt="image de ${voyage.pays}" height="10%" width="300px">
 
 							<div class="caption">
 								<h3>${voyage.pays}</h3>
@@ -242,7 +239,9 @@
 								<form method="GET" action="reserver">
 									<input type="hidden" name="identifiantVoyage"
 										value="${promotion.id}"> Nombre de voyageurs <input
-										type="number" name="nbVoyageur"> <input type="submit" >
+										type="number" name="nbVoyageur"> <input type="hidden"
+										value="${continent}" name="continent"><input
+										type="submit">
 								</form>
 							</div>
 
@@ -282,7 +281,14 @@
 							</div>
 							<!-- le pied de page de la popup -->
 							<div class="modal-footer">
-								<a href="" class="btn btn-success pull-left">Reserver</a>
+								<form method="GET" action="reserver">
+									<input type="hidden" name="identifiantVoyage"
+										value="${voyage.id}"> Nombre de voyageurs <input
+										type="number" name="nbVoyageur"> <input type="hidden"
+										value="${continent}" name="continent"><input
+										type="submit">
+								</form>
+
 							</div>
 
 						</div>

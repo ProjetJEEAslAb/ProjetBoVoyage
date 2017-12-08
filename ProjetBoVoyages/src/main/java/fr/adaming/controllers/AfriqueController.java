@@ -42,7 +42,7 @@ import fr.adaming.service.IVoyageService;
 
 @Controller
 @Scope("session")
-//@RequestMapping("/continent")
+// @RequestMapping("/continent")
 public class AfriqueController {
 	int voyageurInscrit;
 	int nombreDeVoyageur;
@@ -57,18 +57,18 @@ public class AfriqueController {
 		List<Voyage> listeVoyage = serviceVoyage.getAllVoyages();
 		List<Voyage> listeVoyagePromotion = new ArrayList<>();
 		List<Voyage> listeVoyageSansPromotion = new ArrayList<>();
-		
+
 		for (Voyage voyage : listeVoyage) {
 			if (voyage.getReduction() > 0) {
 				listeVoyagePromotion.add(voyage);
-			}else{
+			} else {
 				listeVoyageSansPromotion.add(voyage);
 			}
 		}
 		System.out.println(listeVoyagePromotion);
 
 		ModelAndView modeleVue = new ModelAndView("pageAfrique", "listeVoyage", listeVoyage);
-		modeleVue.addObject("listeSansPromotion",listeVoyageSansPromotion);
+		modeleVue.addObject("listeSansPromotion", listeVoyageSansPromotion);
 		modeleVue.addObject("listePromotion", listeVoyagePromotion);
 		modeleVue.addObject("afriquePage", new Voyage());
 
@@ -77,36 +77,72 @@ public class AfriqueController {
 	}
 
 	@RequestMapping(value = "/voyage/reserver", method = RequestMethod.GET)
-	public ModelAndView afficherFormModifReserver(@RequestParam("identifiantVoyage") int id,@RequestParam("nbVoyageur") int nbVoyageur) {
+	public ModelAndView afficherFormModifReserver(@RequestParam("identifiantVoyage") int id,
+			@RequestParam("nbVoyageur") int nbVoyageur, @RequestParam("continent") String continent) {
 		System.out.println(id);
+		String message;
 		Voyage voyageAReserver = serviceVoyage.getVoyageById(id);
 		System.out.println(voyageAReserver);
-		
-		
-		
-		ModelAndView modeleVue = new ModelAndView("reserverPage","client",new Voyageur());
-		modeleVue.addObject("voyageAReserver",voyageAReserver);
-		modeleVue.addObject("nbVoyageurs",nbVoyageur);
-		//modeleVue.add("client",new Voyageur());
-		
+
+		if (nbVoyageur > voyageAReserver.getPlacesDisponibles()) {
+			message = "Il n'y pas assez de place disponibles";
+			System.out.println(message);
+
+			List<Voyage> listePromotion = new ArrayList<>();
+			List<Voyage> listeSansPromotion = new ArrayList<>();
+
+			// Récupération de la liste des voyages
+			List<Voyage> liste = serviceVoyage.getAllVoyages();
+			// modele.addAttribute("listeVoyages", liste);
+			for (Voyage voyage : liste) {
+				if (voyage.getReduction() > 0) {
+					listePromotion.add(voyage);
+				} else {
+					listeSansPromotion.add(voyage);
+				}
+			}
+			System.out.println(listePromotion);
+			System.out.println(listeSansPromotion);
+
+			ModelAndView modeleVue = new ModelAndView("voyage/listeVoyages", "message", message);
+			modeleVue.addObject("continent", continent);
+			modeleVue.addObject("message", message);
+
+			modeleVue.addObject("listePromotion", listePromotion);
+			modeleVue.addObject("listeSansPromotion", listeSansPromotion);
+
+			return modeleVue;
+
+		}
+
+		ModelAndView modeleVue = new ModelAndView("reserverPage", "client", new Voyageur());
+		modeleVue.addObject("voyageAReserver", voyageAReserver);
+		modeleVue.addObject("nbVoyageurs", nbVoyageur);
+		// modeleVue.add("client",new Voyageur());
+
 		return modeleVue;
 
 	}
-	
-	@RequestMapping(value="/voyage/reservation",method=RequestMethod.POST)
-	public ModelAndView traitementReservation(@ModelAttribute("client") Voyageur client,@RequestParam("assurance") String assurance,@RequestParam("nbVoyageur") int nbVoyageur,@RequestParam("identifiantReservation") int idReservation,@RequestParam("numCB") String numCB,@RequestParam("codeCB") String codeCB){
-	
+
+	@RequestMapping(value = "/voyage/reservation", method = RequestMethod.POST)
+	public ModelAndView traitementReservation(@ModelAttribute("client") Voyageur client,
+			@RequestParam("assurance") String assurance, @RequestParam("nbVoyageur") int nbVoyageur,
+			@RequestParam("identifiantReservation") int idReservation, @RequestParam("numCB") String numCB,
+			@RequestParam("codeCB") String codeCB) {
+		String message;
 		nombreDeVoyageur = nbVoyageur;
+		// Voyage reservation = serviceVoyage.getVoyageById(idReservation);
+
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 		try {
 			client.setDateNaissance(format.parse(client.getDateString()));
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		
-		//recuperation du dossier du client
+
+		// recuperation du dossier du client
 		client.setClient(true);
-		dossier= new Dossier();
+		dossier = new Dossier();
 		dossier.setVoyage(serviceVoyage.getVoyageById(idReservation));
 		Set<Voyageur> voyageurs = new HashSet<>();
 		voyageurs.add(client);
@@ -117,21 +153,25 @@ public class AfriqueController {
 		dossier.setStatut("En attente");
 		System.out.println(dossier.getVoyage());
 		System.out.println(dossier.getVoyageurs());
-		
-		if(nbVoyageur>1){
+
+		if (nbVoyageur > 1) {
 			System.out.println("Ajout des acompagnants");
 			voyageurInscrit = 1;
-			ModelAndView modeleVue = new ModelAndView("inscriptionAccompagnants", "accompagnant",new Voyageur());
+			ModelAndView modeleVue = new ModelAndView("inscriptionAccompagnants", "accompagnant", new Voyageur());
 			modeleVue.addObject(dossier);
 			return modeleVue;
-		}else{
+		} else {
+			// Enregistrement du dossier
+			serviceDossier.addDossier(dossier);
+			
 			return new ModelAndView("accueil");
 		}
 	}
-	@RequestMapping(value="/voyage/ajoutAccompagnant",method=RequestMethod.POST)
-	public ModelAndView ajoutAccompagnant(@ModelAttribute("accompagnant") Voyageur accompagnant){
-		//System.out.println(idDossier);
-		//Dossier dossier= serviceDossier.getDossierById(idDossier);
+
+	@RequestMapping(value = "/voyage/ajoutAccompagnant", method = RequestMethod.POST)
+	public ModelAndView ajoutAccompagnant(@ModelAttribute("accompagnant") Voyageur accompagnant) {
+		// System.out.println(idDossier);
+		// Dossier dossier= serviceDossier.getDossierById(idDossier);
 		Set<Voyageur> voyageurs = dossier.getVoyageurs();
 		voyageurs.add(accompagnant);
 
@@ -141,60 +181,59 @@ public class AfriqueController {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		voyageurInscrit = voyageurInscrit +1;
-		if(voyageurInscrit == nombreDeVoyageur){
+		voyageurInscrit = voyageurInscrit + 1;
+		if (voyageurInscrit == nombreDeVoyageur) {
 			serviceDossier.addDossier(dossier);
-			//envoi mail
+			// envoi mail
 			this.envoyerMail();
-			return new ModelAndView("accueil");			
-		}else{
-			ModelAndView modeleVue = new ModelAndView("inscriptionAccompagnants", "accompagnant",new Voyageur());
+			return new ModelAndView("accueil");
+		} else {
+			ModelAndView modeleVue = new ModelAndView("inscriptionAccompagnants", "accompagnant", new Voyageur());
 			modeleVue.addObject(dossier);
 			return modeleVue;
 
 		}
 	}
-	
-	public void envoyerMail(){
+
+	public void envoyerMail() {
 		// On envoie un mail à cette adresse parce qu'on est à l'arrache
-					final String to = "bluechicken.ab@gmail.com";
-					final String username = "thezadzad@gmail.com";
-					final String password = "adaming44";
-					Properties props = new Properties();
-					props.put("mail.smtp.auth", "true");
-					props.put("mail.smtp.starttls.enable", "true");
-					props.put("mail.smtp.host", "smtp.gmail.com");
-					props.put("mail.smtp.port", "587");
-					props.put("mail.smtp.ssl.trust", "smtp.gmail.com");
-					Session session = Session.getInstance(props, new Authenticator() {
-						protected PasswordAuthentication getPasswordAuthentication() {
-							return new PasswordAuthentication(username, password);
-						}
-					});
-					try {
-						Message message = new MimeMessage(session);
-						message.setFrom(new InternetAddress(username));
-						message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
-						message.setSubject("Confirmation de réservation");
-						
-						// Message du mail
-						MimeBodyPart messageBodyPart = new MimeBodyPart();
-						StringBuilder sb = new StringBuilder();
-						sb.append("Cher client / Chère cliente" + "\n");
-						sb.append("Nous vous confirmons votre réservation.\n");
-						
-						sb.append("Nous vous souhaitons un agréable voyage !\nL'équipe BoVoyage");
-						messageBodyPart.setContent(message, "text/html");
-						messageBodyPart.setText(sb.toString());
-				
-						
-						Multipart multipart = new MimeMultipart();
-						multipart.addBodyPart(messageBodyPart);
-						message.setContent(multipart);
-						Transport.send(message);
-					} catch (MessagingException e) {
-						throw new RuntimeException(e);
-					}
+		final String to = "bluechicken.ab@gmail.com";
+		final String username = "thezadzad@gmail.com";
+		final String password = "adaming44";
+		Properties props = new Properties();
+		props.put("mail.smtp.auth", "true");
+		props.put("mail.smtp.starttls.enable", "true");
+		props.put("mail.smtp.host", "smtp.gmail.com");
+		props.put("mail.smtp.port", "587");
+		props.put("mail.smtp.ssl.trust", "smtp.gmail.com");
+		Session session = Session.getInstance(props, new Authenticator() {
+			protected PasswordAuthentication getPasswordAuthentication() {
+				return new PasswordAuthentication(username, password);
+			}
+		});
+		try {
+			Message message = new MimeMessage(session);
+			message.setFrom(new InternetAddress(username));
+			message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
+			message.setSubject("Confirmation de réservation");
+
+			// Message du mail
+			MimeBodyPart messageBodyPart = new MimeBodyPart();
+			StringBuilder sb = new StringBuilder();
+			sb.append("Cher client / Chère cliente" + "\n");
+			sb.append("Nous vous confirmons votre réservation.\n");
+
+			sb.append("Nous vous souhaitons un agréable voyage !\nL'équipe BoVoyage");
+			messageBodyPart.setContent(message, "text/html");
+			messageBodyPart.setText(sb.toString());
+
+			Multipart multipart = new MimeMultipart();
+			multipart.addBodyPart(messageBodyPart);
+			message.setContent(multipart);
+			Transport.send(message);
+		} catch (MessagingException e) {
+			throw new RuntimeException(e);
+		}
 	}
-	
+
 }
