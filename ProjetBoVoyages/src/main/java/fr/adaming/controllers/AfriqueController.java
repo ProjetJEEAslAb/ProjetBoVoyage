@@ -165,8 +165,13 @@ public class AfriqueController {
 		} else {
 			// Enregistrement du dossier
 			serviceDossier.addDossier(dossier);
-			
-			return new ModelAndView("accueil");
+			String messageRemerciementPartie1 = "Votre commande a bien été enregistrée.";
+			String messageRemerciementPartie2 =	"Nous vous remerçions de la confiance que vous nous accorder !";
+
+			ModelAndView modeleVue = new ModelAndView("accueil","messageRemerciementPartie1",messageRemerciementPartie1);
+			modeleVue.addObject("messageRemerciementPartie2",messageRemerciementPartie2);
+			return modeleVue;
+			//return new ModelAndView("accueil","messageRemerciement",messageRemerciement);
 		}
 	}
 
@@ -188,7 +193,12 @@ public class AfriqueController {
 			serviceDossier.addDossier(dossier);
 			// envoi mail
 			this.envoyerMail(clientPayeur);
-			return new ModelAndView("accueil");
+			String messageRemerciementPartie1 = "Votre commande a bien été enregistrée.";
+			String messageRemerciementPartie2 =	"Nous vous remerçions de la confiance que vous nous accorder !";
+
+			ModelAndView modeleVue = new ModelAndView("accueil","messageRemerciementPartie1",messageRemerciementPartie1);
+			modeleVue.addObject("messageRemerciementPartie2",messageRemerciementPartie2);
+			return modeleVue;
 		} else {
 			ModelAndView modeleVue = new ModelAndView("inscriptionAccompagnants", "accompagnant", new Voyageur());
 			modeleVue.addObject(dossier);

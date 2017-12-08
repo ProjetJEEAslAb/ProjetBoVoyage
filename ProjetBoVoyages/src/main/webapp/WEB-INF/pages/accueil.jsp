@@ -81,6 +81,9 @@
 	</nav>
 	
 <br><br><br><br>
+	<h2 style="color: #ff794d;text-align: center">${messageRemerciementPartie1}</h2>
+	<h2 style="color: #ff794d;text-align: center">${messageRemerciementPartie2}</h2>
+	
 	<h1 id="question" align="center" style="margin-top:75px; color:  #2d8659"><strong>Où voulez-vous aller ? </strong></h1>
 	<br/>
 	<br/>

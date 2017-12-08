@@ -299,6 +299,8 @@ body {
 
 					<div class="col-md-3 col-sm-6 hero-feature">
 						<div class="thumbnail">
+						
+						
 							<img src="<c:url value="/images/${voyage.pays}/0.jpg" />"
 								alt="image de ${voyage.pays}" height="10%" width="300px">
 
@@ -306,7 +308,6 @@ body {
 								<h3 style="text-align: center;">${voyage.pays}</h3>
 								<p style="text-align: center">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
 								<p>
-
 									<button class="btn btn-success btn-lg" data-toggle="modal"
 										data-target="#popupVoyage_${voyage.id}">Infos</button>
 								</p>
