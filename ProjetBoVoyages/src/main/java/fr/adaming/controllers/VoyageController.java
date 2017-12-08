@@ -247,9 +247,33 @@ public class VoyageController {
 	
 	@RequestMapping(value="filtrer",method=RequestMethod.GET)
 	public ModelAndView filtrerVoyage(@ModelAttribute("voyageDesirer") Voyage voyageDesirer,@RequestParam("continent") String continent){
-		System.out.println(voyageDesirer);
 		
-		return new ModelAndView("accueil");
+
+		
+		System.out.println(voyageDesirer.getDateDepart());
+		List<Voyage> listeVoyageDesirer = voyageService.rechercheVoyageAvecCritere(voyageDesirer);
+		System.out.println("Voyages correspondant à votre demande" +listeVoyageDesirer);
+		List<Voyage> listePromotion = new ArrayList<>();
+		List<Voyage> listeSansPromotion = new ArrayList<>();
+		for(Voyage voyage : listeVoyageDesirer){
+			if(voyage.getReduction()>0){
+				listePromotion.add(voyage);
+			}else{
+				listeSansPromotion.add(voyage);
+			}
+		}
+		String message = "Résultat de votre recherche";
+		// On retourne sur la page de sélection des voyages.
+		//ModelAndView modeleVue = new ModelAndView("", modelName, modelObject)
+				
+			ModelAndView modeleVue = new ModelAndView("voyage/listeVoyages", "message", message);
+
+			modeleVue.addObject("continent", continent);
+				modeleVue.addObject("voyageDesirer",new Voyage());
+
+				modeleVue.addObject("listePromotion", listePromotion);
+				modeleVue.addObject("listeSansPromotion", listeSansPromotion);
+				return modeleVue;
 	}
 	
 	

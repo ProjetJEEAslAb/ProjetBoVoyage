@@ -124,17 +124,24 @@ body {
 		<!-- Message d'erreur si on veut reserver trop de places -->
 		<h2 style="text-align: center">${message }</h2>
 		<!-- Barre de recherche -->
-		<form:form method="GET" action="filtrer" modelAttribute="voyageDesirer">
-		
+		<form:form method="GET" action="filtrer"
+			modelAttribute="voyageDesirer">
+
 			<input type="hidden" name="continent" value="${continent}">
 			
-			Pays : <form:input path="pays" placeholder="Pays" /><br>
-			Durée du voyage : <form:input path="duree" placeholder="Durée du voyage" />
-			Prix maximale (par personne)<form:input path="prix" placeholder="Prix" />
-			Places disponibles <form:input path="placesDisponibles" placeholder="Places Disponibles" />
+			Pays : <form:input path="pays" placeholder="Pays" />
+			<br>
+			Durée du voyage : <form:input path="duree"
+				placeholder="Durée du voyage" />
+			Prix maximum (par personne)<form:input path="prix"
+				placeholder="Prix" />
+			Places disponibles <form:input path="placesDisponibles"
+				placeholder="Places Disponibles" />
 			Détails  <form:input path="descriptionVoyage" />
+
+
 			<button class="btn btn-success btn-lg pull-right" type="submit">Submit</button>
-			
+
 
 		</form:form>
 
