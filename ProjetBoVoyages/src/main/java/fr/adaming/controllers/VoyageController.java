@@ -108,8 +108,9 @@ public class VoyageController {
 		if (result.hasErrors()) {
 			System.out.println("Erreur lors de l'upload de l'image");
 		} else {
-			Integer idVoyage = voyage.getId();
-			String uploadPath = context.getRealPath("/images/") + "voyage_" + idVoyage.toString() + File.separator;
+			String pays=voyage.getPays();
+			String uploadPath = context.getRealPath("/images/") + pays + File.separator;
+			System.out.println(uploadPath);
 			File imagesDir = new File(uploadPath);
 			if (!imagesDir.exists()) {
 				imagesDir.mkdirs();
