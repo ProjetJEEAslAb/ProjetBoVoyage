@@ -7,36 +7,41 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+
+<script type="text/javascript"
+	src="<c:url value="/assets/libs/bootstrap-3.3.7/js/reserver.js" />"></script>
 <link rel="stylesheet"
 	href="<c:url value="/assets/libs/bootstrap-3.3.7/css/bootstrap.css" />">
-
 <link rel="stylesheet"
-	href="<c:url value="/assets/libs/css/heroic-features.css" />">
-<link rel="stylesheet"
-	href="<c:url value="/assets/libs/css/font-awesome.min.css" />">
+	href="<c:url value="/assets/libs/bootstrap-3.3.7/css/reserver.css"/>" />
 
-<script type="text/javascript"
-	src="<c:url value="/assets/libs/jquery-3.2.1.js" />"></script>
-<script type="text/javascript"
-	src="<c:url value="/assets/libs/bootstrap-3.3.7/js/bootstrap.js" />"></script>
-<script type="text/javascript"
-	src="<c:url value="/assets/libs/js/script.js" />"></script>
 
 <title>Insert title here</title>
 </head>
 <body>
 
+	<div>
+		<!-- Entête du voyage -->
+		<h1 style="text-align: center;">Réservation du voyage</h1>
 
+	</div>
+<br/><br/><br/>
 	<div class="container">
 
 		<div class="stepwizard col-md-offset-3">
 			<div class="stepwizard-row setup-panel">
 				<div class="stepwizard-step">
-					<a href="#step-1" type="button" class="btn btn-primary btn-circle">1</a>
+					<a href="#step-1" type="button" class="btn btn-default btn-circle">1</a>
 					<p>Etape 1 : Enregistrement du client</p>
 				</div>
 				<div class="stepwizard-step">
-					<a href="#step-2" type="button" class="btn btn-primary btn-circle">2</a>
+					<a href="#step-2" type="button" class="btn btn-default btn-circle">2</a>
 					<p>Etape 2 : Choix de l'assurance</p>
 				</div>
 				<div class="stepwizard-step">
@@ -49,17 +54,18 @@
 						disabled="disabled">4</a>
 					<p>Etape 4 : Résumé de votre commande</p>
 				</div>
-				
-					<div class="stepwizard-step">
-					<a href="#step-5" type="button" class="btn btn-default btn-circle"
+
+				<div class="stepwizard-step">
+					<a href="#step-5" type="button" class="btn btn-primary btn-circle"
 						disabled="disabled">5</a>
 					<p>Etape 5 : Accompagnants</p>
 				</div>
-				
+
 			</div>
 		</div>
-		<form:form method="POST" action="ajoutAccompagnant" class="form-horizontal"
-			modelAttribute="accompagnant">
+
+		<form:form method="POST" action="ajoutAccompagnant"
+			class="form-horizontal" modelAttribute="accompagnant">
 
 			<div class="row setup-content" id="step-5">
 				<div class="col-xs-6 col-md-offset-3">
@@ -97,9 +103,10 @@
 						</div>
 
 						<div class="form-group">
-							<label class="control-label">Date de naissance</label> <form:input
-								maxlength="100" type="date" required="required"
-								class="form-control" placeholder="Date de naissance" path="dateString"/>
+							<label class="control-label">Date de naissance</label>
+							<form:input maxlength="100" type="date" required="required"
+								class="form-control" placeholder="Date de naissance"
+								path="dateString" />
 						</div>
 
 
@@ -108,12 +115,12 @@
 					</div>
 				</div>
 			</div>
-	
 
 
 
-	
+
+
 		</form:form>
-
+	</div>
 </body>
 </html>
