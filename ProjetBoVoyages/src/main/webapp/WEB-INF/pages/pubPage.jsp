@@ -14,16 +14,17 @@ a {
 	font-weight: 600;
 	text-decoration: none;
 	font-size: 13px;
-	color: #ff000a;
+	color: white;
 	position: absolute;
 	left: 20px;
 	bottom: 20px;
-	border: 1px solid #A7AAAE;
+	background-color: #2b542c; border : 1px solid #2b542c;
 	padding: 12px 20px 10px 20px;
 	border-radius: 50px;
 	transition: all .1s ease-in-out;
 	text-transform: uppercase;
 	z-index: 5;
+	border: 1px solid #2b542c;
 }
 
 a:hover {
@@ -118,7 +119,8 @@ a:hover {
 	<div class="demos" style="text-align: center">
 
 		<div class="btn" style="text-align: center">
-			<a href="${pageContext.request.contextPath}/accueil.html">Promotions de Noel,<br>venez vite!!!
+			<a href="${pageContext.request.contextPath}/accueil.html">Promotions
+				de Noel,<br>venez vite!!!
 			</a>
 		</div>
 
