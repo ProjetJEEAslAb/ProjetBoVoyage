@@ -166,7 +166,7 @@ public class AfriqueController {
 			// Enregistrement du dossier
 			serviceDossier.addDossier(dossier);
 			String messageRemerciementPartie1 = "Votre commande a bien été enregistrée.";
-			String messageRemerciementPartie2 =	"Nous vous remerçions de la confiance que vous nous accorder !";
+			String messageRemerciementPartie2 =	"Nous vous remerçions de la confiance que vous nous accordez !";
 
 			ModelAndView modeleVue = new ModelAndView("accueil","messageRemerciementPartie1",messageRemerciementPartie1);
 			modeleVue.addObject("messageRemerciementPartie2",messageRemerciementPartie2);
@@ -232,7 +232,7 @@ public class AfriqueController {
 			// Message du mail
 			MimeBodyPart messageBodyPart = new MimeBodyPart();
 			StringBuilder sb = new StringBuilder();
-			sb.append("Cher client / Chère cliente" + "\n");
+			sb.append(v.getCivilite()+" "+v.getNom()+",\n");
 			sb.append("Nous vous confirmons votre réservation.\n");
 
 			sb.append("Nous vous souhaitons un agréable voyage !\nL'équipe BoVoyage");
