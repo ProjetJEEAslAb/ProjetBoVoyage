@@ -9,6 +9,7 @@
 	<properties>
 		<spring-version>4.1.9.RELEASE</spring-version>
 		<hibernate-version>4.2.21.Final</hibernate-version>
+		<jersey-version>1.8</jersey-version>
 	</properties>
 
 	<dependencies>
@@ -155,6 +156,17 @@
 			<groupId>com.paypal.sdk</groupId>
 			<artifactId>rest-api-sdk</artifactId>
 			<version>LATEST</version>
+		</dependency>
+		<!-- ============================== Jersey ============================== -->
+		<dependency>
+			<groupId>com.sun.jersey</groupId>
+			<artifactId>jersey-client</artifactId>
+			<version>${jersey-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.jersey</groupId>
+			<artifactId>jersey-json</artifactId>
+			<version>${jersey-version}</version>
 		</dependency>
 	</dependencies>
 

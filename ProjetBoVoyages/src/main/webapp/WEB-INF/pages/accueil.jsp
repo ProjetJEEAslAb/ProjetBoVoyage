@@ -9,9 +9,10 @@
 	<link rel="stylesheet" href="<c:url value="/assets/libs/bootstrap-3.3.7/css/bootstrap-theme.css" />">
 	<script type="text/javascript" src="<c:url value="/assets/libs/jquery-3.2.1.js" />"></script>
 	<script type="text/javascript" src="<c:url value="/assets/libs/bootstrap-3.3.7/js/bootstrap.js" />"></script>
+	<script type="text/javascript" src="<c:url value="/assets/libs/scrollreveal.min.js" />"></script>
 	<title>Accueil</title>
 <body>
-	<nav class="navbar navbar-inverse navbar-fixed-top" style="margin-bottom: 75px">
+	<nav class="navbar navbar-inverse navbar-fixed-top">
 		<div class="container-fluid">
 			<div class="navbar-header">
 				<a class="navbar-brand" href="#">BoVoyage</a>
@@ -78,8 +79,10 @@
 		</div>
 	</nav>
 
-	<h1 align="center">Où voulez-vous aller ?</h1>
-	<div align="center">
+	<h1 id="question" align="center" style="margin-top:75px">Où voulez-vous aller ?</h1>
+	<br/>
+	<br/>
+	<div id="carte" align="center">
 		<svg width="1050" height="700" xmlns="http://www.w3.org/2000/svg" xmlns:amcharts="http://amcharts.com/ammap" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">
 		<defs>
 			<style type="text/css">
@@ -127,6 +130,22 @@
 		</g>
 		</svg>
 	</div>
+	
+	<script type="text/javascript">
+	window.sr = ScrollReveal();
+	sr.reveal('#question', {
+		duration: 1000,
+		origin:'bottom',
+		distance:'600px'
+      });
+	sr.reveal('#carte', {
+		duration: 2000,
+		origin:'right',
+		distance:'300px',
+        delay: 1000,
+		viewFactor: 0.2
+      });
+	</script>
 	
 </body>
 </html>

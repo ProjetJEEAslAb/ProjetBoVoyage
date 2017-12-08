@@ -1,10 +1,12 @@
 package fr.adaming.controllers;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -36,7 +38,8 @@ public class AgenceController implements Serializable {
 		return new ModelAndView("agence/ajoutAgence", "ajoutAgence", new Agence());
 	}
 	@RequestMapping(value="/ajoutAgence", method=RequestMethod.POST)
-	public ModelAndView soumettreFormAjout() {
+	public ModelAndView soumettreFormAjout(@ModelAttribute("ajoutAgence") Agence agence) {
+		this.agenceService.addAgence(agence);
 		List<Agence> listeAgences = this.agenceService.getAllAgences();
 		return new ModelAndView("agence/listeAgences", "listeAgences", listeAgences);
 	}
