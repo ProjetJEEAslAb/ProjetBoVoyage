@@ -10,78 +10,61 @@
 	<script type="text/javascript" src="<c:url value="/assets/libs/jquery-3.2.1.js" />"></script>
 	<script type="text/javascript" src="<c:url value="/assets/libs/bootstrap-3.3.7/js/bootstrap.js" />"></script>
 	<title>Accueil</title>
-	
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAlMJacV2bESryY_WL1XjSSy6Bh-NDofNw"></script>
-	<script type="text/javascript" src="assets/libs/axios.js"></script>
-	<script>
-	var map;
-	function initialize() {
-    	var map = new google.maps.Map(document.getElementById('map-canvas'), {
-            zoom: 1,
-            center: {lat: 30.0, lng: 0.0}
-        });
-		var locations = ["22 Main st Boston MA", "Petrovka St-Bld 11, Moscow"];
-		for(i=0; i<locations.length; i++) {
-	        axios.get("https://maps.googleapis.com/maps/api/geocode/json", {
-	            params:{
-	                address:locations[i],
-	                key:"AIzaSyAlMJacV2bESryY_WL1XjSSy6Bh-NDofNw"
-	            }
-	        }).then(function(response) {
-	            var results = response.data.results;
-	            for (i=0; i<results.length;i++) {
-	                var position = {lat:response.data.results[i].geometry.location.lat, lng:response.data.results[i].geometry.location.lng};
-	                console.log(position);
-	                var marker = new google.maps.Marker({
-	                    position: position,
-	                    map: map
-	                });
-	            }
-	        });
-		}
-	}
-	google.maps.event.addDomListener(window, 'load', initialize);
-	</script>
 <body>
-	<nav class="navbar navbar-inverse">
+	<nav class="navbar navbar-inverse navbar-fixed-top" style="margin-bottom: 75px">
 		<div class="container-fluid">
 			<div class="navbar-header">
 				<a class="navbar-brand" href="#">BoVoyage</a>
 			</div>
-			<ul class="nav navbar-nav">
-				<li class="dropdown"><a class="dropdown-toggle"
-					data-toggle="dropdown" href="#">Voyages<span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a href="${pageContext.request.contextPath}/voyage/afficheListeVoyage">Liste</a></li>
-						<li><a href="${pageContext.request.contextPath}/voyage/afficheAjout">Ajout</a></li>
-						<li><a href="${pageContext.request.contextPath}/voyage/modifVoyage">Modification</a></li>
-						<li><a href="${pageContext.request.contextPath}/voyage/afficheSuppr">Suppression</a></li>
-						<li><a href="${pageContext.request.contextPath}/voyage/rechercheVoyage">Recherche</a></li>
-						<li><a href="${pageContext.request.contextPath}/voyage/promotion">Promotion</a></li>
+				<c:if test="${sessionScope.logged}">
+					<ul class="nav navbar-nav">
+						<li class="dropdown"><a class="dropdown-toggle"
+							data-toggle="dropdown" href="#">Voyages<span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="${pageContext.request.contextPath}/voyage/afficheListeVoyage">Liste</a></li>
+								<li><a href="${pageContext.request.contextPath}/voyage/afficheAjout">Ajout</a></li>
+								<li><a href="${pageContext.request.contextPath}/voyage/modifVoyage">Modification</a></li>
+								<li><a href="${pageContext.request.contextPath}/voyage/afficheSuppr">Suppression</a></li>
+								<li><a href="${pageContext.request.contextPath}/voyage/rechercheVoyage">Recherche</a></li>
+								<li><a href="${pageContext.request.contextPath}/voyage/promotion">Promotion</a></li>
+							</ul>
+						</li>
+						<li class="dropdown"><a class="dropdown-toggle"
+							data-toggle="dropdown" href="#">Voyageurs<span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="${pageContext.request.contextPath}/voyageur/listeVoyageurs">Liste</a></li>
+								<li><a href="${pageContext.request.contextPath}/voyageur/afficheAjout">Ajout</a></li>
+								<li><a href="${pageContext.request.contextPath}/voyageur/afficheModif">Modification</a></li>
+								<li><a href="${pageContext.request.contextPath}/voyageur/afficheSuppr">Suppression</a></li>
+								<li><a href="${pageContext.request.contextPath}/voyageur/afficheRecherche">Recherche</a></li>
+							</ul>
+						</li>
+						<li class="dropdown"><a class="dropdown-toggle"
+							data-toggle="dropdown" href="#">Dossiers<span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="${pageContext.request.contextPath}/dossier/listeDossiers">Liste</a></li>
+								<li><a href="${pageContext.request.contextPath}/dossier/afficheAjout">Ajout</a></li>
+								<li><a href="${pageContext.request.contextPath}/dossier/afficheModif">Modification</a></li>
+								<li><a href="${pageContext.request.contextPath}/dossier/afficheModifStatut">Modification statut</a></li>
+								<li><a href="${pageContext.request.contextPath}/dossier/afficheSuppr">Suppression</a></li>
+								<li><a href="${pageContext.request.contextPath}/dossier/afficheRecherche">Recherche</a></li>
+							</ul>
+						</li>
+						<li class="dropdown"><a class="dropdown-toggle"
+							data-toggle="dropdown" href="#">Agences<span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="${pageContext.request.contextPath}/agence/listeAgences">Liste</a></li>
+								<li><a href="${pageContext.request.contextPath}/agence/afficheAjout">Ajout</a></li>
+							</ul>
+						</li>
 					</ul>
-				</li>
-				<li class="dropdown"><a class="dropdown-toggle"
-					data-toggle="dropdown" href="#">Voyageurs<span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a href="${pageContext.request.contextPath}/voyageur/listeVoyageurs">Liste</a></li>
-						<li><a href="${pageContext.request.contextPath}/voyageur/afficheAjout">Ajout</a></li>
-						<li><a href="${pageContext.request.contextPath}/voyageur/afficheModif">Modification</a></li>
-						<li><a href="${pageContext.request.contextPath}/voyageur/afficheSuppr">Suppression</a></li>
-						<li><a href="${pageContext.request.contextPath}/voyageur/afficheRecherche">Recherche</a></li>
+				</c:if>
+				<c:if test="${not sessionScope.logged}">
+					<ul class="nav navbar-nav">
+						<li class="active"><a href="${pageContext.request.contextPath}/accueil">Nos Offres</a></li>
+						<li class="active"><a href="${pageContext.request.contextPath}/agence/listeAgences">Nos Agences</a></li>
 					</ul>
-				</li>
-				<li class="dropdown"><a class="dropdown-toggle"
-					data-toggle="dropdown" href="#">Dossiers<span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a href="${pageContext.request.contextPath}/dossier/listeDossiers">Liste</a></li>
-						<li><a href="${pageContext.request.contextPath}/dossier/afficheAjout">Ajout</a></li>
-						<li><a href="${pageContext.request.contextPath}/dossier/afficheModif">Modification</a></li>
-						<li><a href="${pageContext.request.contextPath}/dossier/afficheModifStatut">Modification statut</a></li>
-						<li><a href="${pageContext.request.contextPath}/dossier/afficheSuppr">Suppression</a></li>
-						<li><a href="${pageContext.request.contextPath}/dossier/afficheRecherche">Recherche</a></li>
-					</ul>
-				</li>
-			</ul>
+				</c:if>
 			<ul class="nav navbar-nav navbar-right">
 				<c:if test="${sessionScope.logged}">
 					<li><a href="#">${sessionScope.username}</a></li>
@@ -95,7 +78,7 @@
 		</div>
 	</nav>
 
-	<h1>Où voulez-vous aller ?</h1>
+	<h1 align="center">Où voulez-vous aller ?</h1>
 	<div align="center">
 		<svg width="1050" height="700" xmlns="http://www.w3.org/2000/svg" xmlns:amcharts="http://amcharts.com/ammap" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">
 		<defs>
@@ -143,11 +126,6 @@
 		
 		</g>
 		</svg>
-	</div>
-
-	<h3>Nos agences :</h3>
-	<div align="center">
-	<div id="map-canvas" style="height:300px; width:500px; margin-bottom:50px;"></div>
 	</div>
 	
 </body>
